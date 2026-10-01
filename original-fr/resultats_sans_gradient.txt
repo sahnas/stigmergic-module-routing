@@ -1,0 +1,22 @@
+graines [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59] 
+
+ema         dispo moy 0.408 med 0.388 | init moy 0.503 effondrements init 10/20 | final 0.215 | zero-shot final 0.071 | alarmes 0
+            par evenement {'E1': np.float64(0.434), 'E2': np.float64(0.441), 'E3': np.float64(0.521), 'E4': np.float64(0.236)}
+ema_seuils  dispo moy 0.505 med 0.520 | init moy 0.534 effondrements init 7/20 | final 0.609 | zero-shot final 0.449 | alarmes 76
+            par evenement {'E1': np.float64(0.403), 'E2': np.float64(0.475), 'E3': np.float64(0.626), 'E4': np.float64(0.516)}
+aco         dispo moy 0.568 med 0.606 | init moy 0.775 effondrements init 4/20 | final 0.368 | zero-shot final 0.198 | alarmes 0
+            par evenement {'E1': np.float64(0.574), 'E2': np.float64(0.601), 'E3': np.float64(0.757), 'E4': np.float64(0.34)}
+aco_seuils  dispo moy 0.755 med 0.749 | init moy 0.919 effondrements init 0/20 | final 0.600 | zero-shot final 0.385 | alarmes 74
+            par evenement {'E1': np.float64(0.85), 'E2': np.float64(0.799), 'E3': np.float64(0.825), 'E4': np.float64(0.544)}
+
+S1 aco_seuils - ema          diff moy +0.347 IC95 [+0.288, +0.403] positif 20/20 p=0.00000 -> CONFIRMEE
+S2 effet des seuils          diff moy +0.142 IC95 [+0.092, +0.188] positif 18/20 p=0.00013 -> CONFIRMEE
+S3 effet regle (aco - ema)   diff moy +0.205 IC95 [+0.172, +0.234] positif 20/20 p=0.00000 -> CONFIRMEE
+
+Descriptif, hors preenregistrement : part de l'effet due a l'apprentissage initial
+  ema         graines saines a l'init (R2>=0.8):  7/20 | sur celles-ci : init 0.967 dispo 0.399 final 0.201 | perte init->final 0.766
+  ema_seuils  graines saines a l'init (R2>=0.8):  0/20 | sur celles-ci : init nan dispo nan final nan | perte init->final nan
+  aco         graines saines a l'init (R2>=0.8): 13/20 | sur celles-ci : init 0.963 dispo 0.599 final 0.367 | perte init->final 0.596
+  aco_seuils  graines saines a l'init (R2>=0.8): 19/20 | sur celles-ci : init 0.929 dispo 0.755 final 0.582 | perte init->final 0.347
+  aco_seuils - ema en disponibilite, graines saines pour les deux (n=7): diff moy +0.337, positif 7/7
+  meme sous-ensemble, perte init->final : aco_seuils perd 0.295, ema perd 0.766

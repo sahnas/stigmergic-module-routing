@@ -1,0 +1,33 @@
+Tuning of the opponent on development seeds 300-302 (mean availability, per-seed values, config):
+  0.619 [0.743 0.616 0.496] {"b": 0.2, "c": 0.1, "h": 20, "sel": "ucb"}
+  0.603 [0.484 0.592 0.733] {"b": 0.4, "c": 0.3, "h": 50, "sel": "ucb"}
+  0.55 [0.549 0.387 0.713] {"b": 0.2, "c": 0.1, "h": 50, "sel": "ucb"}
+  0.548 [0.633 0.536 0.476] {"b": 0.2, "c": 0.3, "h": 50, "sel": "ucb"}
+  0.544 [0.376 0.591 0.666] {"b": 0.4, "c": 0.1, "h": 50, "sel": "ucb"}
+  0.54 [0.629 0.642 0.349] {"b": 0.4, "c": 0.1, "h": 20, "sel": "ucb"}
+  0.533 [0.574 0.577 0.447] {"b": 0.2, "h": 50, "sel": "softmax"}
+  0.532 [0.488 0.658 0.45 ] {"b": 0.2, "c": 0.3, "h": 20, "sel": "ucb"}
+  0.51 [0.538 0.54  0.452] {"b": 0.4, "h": 50, "sel": "softmax"}
+  0.504 [0.396 0.568 0.547] {"b": 0.4, "c": 0.3, "h": 20, "sel": "ucb"}
+  0.463 [0.613 0.286 0.49 ] {"b": 0.2, "c": 0.03, "h": 50, "sel": "ucb"}
+  0.442 [0.433 0.419 0.475] {"b": 0.4, "h": 20, "sel": "softmax"}
+  0.435 [0.437 0.465 0.405] {"b": 0.2, "h": 20, "sel": "softmax"}
+  0.392 [0.313 0.252 0.612] {"b": 0.2, "c": 0.03, "h": 20, "sel": "ucb"}
+  0.367 [0.322 0.488 0.292] {"b": 0.4, "c": 0.03, "h": 50, "sel": "ucb"}
+  0.303 [0.417 0.133 0.359] {"b": 0.4, "c": 0.03, "h": 20, "sel": "ucb"}
+
+seeds [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79] n per variant 20 
+
+ema             availability mean 0.450 med 0.432 min 0.209 | init 0.584 collapses 9/20 | final 0.279 | final zero-shot 0.111
+                per event {'E1': 0.479, 'E2': 0.479, 'E3': 0.583, 'E4': 0.258}
+changepoint     availability mean 0.608 med 0.638 min 0.250 | init 0.949 collapses 0/20 | final 0.601 | final zero-shot 0.390
+                per event {'E1': 0.66, 'E2': 0.637, 'E3': 0.729, 'E4': 0.404}
+aco_thresholds  availability mean 0.768 med 0.769 min 0.674 | init 0.909 collapses 0/20 | final 0.722 | final zero-shot 0.567
+                per event {'E1': 0.865, 'E2': 0.805, 'E3': 0.832, 'E4': 0.569}
+
+R1 aco_thresholds - changepoint: mean diff +0.160 95% CI [+0.106, +0.219] positive 18/20 p=0.00001 -> MAINTAINED
+R2 changepoint - ema: mean diff +0.158 95% CI [+0.087, +0.223] positive 18/20 p=0.00085 -> CONFIRMED
+
+Descriptive: seeds healthy at start for both (n=18) availability diff +0.148, positive 16/18
+  loss init->final changepoint: 0.366
+  loss init->final aco_thresholds: 0.212

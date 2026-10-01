@@ -1,0 +1,12 @@
+seeds 700 to 719
+aco_thresholds  retention 0.893 | zero-shot 0.866 | k* after damage -0.000 | k* recovered 0.973 | other recovered 0.979 | secs 8.0
+topk1           retention 0.957 | zero-shot 0.949 | k* after damage 0.000 | k* recovered 0.046 | other recovered 0.972 | secs 8.3
+topk2           retention 0.930 | zero-shot 0.891 | k* after damage 0.254 | k* recovered 0.962 | other recovered 0.973 | secs 11.4
+
+Two-sided paired Wilcoxon, Bonferroni threshold 0.0083 (difference = aco_thresholds - opponent)
+  T1-T3 vs topk2  zero_r2      mean diff -0.025 95% CI [-0.090, +0.060] aco higher on 5/20 p=0.00944 -> not significant
+  T1-T3 vs topk2  train_r2     mean diff -0.037 95% CI [-0.080, +0.009] aco higher on 5/20 p=0.01208 -> not significant
+  T1-T3 vs topk2  k_train_rec  mean diff +0.011 95% CI [+0.006, +0.018] aco higher on 18/20 p=0.00013 -> significant
+  T4-T6 vs topk1  zero_r2      mean diff -0.083 95% CI [-0.131, -0.044] aco higher on 1/20 p=0.00000 -> significant
+  T4-T6 vs topk1  train_r2     mean diff -0.065 95% CI [-0.101, -0.034] aco higher on 2/20 p=0.00003 -> significant
+  T4-T6 vs topk1  k_train_rec  mean diff +0.927 95% CI [+0.833, +0.976] aco higher on 20/20 p=0.00000 -> significant

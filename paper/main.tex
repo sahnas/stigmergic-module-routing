@@ -1,0 +1,274 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[round,authoryear]{natbib}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+\title{Commitment-Based Recruitment for Gradient-Free\\ Resilience in Modular Learning Systems:\\ Nine Preregistered Toy Experiments}
+\author{Hassan Akaou\\
+\small Independent researcher, France\\
+\small \url{https://github.com/sahnas/stigmergic-module-routing}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a distributed heuristic for backup capacity in modular learning systems that uses no routing gradient. Each edge between a task symbol and a module carries a trace, reinforced by successful use and evaporated when the symbol is solicited. When a module's quality drops abnormally, an alarm fires and the least committed module, the one with the lowest total trace, is recruited to relearn the lost function. The design is inspired by stigmergy and response-threshold models of insect societies, although the traces form a shared table rather than an environment. In nine preregistered experiments on a synthetic compositional regression world, with the mechanism never tuned and opponents tuned on separate development seeds, we find that: (i) forgetting is necessary for compensation after the permanent loss of a module, and, at equal rate, evaporation triggered by solicitation preserves retention whereas time-based evaporation destroys it; (ii) resilience is carried by recruiting the least committed module, while per-module alarm thresholds bring nothing measurable, even with heterogeneous modules; (iii) without a routing gradient, the mechanism outperforms recency-based routing and change-point bandits and matches sliding-window and discounted UCB; (iv) with gradients available, it does not outperform routers trained by gradient, including sparse top-$k$ mixtures of experts, although top-1 routing fails to recover from module loss; and (v) with opaque task identifiers, it fails to learn the tasks, and no tested method recovers the compositional structure. We report these results together with the integrity issues of this AI-assisted study, including files from unseen executions found in the execution environment, and provide a provenance check. Code, data and preregistrations are public.
+\end{abstract}
+
+\section{Introduction}
+
+Modular neural systems need a way to decide which module handles which part of a task. The dominant answer is a router trained jointly with the modules by gradient descent, as in mixtures of experts \citep{jacobs1991experts,shazeer2017moe}. Another family routes with reinforcement learning \citep{rosenbaum2018routing}, and a third coordinates modules through a shared workspace \citep{goyal2022workspace}; see \citet{pfeiffer2023modular} for a survey. In some settings, however, the router cannot receive gradients: modules may be physically separated, heterogeneous, added or removed during operation, or simply not differentiable end to end. Such settings also raise a robustness question: what happens when a module fails?
+
+Social insects solve a related problem without a central controller. Ants coordinate through traces deposited in the environment, a mechanism called stigmergy \citep{grasse1959}, which inspired ant colony optimisation \citep{dorigo1996antsystem} and ant-based network routing \citep{dicaro1998antnet}. Division of labour emerges from individual response thresholds \citep{bonabeau1996threshold,theraulaz1998reinforcement}, and recruitment of idle workers has been transferred to cooperative robots \citep{krieger2000robots}.
+
+We ask whether these ingredients, transposed to routing between modules that learn during operation, produce a useful coordination mechanism, and where it breaks. The mechanism combines evaporating traces on symbol-to-module edges, an alarm on abnormal quality drops, and recruitment of the least committed module. We test it in a deliberately small synthetic world, using preregistered hypotheses \citep{nosek2018preregistration}, separate development and test seeds, tuned opponents and an untuned mechanism.
+
+Our contributions are empirical and include negative results. Stated in its most defensible form, the finding is that a distributed backup-capacity heuristic, based on the historical commitment of modules, provides resilience comparable to good non-stationary bandits without any routing gradient. An ablation identifies recruitment of the least committed module as the active ingredient. The mechanism is, however, only on par with the best standard non-stationary bandits, it does not beat routers trained by gradient (dense or sparse), and it does not discover compositional structure when the decomposition of tasks is not given.
+
+\section{Related work}
+
+\paragraph{Stigmergy and division of labour.} Ant colony optimisation uses pheromone deposit and evaporation to bias the construction of solutions \citep{dorigo1996antsystem}; AntNet applies it to packet routing in communication networks \citep{dicaro1998antnet}. Response-threshold models explain how heterogeneous thresholds yield division of labour and reallocation after worker loss \citep{bonabeau1996threshold,theraulaz1998reinforcement}. \citet{krieger2000robots} showed that ant-like task allocation and recruitment improve the foraging efficiency of groups of robots. In these works, the agents do not learn new functions during operation.
+
+\paragraph{Modular networks and routing.} Mixtures of experts route inputs with a gating network trained by gradient \citep{jacobs1991experts,shazeer2017moe}. Routing networks select function blocks with a router trained by reinforcement learning \citep{rosenbaum2018routing}, which is the closest structural precedent to our setting. Shared global workspaces coordinate specialised modules through a limited-capacity bottleneck \citep{goyal2022workspace}. The Artificial Neural Tissue of \citet{thangavelautham2012ant} regulates modules with diffusing chemical-like signals and obtains self-organised task decomposition, but learns through evolution over many generations rather than during operation. \citet{bahdanau2019systematic} showed that modular networks generalise systematically when their layout is right, but that learning the layout is hard, a finding that our last experiment echoes.
+
+\paragraph{Non-stationary bandits.} Routing without gradient can be cast as a bandit problem per task symbol, non-stationary because modules learn and fail. Sliding-window and discounted UCB \citep{garivier2011switching} and change-detection approaches such as M-UCB \citep{cao2019mucb} are natural opponents and are used as such here.
+
+\paragraph{Pheromone routing between AI agents.} Recent work routes queries between LLM-based agents with pheromone memories, including fault-aware adaptation from execution feedback \citep{du2026stigmergyrouter} and task-specific pheromone specialists \citep{wang2026amros}. There, agents are fixed specialists: failed agents are avoided, not replaced by an agent that relearns their function. The specific combination studied here (modules that learn together with the routing, solicitation-triggered forgetting, and load-aware recruitment of a module that relearns a lost function) was not found in these works. This is based on targeted searches, not an exhaustive review.
+
+\section{Mechanism}
+
+A pool of modules $m \in \{1,\dots,M\}$ shares a set of task symbols $s$. A task is a path of one or two symbols; each symbol is served by one module, and the modules are applied in sequence. Modules are small regressors $f_m(x) = W_m x + b_m + g_m(x)$, where $g_m$ is a one-hidden-layer ReLU network with 32 units. They communicate through the observation space, a fixed interface, and learn by gradient descent (Adam, learning rate $3\cdot10^{-3}$, batches of 32) along the path actually used.
+
+\paragraph{Traces and selection.} Each edge $(s,m)$ carries a trace $\tau_{s,m}$, initialised at 0. The module serving symbol $s$ is sampled with probability
+\begin{equation}
+P(m \mid s) = \frac{\exp(\tau_{s,m}/T)}{\sum_{m'} \exp(\tau_{s,m'}/T)}, \qquad T = 0.05,
+\end{equation}
+over available modules, excluding the module already used in the first slot of the path. After each batch, the path receives the quality $q = \mathrm{clip}\big(1 - \mathrm{MSE}/\mathrm{Var}(y), 0, 1\big)$, a clipped coefficient of determination.
+
+\paragraph{Solicitation-triggered evaporation.} For every symbol $s$ solicited by the batch, all its traces evaporate, then the edge used receives a deposit:
+\begin{equation}
+\tau_{s,\cdot} \leftarrow (1-\rho)\,\tau_{s,\cdot}, \qquad \tau_{s,m} \leftarrow \tau_{s,m} + \rho\, q, \qquad \rho = 0.02.
+\end{equation}
+The trace of a repeatedly used edge thus tracks a moving average of its quality, while the other edges of a solicited symbol fade. Edges of symbols that are not solicited are left untouched. We compare this rule (\emph{aco}) with three alternatives: a cumulative mean of $q$ on the edge used, with no forgetting (\emph{cumulative}); a moving average on the edge used only (\emph{ema}, forgetting by recency); and evaporation of all traces of all symbols at every step with the same rate $\rho$ (\emph{global}, literal time-based evaporation).
+
+\paragraph{Alarm and recruitment.} Each module keeps exponential moving averages (rate 0.05) of its quality $\bar q_m$ and of its absolute deviation $d_m$. After at least 50 uses, if a batch gives $q < \bar q_m - \kappa \max(d_m, 0.02)$ with $\kappa = 3$, and symbol $s$ is not in a 100-step cooldown, an alarm fires. The module $r$ with the lowest total trace $\sum_{s'} \tau_{s',r}$ among available modules off the current path is recruited. We call this total trace the module's load: it measures how much the routing already relies on the module, not its computational load, and the recruit is therefore the least committed module: its trace for $s$ is raised to the incumbent's level, $\tau_{s,r} \leftarrow \max(\tau_{s,r}, \tau_{s,m})$, and its statistics are reset. The recruit then competes with the incumbent through ordinary selection and learning. The full mechanism, evaporation plus alarm plus recruitment, is denoted \emph{aco\_thresholds}.
+
+\paragraph{What the traces add, and what "stigmergy" does not mean here.} Without the stigmergic reading, the mechanism is a table of affinities per (symbol, module), a decay applied when a symbol is used, an anomaly detector and a failover policy. Two of its parts are nevertheless specific. First, the decay also hits the unused edges of a solicited symbol, which a plain moving average of the quality of the edge used (\emph{ema}) does not do; this difference is measurable (Experiment~3). Second, the load used for recruitment is read from the same traces, so the failover policy consumes the routing memory rather than a separate signal. The word stigmergy should not be over-read: there is no environment in which modules act, only a shared table. Its hyperparameters were chosen a priori and never tuned.
+
+\section{Experimental setup}
+
+\paragraph{World.} Five fixed primitives act on $\mathbb{R}^8$: $P_k(x) = Q_k x + 0.5 \tanh(B_k x)$, with $Q_k$ a random orthogonal matrix and $B_k$ a random Gaussian matrix with entry variance $1.5^2/8$. A task is a primitive or an ordered pair $(i,j)$, $y = P_j(P_i(x))$, with $x \sim \mathcal{N}(0, I)$. Of the 20 ordered pairs, 12 are used for training (each primitive appearing in both positions) and 8 are held out for zero-shot evaluation. The world is regenerated for each seed.
+
+\paragraph{Opponents.} Depending on the experiment: a monolithic MLP (two hidden layers of 128 units) receiving one-hot task symbols; fixed orchestration (symbol $k$ to module $k$); a router trained by gradient (softmax mixture of all modules per symbol, mixture-of-experts style); a REINFORCE router \citep{williams1992reinforce} in the spirit of routing networks; SW-UCB, D-UCB and M-UCB; an independent change-point UCB with per-arm reset; and sparse top-$k$ mixtures of experts with noisy gating \citep{shazeer2017moe}. Opponents were tuned on development seeds; the tested mechanism was not.
+
+\paragraph{Protocol and statistics.} Each test was preregistered before running its test seeds, with hypotheses, thresholds and seeds written in advance (see Section~\ref{sec:integrity} for exceptions). Comparisons are paired across seeds with two-sided Wilcoxon signed-rank tests \citep{wilcoxon1945}, Bonferroni-corrected within each family of hypotheses; we report mean differences with 95\% bootstrap confidence intervals (10{,}000 resamples). Everything runs on a single CPU core.
+
+\section{Results}
+
+\subsection{Experiment 1: compensation with given symbols (seeds 0--9)}
+
+Eight modules learn 17 tasks presented in successive blocks (two passes, 150 steps per block). The module carrying one primitive $k^*$ then dies permanently (zero output, no relearning), followed by a short recovery phase (two passes, 60 steps per block). Table~\ref{tab:exp1} and Figure~\ref{fig:recovery} summarise the results.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Variant & Retention & Zero-shot & $k^*$ tasks, recovered & Rerouting \\
+\midrule
+Monolithic MLP & $-0.47$ & $-0.50$ & $-0.05$ & n/a \\
+Fixed orchestration & 0.94 & 0.91 & 0.00 & never \\
+Router trained by gradient & 0.81 & 0.73 & 0.98 & 324 \\
+No forgetting (cumulative) & 0.75 & 0.70 & 0.00 & never \\
+Forgetting by recency (ema) & 0.76 & 0.68 & 0.75 & 524 \\
+Evaporation (aco) & 0.83 & 0.72 & 0.92 & 555 \\
+Time-based evaporation & 0.07 & $-0.09$ & 0.13 & 37 \\
+Evaporation + alarm + recruitment & 0.91 & 0.88 & 0.97 & 4.5 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 1, means over 10 seeds (rerouting latency: median). Values are $R^2$.}
+\label{tab:exp1}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/recovery.png}
+\caption{Recovery after the permanent death of the module carrying $k^*$ (Experiment 1, mean and interquartile range over 10 seeds).}
+\label{fig:recovery}
+\end{figure}
+
+Forgetting enables compensation: evaporation recovers while traces without forgetting and fixed orchestration never do (difference $+0.92$, 10/10 seeds, $p = 0.002$). Alarm and recruitment reduce rerouting latency from about 555 to 4.5 steps and improve recovery (10/10 seeds, $p = 0.002$). At the same rate, time-based evaporation destroys retention ($-0.76$, 10/10, $p = 0.002$). Evaporation beats the monolithic MLP in zero-shot generalisation but not the gradient-trained router ($p = 0.43$), and does not differ from forgetting by recency ($p = 0.56$ and $p = 1.0$). An apparent advantage of the full mechanism over the gradient-trained router (zero-shot 0.88 vs 0.73, 9/10 seeds) was exploratory.
+
+\subsection{Experiment 2: confirmation (seeds 20--29)}
+
+That exploratory advantage was not confirmed on fresh seeds: zero-shot $+0.008$ (95\% CI $[-0.09, +0.09]$, $p = 0.63$) and retention $+0.014$ ($[-0.04, +0.07]$, $p = 0.56$). The first sample was unfavourable to the gradient-trained router (mean retention 0.81 versus 0.88 on the second). With gradients available, the mechanism ties with a gradient-trained router.
+
+\subsection{Experiment 3: no routing gradient (seeds 40--59)}
+
+The routing now receives no gradient. After initial learning, a production phase applies four events: the death of a module; the arrival of two new modules together with another death; a change in the definition of one primitive; and a simultaneous double death. The pool has ten slots, seven occupied at the start, and the system is never told which modules are dead. The main measure, availability, is the mean $R^2$ over the 17 tasks evaluated after every 60-step block of the production phase. A $2\times2$ design crosses the forgetting rule (ema, aco) with the alarm and recruitment (absent, present).
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Variant & Availability & Collapses & Final $R^2$ & Final zero-shot \\
+\midrule
+Recency (ema) & 0.41 & 10/20 & 0.22 & 0.07 \\
+Recency + alarm + recruitment & 0.51 & 7/20 & 0.61 & 0.45 \\
+Evaporation (aco) & 0.57 & 4/20 & 0.37 & 0.20 \\
+Evaporation + alarm + recruitment & 0.76 & 0/20 & 0.60 & 0.39 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 3, means over 20 seeds. Collapses: seeds with initial retention below 0.5.}
+\label{tab:exp3}
+\end{table}
+
+The full mechanism beats recency by $+0.35$ ($[+0.29, +0.40]$, 20/20 seeds); the alarm and recruitment add $+0.14$ (18/20, $p = 0.0001$); evaporation beats recency by $+0.21$ (20/20; no sign was predicted). The advantage is not only an initial-learning effect: on the seven seeds where both systems start healthy, the mechanism loses 0.30 of $R^2$ across the events, recency 0.77 (Figure~\ref{fig:availability}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/availability.png}
+\caption{Availability during the production phase without routing gradient (Experiment 3, mean over 20 seeds). Vertical lines mark the four events.}
+\label{fig:availability}
+\end{figure}
+
+\subsection{Experiment 4: standard non-stationary bandits (seeds 80--99; replication 60--74)}
+
+The same scenario is run against SW-UCB, D-UCB and M-UCB, each tuned over its own grid on development seeds. The preregistered thesis that the mechanism beats non-stationary bandits required all three comparisons to succeed.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccc}
+\toprule
+Variant & Availability & Initial $R^2$ & Final $R^2$ \\
+\midrule
+Evaporation + alarm + recruitment & 0.74 & 0.94 & 0.65 \\
+SW-UCB (window 50) & 0.72 & 0.69 & 0.86 \\
+D-UCB ($\gamma = 0.98$) & 0.72 & 0.66 & 0.88 \\
+M-UCB (change detection) & 0.59 & 0.90 & 0.72 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 4, main test, means over 20 seeds.}
+\label{tab:exp4}
+\end{table}
+
+Against SW-UCB the difference is $+0.02$ ($[-0.02, +0.06]$, $p = 0.39$) and against D-UCB $+0.03$ ($[-0.01, +0.06]$, $p = 0.20$): neither is confirmed. Against M-UCB it is $+0.15$ (20/20 seeds). The replication on 15 other seeds shows the same pattern, with the first two differences positive but above the preregistered threshold ($p = 0.03$). The thesis is therefore not retained. The profiles differ: the mechanism learns better initially and absorbs the first events better, whereas SW-UCB and D-UCB recover better late in the run, notably after the double death.
+
+\subsection{Experiment 5: a tuned change-point bandit (seeds 60--79)}
+
+An independent change-point UCB (sliding window, per-arm reset on a quality drop), tuned over 16 configurations, is clearly stronger than recency ($+0.16$, 18/20) but weaker than the mechanism ($0.77$ vs $0.61$, difference $+0.16$, $[+0.11, +0.22]$, 18/20, $p < 10^{-4}$). It learns better initially (0.95 vs 0.91) but loses more across events (0.37 vs 0.21). This is consistent with the result against M-UCB.
+
+\subsection{Experiment 6: ablation (seeds 80--99)}
+
+Recruiting a random available module instead of the least committed one lowers availability from 0.74 to 0.52 ($+0.22$ for least-committed recruitment, $[+0.19, +0.27]$, 20/20). Replacing per-module alarm thresholds with a single collective threshold has no detectable effect ($+0.002$, $[-0.03, +0.03]$, $p = 0.78$). The active ingredient is therefore a piece of collective information, the load of each module in the sense of its total trace, read at the moment of failure. In this scenario all modules are identical, which may explain why individual thresholds bring nothing.
+
+\subsection{Experiment 7: opaque task identifiers (seeds 600--609)}
+
+Each composition now receives only an opaque identifier. The system knows that a path has two slots but not which primitives a task combines; with 8 modules and 12 tasks, success requires discovering that tasks share primitives. After interleaved learning of the 12 known compositions, each of the 8 new compositions is learned for 200 steps from the same state.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccccc}
+\toprule
+Variant & Known & Speed & Final new & Interf. & Align. \\
+\midrule
+Monolithic MLP & 0.95 & 0.96 & 0.98 & 0.60 & n/a \\
+Router trained by gradient & 0.91 & 0.89 & 0.97 & 2.23 & $-8.8$ \\
+REINFORCE router & 0.13 & 0.29 & 0.50 & 0.21 & $-0.24$ \\
+Evaporation + alarm + recruitment & 0.21 & 0.29 & 0.55 & 0.21 & $-0.20$ \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 7, means over 10 seeds. Known: $R^2$ on the 12 known tasks. Speed: mean $R^2$ on a new task over 10 evaluations during 200 steps. Final new: $R^2$ on the new task at the end. Interf.: drop of mean $R^2$ on the known tasks. Align.: best $R^2$ of any module approximating each primitive, averaged over primitives.}
+\label{tab:exp7}
+\end{table}
+
+The mechanism learns new compositions far more slowly than the monolithic MLP and the gradient-trained router (0/10 seeds, $p = 0.002$) and ties with the REINFORCE router. Its lower interference is not a virtue, since little was learned in the first place. No variant aligns its modules with the primitives: none discovers the decomposition. The MLP and the gradient-trained router learn each task as its own function and overwrite previous ones, an instance of catastrophic interference \citep{mccloskey1989catastrophic}. These failures were visible on the development seeds and were declared in the preregistration before the test.
+
+\subsection{Experiment 8: sparse top-$k$ mixtures of experts (seeds 700--719)}
+
+This experiment and the next were run after a first version of this manuscript. In the protocol of Experiment~1, the mechanism faces routers trained by gradient with noisy top-$k$ gating, per task symbol. The noise scale and an optional balancing loss were tuned on development seeds. As declared in the preregistration, two opponents were kept after seeing the tuning results, because the best top-1 configuration never recovers from the loss of a module, which would have made the compensation comparison trivial.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lccc}
+\toprule
+Variant & Retention & Zero-shot & $k^*$ tasks, recovered \\
+\midrule
+Evaporation + alarm + recruitment & 0.89 & 0.87 & 0.97 \\
+Top-1 (noise 0.3, balancing 0.01) & 0.96 & 0.95 & 0.05 \\
+Top-2 (noise 0.3) & 0.93 & 0.89 & 0.96 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 8, means over 20 seeds.}
+\label{tab:exp8}
+\end{table}
+
+Against top-2, the mechanism is behind in zero-shot generalisation ($-0.03$) and retention ($-0.04$), not significantly at the preregistered threshold ($p = 0.009$ and $0.012$ against $0.0083$), and ahead in recovery by a negligible $+0.011$ (18/20, significant). Against top-1, it is clearly behind in zero-shot generalisation ($-0.08$) and retention ($-0.07$), and far ahead in recovery ($+0.93$, 20/20): a top-1 router cannot reroute once its selected module is dead. With gradients available, the mechanism brings no learning advantage.
+
+\subsection{Experiment 9: heterogeneous modules (seeds 720--739)}
+
+The production scenario of Experiment~3 is rerun with heterogeneous modules: their hidden sizes are 2, 4, 8, 16, 32, 64, 2, 4, 8 and 16 units, in a seed-dependent order, so that a little-used module may be little used because it is weak. The bandits keep the configurations of Experiment~4, as preregistered; nothing is tuned.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Variant & Availability & Initial $R^2$ & Collapses & Final $R^2$ \\
+\midrule
+Evaporation + individual thresholds & 0.72 & 0.89 & 0/20 & 0.55 \\
+Evaporation + collective threshold & 0.72 & 0.89 & 1/20 & 0.53 \\
+SW-UCB (window 50) & 0.71 & 0.75 & 2/20 & 0.76 \\
+D-UCB ($\gamma = 0.98$) & 0.68 & 0.63 & 7/20 & 0.74 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 9, means over 20 seeds.}
+\label{tab:exp9}
+\end{table}
+
+Individual thresholds still bring nothing ($+0.002$, $[-0.02, +0.03]$, $p = 0.93$), contrary to the hypothesis that heterogeneity would make them useful. The mechanism ties with SW-UCB ($+0.01$, $p = 0.90$) and is ahead of D-UCB ($+0.04$, $[+0.01, +0.07]$, 16/20, $p = 0.014$). That last edge should not be read as structural: the bandits were tuned for homogeneous modules, and D-UCB collapses at initial learning on 7 of 20 seeds. The profiles of Experiment~4 persist, with better initial learning for the mechanism and better final recovery for the bandits.
+
+\section{Discussion}
+
+\paragraph{What the mechanism is.} Across experiments, the mechanism behaves as a coordination and resilience device. It needs forgetting, and at the rate tested, forgetting tied to solicitation: time-based evaporation at the same rate erases routes for symbols that are simply not being used, while a much slower time-based rate was not tested. Its resilience comes from recruiting the least committed module, which avoids disturbing specialists; this echoes the reallocation of idle workers in insect societies \citep{bonabeau1996threshold,krieger2000robots}. The individuality of alarm thresholds, which was one of the starting intuitions, is not supported, with homogeneous or heterogeneous modules. A reading in terms of local traces in normal operation and a collective quantity consulted only under exception fits the ablation, but remains an interpretation.
+
+\paragraph{What it is not.} It is not better than the best standard non-stationary bandits, which come with theoretical guarantees \citep{garivier2011switching}, and it does not beat routers trained by gradient when gradients are available, whether dense or sparse; its only clear advantage there is over top-1 routing after a module dies. It does not discover structure. A plausible explanation for the last failure, which we have not tested, is credit assignment: the only learning signal is the quality of a whole path, which is not noisy but conjunctive, staying near zero until both modules are right at once, and nothing in the traces, indexed by opaque task identifiers, can represent that two tasks share a primitive. Giving each module an exact local error would separate the two causes. Modules with their own local prediction error, for instance predictors trained in a latent space, would supply the missing signal. The difficulty of learning module layouts reported by \citet{bahdanau2019systematic} points in the same direction.
+
+\paragraph{Limitations.} All results come from a single toy world (five primitives in dimension 8). The production scenarios were designed to probe resilience and are not neutral. Opponents received modest tuning budgets (8 to 20 configurations on three seeds), contextual bandits are not among them, and in Experiment~9 the bandits were not re-tuned for heterogeneous modules. Heterogeneity was limited to module size; costs, latencies and partial failures were not modelled. The decomposition of tasks is given in Experiments 1 to 6. Modules are supervised regressors, and no real data are used. A regime in which commitment-based recruitment beats sliding-window and discounted UCB, for example with frequent failures and scarce reserves, with opponents re-tuned for that regime, remains to be identified.
+
+\section{Research integrity statement}
+\label{sec:integrity}
+
+\paragraph{Development seeds.} Every test used seeds separate from those used to check code and tune opponents. What development runs revealed is stated in the preregistrations, including the expected failures of Experiment 7.
+
+\paragraph{A protocol found after the fact.} While preparing publication, the files of a preregistered protocol (Experiment 4) were found in the execution environment. They came from an earlier execution that is absent from the history of the conversation that produced the rest of this work, and the protocol had not been reported. Its code hashes match its preregistration. Its main test had stopped at 15 of 20 seeds; seeds 95 to 99 were completed with the same code before any analysis. It is reported here in full, although it weakens an earlier claim.
+
+\paragraph{Seed reuse.} The preregistrations of Experiments 5 and 6 state that their seeds had never been used. Seeds 60 to 74 and 80 to 99 had in fact been used by Experiment 4. No decision depended on those results, which were unknown at the time, and the code is deterministic: the mechanism produces bit-identical results on the 20 seeds shared by two independent runs. The statement was nevertheless false, and corrections are attached to the published preregistrations.
+
+\paragraph{A second set of files from an unseen execution.} After the first version of this manuscript, the preregistrations and code of Experiments 8 and 9, the completed test runs of Experiment~8 and the beginning of a third, unpreregistered experiment were again found in the execution environment, from an execution absent from the conversation history. The quoted code hashes match, and the preregistrations were written before the test runs. Experiment~8 was analysed and Experiment~9 was run according to their written protocols; the third experiment was not continued and is kept as a marked draft.
+
+\paragraph{Provenance check.} A script in the repository recomputes every code hash quoted in the preregistrations and prints a ledger of seeds per result file with all overlaps between test seeds of different experiments. All hashes match, and the only overlaps are the two disclosed above.
+
+\paragraph{Translation and reproducibility.} The study was conducted in French. The repository keeps all files exactly as executed; the English code differs only in comments, strings and identifiers, and reproduces stored results bit for bit on nine runs covering every experiment family.
+
+\section{Conclusion}
+
+A distributed backup-capacity heuristic, recruiting the least committed module on an anomaly and forgetting by solicitation, gives a modular system resilience to module loss without any routing gradient, at the level of the best standard non-stationary bandits but not above them. It neither beats routers trained by gradient nor discovers compositional structure, and the individuality of alarm thresholds plays no measurable role. The most informative next steps are a regime with frequent failures and scarce reserves, with re-tuned opponents, and modules with their own local error so that structure can be discovered.
+
+\section*{Code and data availability}
+Code, raw results, preregistrations (original French and English translations) and analysis scripts: \url{https://github.com/sahnas/stigmergic-module-routing}. Archived by Software Heritage with snapshot identifier \texttt{swh:1:snp:ec5e807533a26aef69001187d77b62911d3cb4c8}.
+
+\section*{Use of AI tools}
+An AI system (Claude, Anthropic) acted as a research assistant throughout. The author formulated the research question and the intuitions behind the mechanism, chose which hypotheses to test or abandon, and made the decisions at each step. The AI system designed and implemented the experiments, wrote the preregistrations from the agreed hypotheses, ran the experiments and analyses, searched the literature, and drafted the manuscript. No AI system is an author.
+
+Before submission, every reference was checked against its source, with unconfirmed bibliographic details omitted rather than guessed, and every number in this paper was recomputed from the released raw results by an independent script (\texttt{paper/check\_numbers.py}). Checking numbers is not enough in such a workflow: the integrity issues of Section~\ref{sec:integrity} came from the execution environment retaining files from unseen executions. Provenance, seed independence and historical completeness were therefore also checked (\texttt{tools/check\_provenance.py}). The author reviewed the manuscript and takes full responsibility for its content.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

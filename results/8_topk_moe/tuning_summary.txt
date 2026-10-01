@@ -1,0 +1,8 @@
+0.952 retention 0.957 k*rec -0.003 {"alpha": 0.01, "k": 1, "noise": 0.3}
+0.949 retention 0.959 k*rec -0.003 {"alpha": 0.0, "k": 1, "noise": 0.3}
+0.94 retention 0.949 k*rec 0.968 {"alpha": 0.0, "k": 2, "noise": 0.3}
+0.938 retention 0.955 k*rec 0.969 {"alpha": 0.01, "k": 2, "noise": 0.3}
+0.748 retention 0.835 k*rec 0.957 {"alpha": 0.01, "k": 2, "noise": 1.0}
+0.741 retention 0.828 k*rec 0.894 {"alpha": 0.0, "k": 2, "noise": 1.0}
+0.491 retention 0.675 k*rec -0.003 {"alpha": 0.0, "k": 1, "noise": 1.0}
+0.338 retention 0.578 k*rec 0.187 {"alpha": 0.01, "k": 1, "noise": 1.0}

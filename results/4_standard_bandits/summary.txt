@@ -1,0 +1,18 @@
+MAIN TEST, seeds 80 to 99 | seeds 80 to 99 n = 20
+  aco_thresholds     availability 0.743 (med 0.730) | init 0.939 | final 0.645
+  swucb:50:0.05      availability 0.724 (med 0.731) | init 0.687 | final 0.858
+  ducb:0.98:0.3      availability 0.718 (med 0.735) | init 0.656 | final 0.876
+  mucb:60:0.2:0.3    availability 0.591 (med 0.608) | init 0.903 | final 0.722
+  B1 aco_thresholds - swucb:50:0.05: mean diff +0.019 95% CI [-0.017, +0.057] positive 13/20 p=0.38838 -> NOT CONFIRMED
+  B2 aco_thresholds - ducb:0.98:0.3: mean diff +0.026 95% CI [-0.007, +0.063] positive 14/20 p=0.20245 -> NOT CONFIRMED
+  B3 aco_thresholds - mucb:60:0.2:0.3: mean diff +0.152 95% CI [+0.113, +0.193] positive 20/20 p=0.00000 -> CONFIRMED
+
+REPLICATION, seeds 60 to 74 (interrupted run) | seeds 60 to 74 n = 15
+  aco_thresholds     availability 0.762 (med 0.759) | init 0.904 | final 0.696
+  swucb:50:0.05      availability 0.731 (med 0.744) | init 0.725 | final 0.833
+  ducb:0.98:0.3      availability 0.718 (med 0.726) | init 0.646 | final 0.812
+  mucb:60:0.2:0.3    availability 0.629 (med 0.623) | init 0.883 | final 0.728
+  B1 aco_thresholds - swucb:50:0.05: mean diff +0.031 95% CI [+0.008, +0.056] positive 11/15 p=0.03015 -> NOT CONFIRMED
+  B2 aco_thresholds - ducb:0.98:0.3: mean diff +0.045 95% CI [+0.013, +0.078] positive 12/15 p=0.03015 -> NOT CONFIRMED
+  B3 aco_thresholds - mucb:60:0.2:0.3: mean diff +0.133 95% CI [+0.099, +0.168] positive 15/15 p=0.00006 -> CONFIRMED
+

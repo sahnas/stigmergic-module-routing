@@ -1,0 +1,11 @@
+graines [600, 601, 602, 603, 604, 605, 606, 607, 608, 609]
+mono        phaseA 0.952 | vitesse 0.956 | final nouvelle 0.976 | interference 0.601 | capacite globale (non tronquee) 0.399 | alignement nan
+soft        phaseA 0.908 | vitesse 0.889 | final nouvelle 0.966 | interference 2.230 | capacite globale (non tronquee) -1.146 | alignement -8.778
+rl          phaseA 0.129 | vitesse 0.287 | final nouvelle 0.497 | interference 0.209 | capacite globale (non tronquee) -0.035 | alignement -0.241
+aco_seuils  phaseA 0.213 | vitesse 0.294 | final nouvelle 0.554 | interference 0.213 | capacite globale (non tronquee) 0.042 | alignement -0.204
+
+N1: aco_seuils - soft sur fewshot_auc: diff -0.595 IC95 [-0.622, -0.567] aco_seuils plus haut sur 0/10 p=0.0020 -> CONTREDITE
+N2: aco_seuils - rl sur fewshot_auc: diff +0.007 IC95 [-0.010, +0.024] aco_seuils plus haut sur 6/10 p=0.4316 -> INDETERMINEE
+N3: aco_seuils - mono sur fewshot_auc: diff -0.662 IC95 [-0.688, -0.636] aco_seuils plus haut sur 0/10 p=0.0020 -> CONTREDITE
+I1: aco_seuils - soft sur interference: diff -2.017 IC95 [-2.165, -1.882] aco_seuils plus haut sur 0/10 p=0.0020 -> CONFIRMEE
+I2: aco_seuils - mono sur interference: diff -0.388 IC95 [-0.412, -0.363] aco_seuils plus haut sur 0/10 p=0.0020 -> CONFIRMEE

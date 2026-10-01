@@ -1,0 +1,101 @@
+graines : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+retention fin phase 1
+  mono        moyenne   -0.466 +/-  0.056   mediane   -0.462   n=10
+  oracle      moyenne    0.935 +/-  0.059   mediane    0.972   n=10
+  soft        moyenne    0.811 +/-  0.087   mediane    0.858   n=10
+  cumul       moyenne    0.747 +/-  0.298   mediane    0.956   n=10
+  ema         moyenne    0.759 +/-  0.239   mediane    0.950   n=10
+  aco         moyenne    0.828 +/-  0.175   mediane    0.941   n=10
+  global      moyenne    0.071 +/-  0.081   mediane    0.081   n=10
+  aco_seuils  moyenne    0.906 +/-  0.038   mediane    0.915   n=10
+
+zero-shot compositions
+  mono        moyenne   -0.501 +/-  0.060   mediane   -0.497   n=10
+  oracle      moyenne    0.912 +/-  0.075   mediane    0.961   n=10
+  soft        moyenne    0.725 +/-  0.160   mediane    0.823   n=10
+  cumul       moyenne    0.699 +/-  0.357   mediane    0.938   n=10
+  ema         moyenne    0.684 +/-  0.314   mediane    0.935   n=10
+  aco         moyenne    0.723 +/-  0.305   mediane    0.916   n=10
+  global      moyenne   -0.086 +/-  0.133   mediane   -0.040   n=10
+  aco_seuils  moyenne    0.879 +/-  0.046   mediane    0.883   n=10
+
+k* juste apres dommage
+  mono        moyenne   -0.375 +/-  0.109   mediane   -0.387   n=10
+  oracle      moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  soft        moyenne    0.196 +/-  0.142   mediane    0.112   n=10
+  cumul       moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  ema         moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  aco         moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  global      moyenne    0.001 +/-  0.006   mediane    0.000   n=10
+  aco_seuils  moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+
+k* apres recuperation
+  mono        moyenne   -0.048 +/-  0.090   mediane   -0.058   n=10
+  oracle      moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  soft        moyenne    0.976 +/-  0.003   mediane    0.976   n=10
+  cumul       moyenne    0.001 +/-  0.006   mediane    0.001   n=10
+  ema         moyenne    0.745 +/-  0.345   mediane    0.967   n=10
+  aco         moyenne    0.924 +/-  0.088   mediane    0.965   n=10
+  global      moyenne    0.126 +/-  0.035   mediane    0.116   n=10
+  aco_seuils  moyenne    0.973 +/-  0.001   mediane    0.974   n=10
+
+zero-shot k* apres recup
+  mono        moyenne   -0.442 +/-  0.091   mediane   -0.459   n=10
+  oracle      moyenne   -0.001 +/-  0.004   mediane   -0.001   n=10
+  soft        moyenne    0.971 +/-  0.004   mediane    0.969   n=10
+  cumul       moyenne   -0.001 +/-  0.004   mediane   -0.001   n=10
+  ema         moyenne    0.696 +/-  0.391   mediane    0.962   n=10
+  aco         moyenne    0.907 +/-  0.115   mediane    0.958   n=10
+  global      moyenne    0.039 +/-  0.017   mediane    0.045   n=10
+  aco_seuils  moyenne    0.969 +/-  0.002   mediane    0.969   n=10
+
+reste apres recup
+  mono        moyenne   -0.175 +/-  0.095   mediane   -0.123   n=10
+  oracle      moyenne    0.983 +/-  0.002   mediane    0.982   n=10
+  soft        moyenne    0.980 +/-  0.006   mediane    0.982   n=10
+  cumul       moyenne    0.844 +/-  0.208   mediane    0.980   n=10
+  ema         moyenne    0.901 +/-  0.127   mediane    0.971   n=10
+  aco         moyenne    0.902 +/-  0.153   mediane    0.973   n=10
+  global      moyenne    0.158 +/-  0.044   mediane    0.166   n=10
+  aco_seuils  moyenne    0.978 +/-  0.003   mediane    0.979   n=10
+
+latence de reroutage (pas)
+  mono        moyenne      nan +/-    nan   mediane      nan   n=0
+  oracle      moyenne      nan +/-    nan   mediane      nan   n=0
+  soft        moyenne  382.300 +/- 341.571   mediane  324.000   n=10
+  cumul       moyenne      nan +/-    nan   mediane      nan   n=0
+  ema         moyenne  563.100 +/- 278.527   mediane  524.000   n=10
+  aco         moyenne  593.200 +/- 129.872   mediane  555.000   n=10
+  global      moyenne  106.900 +/- 116.341   mediane   36.500   n=10
+  aco_seuils  moyenne   32.700 +/- 30.680   mediane    4.500   n=10
+
+temps (s)
+  mono        moyenne    7.040 +/-  0.118   mediane    7.100   n=10
+  oracle      moyenne    5.290 +/-  0.326   mediane    5.200   n=10
+  soft        moyenne   24.280 +/-  0.577   mediane   24.050   n=10
+  cumul       moyenne    6.520 +/-  0.218   mediane    6.500   n=10
+  ema         moyenne    6.660 +/-  0.173   mediane    6.750   n=10
+  aco         moyenne    6.780 +/-  0.134   mediane    6.800   n=10
+  global      moyenne    6.450 +/-  0.169   mediane    6.400   n=10
+  aco_seuils  moyenne    7.040 +/-  0.349   mediane    7.200   n=10
+
+cumul       unites distinctes pour 5 primitives : 4.7   alarmes (total) : 0.0   reroutage reussi : 0/10
+ema         unites distinctes pour 5 primitives : 4.9   alarmes (total) : 0.0   reroutage reussi : 10/10
+aco         unites distinctes pour 5 primitives : 4.8   alarmes (total) : 0.0   reroutage reussi : 10/10
+global      unites distinctes pour 5 primitives : 4.5   alarmes (total) : 0.0   reroutage reussi : 10/10
+aco_seuils  unites distinctes pour 5 primitives : 5.0   alarmes (total) : 43.2   reroutage reussi : 10/10
+
+Tests apparies de Wilcoxon (bilateraux), seuil Bonferroni 0.0050
+  H1   aco        - cumul   k_train_rec      diff moyenne +0.923 (mediane +0.960) aco > cumul sur 10/10 graines  p=0.0020 *
+  H1   aco        - oracle  k_train_rec      diff moyenne +0.923 (mediane +0.960) aco > oracle sur 10/10 graines  p=0.0020 *
+  H2   aco_seuils - aco     k_train_rec      diff moyenne +0.049 (mediane +0.007) aco_seuils > aco sur 10/10 graines  p=0.0020 *
+  H2   aco_seuils - aco     reroute_latency  diff moyenne -560.500 (mediane -541.500) aco_seuils > aco sur 0/10 graines  p=0.0020 *
+  H3   aco        - global  train_r2         diff moyenne +0.757 (mediane +0.846) aco > global sur 10/10 graines  p=0.0020 *
+  H4   aco        - soft    zero_r2          diff moyenne -0.002 (mediane +0.123) aco > soft sur 8/10 graines  p=0.4316 
+  H4   aco        - mono    zero_r2          diff moyenne +1.223 (mediane +1.397) aco > mono sur 10/10 graines  p=0.0020 *
+  ctrl aco        - ema     k_train_rec      diff moyenne +0.179 (mediane -0.002) aco > ema sur 3/10 graines  p=0.5566 
+  ctrl aco        - ema     train_r2         diff moyenne +0.069 (mediane -0.001) aco > ema sur 4/10 graines  p=1.0000 
+  cout aco        - cumul   train_r2         diff moyenne +0.081 (mediane -0.013) aco > cumul sur 3/10 graines  p=0.8457 
+
+figure : recuperation.png

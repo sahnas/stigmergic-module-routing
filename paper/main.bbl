@@ -1,0 +1,156 @@
+\begin{thebibliography}{21}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bahdanau et~al.(2019)Bahdanau, Murty, Noukhovitch, Nguyen, de~Vries,
+  and Courville]{bahdanau2019systematic}
+Dzmitry Bahdanau, Shikhar Murty, Michael Noukhovitch, Thien~Huu Nguyen, Harm
+  de~Vries, and Aaron Courville.
+\newblock Systematic generalization: What is required and can it be learned?
+\newblock In \emph{International Conference on Learning Representations}, 2019.
+
+\bibitem[Bonabeau et~al.(1996)Bonabeau, Theraulaz, and
+  Deneubourg]{bonabeau1996threshold}
+Eric Bonabeau, Guy Theraulaz, and Jean-Louis Deneubourg.
+\newblock Quantitative study of the fixed threshold model for the regulation of
+  division of labour in insect societies.
+\newblock \emph{Proceedings of the Royal Society of London B}, 263\penalty0
+  (1376):\penalty0 1565--1569, 1996.
+
+\bibitem[Cao et~al.(2019)Cao, Wen, Kveton, and Xie]{cao2019mucb}
+Yang Cao, Zheng Wen, Branislav Kveton, and Yao Xie.
+\newblock Nearly optimal adaptive procedure with change detection for
+  piecewise-stationary bandit.
+\newblock In \emph{Proceedings of the 22nd International Conference on
+  Artificial Intelligence and Statistics}, volume~89 of \emph{Proceedings of
+  Machine Learning Research}, pages 418--427, 2019.
+
+\bibitem[Di~Caro and Dorigo(1998)]{dicaro1998antnet}
+Gianni Di~Caro and Marco Dorigo.
+\newblock {AntNet}: Distributed stigmergetic control for communications
+  networks.
+\newblock \emph{Journal of Artificial Intelligence Research}, 9:\penalty0
+  317--365, 1998.
+
+\bibitem[Dorigo et~al.(1996)Dorigo, Maniezzo, and Colorni]{dorigo1996antsystem}
+Marco Dorigo, Vittorio Maniezzo, and Alberto Colorni.
+\newblock Ant system: optimization by a colony of cooperating agents.
+\newblock \emph{IEEE Transactions on Systems, Man, and Cybernetics, Part B},
+  26\penalty0 (1):\penalty0 29--41, 1996.
+
+\bibitem[Du et~al.(2026)Du, Zhao, and Huang]{du2026stigmergyrouter}
+Jing Du, Hang Zhao, and Kenneth Huang.
+\newblock {StigmergyRouter}: A fault-aware adaptive routing demo for
+  multi-agent {AI} systems.
+\newblock In \emph{ACM Conference on AI and Agentic Systems (CAIS),
+  Demonstrations}, 2026.
+\newblock \doi{10.1145/3786335.3813191}.
+
+\bibitem[Garivier and Moulines(2011)]{garivier2011switching}
+Aur{\'e}lien Garivier and Eric Moulines.
+\newblock On upper-confidence bound policies for switching bandit problems.
+\newblock In \emph{Algorithmic Learning Theory (ALT 2011)}, Lecture Notes in
+  Computer Science, pages 174--188, 2011.
+\newblock \doi{10.1007/978-3-642-24412-4_16}.
+
+\bibitem[Goyal et~al.(2022)Goyal, Didolkar, Lamb, Badola, Ke, Rahaman, Binas,
+  Blundell, Mozer, and Bengio]{goyal2022workspace}
+Anirudh Goyal, Aniket Didolkar, Alex Lamb, Kartikeya Badola, Nan~Rosemary Ke,
+  Nasim Rahaman, Jonathan Binas, Charles Blundell, Michael Mozer, and Yoshua
+  Bengio.
+\newblock Coordination among neural modules through a shared global workspace.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Grass{\'e}(1959)]{grasse1959}
+Pierre-Paul Grass{\'e}.
+\newblock La reconstruction du nid et les coordinations interindividuelles chez
+  \emph{Bellicositermes natalensis} et \emph{Cubitermes} sp. {La} th{\'e}orie
+  de la stigmergie.
+\newblock \emph{Insectes Sociaux}, 6\penalty0 (1):\penalty0 41--80, 1959.
+
+\bibitem[Jacobs et~al.(1991)Jacobs, Jordan, Nowlan, and
+  Hinton]{jacobs1991experts}
+Robert~A. Jacobs, Michael~I. Jordan, Steven~J. Nowlan, and Geoffrey~E. Hinton.
+\newblock Adaptive mixtures of local experts.
+\newblock \emph{Neural Computation}, 3\penalty0 (1):\penalty0 79--87, 1991.
+
+\bibitem[Krieger et~al.(2000)Krieger, Billeter, and Keller]{krieger2000robots}
+Michael J.~B. Krieger, Jean-Bernard Billeter, and Laurent Keller.
+\newblock Ant-like task allocation and recruitment in cooperative robots.
+\newblock \emph{Nature}, 406:\penalty0 992--995, 2000.
+
+\bibitem[McCloskey and Cohen(1989)]{mccloskey1989catastrophic}
+Michael McCloskey and Neal~J. Cohen.
+\newblock Catastrophic interference in connectionist networks: The sequential
+  learning problem.
+\newblock In \emph{Psychology of Learning and Motivation}, volume~24, pages
+  109--165. Academic Press, 1989.
+
+\bibitem[Nosek et~al.(2018)Nosek, Ebersole, DeHaven, and
+  Mellor]{nosek2018preregistration}
+Brian~A. Nosek, Charles~R. Ebersole, Alexander~C. DeHaven, and David~T. Mellor.
+\newblock The preregistration revolution.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 115\penalty0
+  (11):\penalty0 2600--2606, 2018.
+
+\bibitem[Pfeiffer et~al.(2023)Pfeiffer, Ruder, Vuli{\'c}, and
+  Ponti]{pfeiffer2023modular}
+Jonas Pfeiffer, Sebastian Ruder, Ivan Vuli{\'c}, and Edoardo~Maria Ponti.
+\newblock Modular deep learning.
+\newblock \emph{Transactions on Machine Learning Research}, 2023.
+
+\bibitem[Rosenbaum et~al.(2018)Rosenbaum, Klinger, and
+  Riemer]{rosenbaum2018routing}
+Clemens Rosenbaum, Tim Klinger, and Matthew Riemer.
+\newblock Routing networks: Adaptive selection of non-linear functions for
+  multi-task learning.
+\newblock In \emph{International Conference on Learning Representations}, 2018.
+
+\bibitem[Shazeer et~al.(2017)Shazeer, Mirhoseini, Maziarz, Davis, Le, Hinton,
+  and Dean]{shazeer2017moe}
+Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le,
+  Geoffrey Hinton, and Jeff Dean.
+\newblock Outrageously large neural networks: The sparsely-gated
+  mixture-of-experts layer.
+\newblock In \emph{International Conference on Learning Representations}, 2017.
+
+\bibitem[Thangavelautham and D'Eleuterio(2012)]{thangavelautham2012ant}
+Jekanthan Thangavelautham and Gabriele M.~T. D'Eleuterio.
+\newblock Tackling learning intractability through topological organization and
+  regulation of cortical networks.
+\newblock \emph{IEEE Transactions on Neural Networks and Learning Systems},
+  2012.
+\newblock \doi{10.1109/TNNLS.2011.2178311}.
+
+\bibitem[Theraulaz et~al.(1998)Theraulaz, Bonabeau, and
+  Deneubourg]{theraulaz1998reinforcement}
+Guy Theraulaz, Eric Bonabeau, and Jean-Louis Deneubourg.
+\newblock Response threshold reinforcements and division of labour in insect
+  societies.
+\newblock \emph{Proceedings of the Royal Society of London B}, 265\penalty0
+  (1393):\penalty0 327--332, 1998.
+\newblock \doi{10.1098/rspb.1998.0299}.
+
+\bibitem[Wang et~al.(2026)Wang, Zhang, Zhang, Li, Sun, Bae, Wang, Xie, Zou,
+  Yang, and Shen]{wang2026amros}
+Xudong Wang, Chaoning Zhang, Jiaquan Zhang, Chenghao Li, Qigan Sun, Sung-Ho
+  Bae, Peng Wang, Ning Xie, Jie Zou, Yang Yang, and Hengtao Shen.
+\newblock Efficient and interpretable multi-agent {LLM} routing via ant colony
+  optimization.
+\newblock \emph{arXiv preprint arXiv:2603.12933}, 2026.
+
+\bibitem[Wilcoxon(1945)]{wilcoxon1945}
+Frank Wilcoxon.
+\newblock Individual comparisons by ranking methods.
+\newblock \emph{Biometrics Bulletin}, 1\penalty0 (6):\penalty0 80--83, 1945.
+
+\bibitem[Williams(1992)]{williams1992reinforce}
+Ronald~J. Williams.
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock \emph{Machine Learning}, 8:\penalty0 229--256, 1992.
+
+\end{thebibliography}

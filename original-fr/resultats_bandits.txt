@@ -1,0 +1,18 @@
+TEST PRINCIPAL, graines 80 a 99 | graines 80 a 99 n = 20
+  aco_seuils         dispo 0.743 (med 0.730) | init 0.939 | final 0.645
+  swucb:50:0.05      dispo 0.724 (med 0.731) | init 0.687 | final 0.858
+  ducb:0.98:0.3      dispo 0.718 (med 0.735) | init 0.656 | final 0.876
+  mucb:60:0.2:0.3    dispo 0.591 (med 0.608) | init 0.903 | final 0.722
+  B1 aco_seuils - swucb:50:0.05: diff +0.019 IC95 [-0.017, +0.057] positif 13/20 p=0.38838 -> NON CONFIRMEE
+  B2 aco_seuils - ducb:0.98:0.3: diff +0.026 IC95 [-0.007, +0.063] positif 14/20 p=0.20245 -> NON CONFIRMEE
+  B3 aco_seuils - mucb:60:0.2:0.3: diff +0.152 IC95 [+0.113, +0.193] positif 20/20 p=0.00000 -> CONFIRMEE
+
+REPLICATION, graines 60 a 74 (execution interrompue) | graines 60 a 74 n = 15
+  aco_seuils         dispo 0.762 (med 0.759) | init 0.904 | final 0.696
+  swucb:50:0.05      dispo 0.731 (med 0.744) | init 0.725 | final 0.833
+  ducb:0.98:0.3      dispo 0.718 (med 0.726) | init 0.646 | final 0.812
+  mucb:60:0.2:0.3    dispo 0.629 (med 0.623) | init 0.883 | final 0.728
+  B1 aco_seuils - swucb:50:0.05: diff +0.031 IC95 [+0.008, +0.056] positif 11/15 p=0.03015 -> NON CONFIRMEE
+  B2 aco_seuils - ducb:0.98:0.3: diff +0.045 IC95 [+0.013, +0.078] positif 12/15 p=0.03015 -> NON CONFIRMEE
+  B3 aco_seuils - mucb:60:0.2:0.3: diff +0.133 IC95 [+0.099, +0.168] positif 15/15 p=0.00006 -> CONFIRMEE
+

@@ -1,0 +1,11 @@
+seeds [600, 601, 602, 603, 604, 605, 606, 607, 608, 609]
+mono            phaseA 0.952 | speed 0.956 | final new task 0.976 | interference 0.601 | global capacity (unclipped) 0.399 | alignment nan
+soft            phaseA 0.908 | speed 0.889 | final new task 0.966 | interference 2.230 | global capacity (unclipped) -1.146 | alignment -8.778
+rl              phaseA 0.129 | speed 0.287 | final new task 0.497 | interference 0.209 | global capacity (unclipped) -0.035 | alignment -0.241
+aco_thresholds  phaseA 0.213 | speed 0.294 | final new task 0.554 | interference 0.213 | global capacity (unclipped) 0.042 | alignment -0.204
+
+N1: aco_thresholds - soft on fewshot_auc: mean diff -0.595 95% CI [-0.622, -0.567] aco_thresholds higher on 0/10 p=0.0020 -> CONTRADICTED
+N2: aco_thresholds - rl on fewshot_auc: mean diff +0.007 95% CI [-0.010, +0.024] aco_thresholds higher on 6/10 p=0.4316 -> UNDETERMINED
+N3: aco_thresholds - mono on fewshot_auc: mean diff -0.662 95% CI [-0.688, -0.636] aco_thresholds higher on 0/10 p=0.0020 -> CONTRADICTED
+I1: aco_thresholds - soft on interference: mean diff -2.017 95% CI [-2.165, -1.882] aco_thresholds higher on 0/10 p=0.0020 -> CONFIRMED
+I2: aco_thresholds - mono on interference: mean diff -0.388 95% CI [-0.412, -0.363] aco_thresholds higher on 0/10 p=0.0020 -> CONFIRMED

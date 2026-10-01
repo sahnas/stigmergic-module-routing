@@ -1,0 +1,17 @@
+graines [80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+aco_seuils         dispo 0.743 (med 0.730) | init 0.939 effondr 0/20 | final 0.645 | alarmes 71
+                   par evenement {'E1': 0.856, 'E2': 0.785, 'E3': 0.819, 'E4': 0.512}
+aco_seuils_hasard  dispo 0.519 (med 0.509) | init 0.829 effondr 2/20 | final 0.479 | alarmes 69
+                   par evenement {'E1': 0.55, 'E2': 0.516, 'E3': 0.684, 'E4': 0.325}
+aco_seuil_global   dispo 0.741 (med 0.736) | init 0.936 effondr 0/20 | final 0.654 | alarmes 82
+                   par evenement {'E1': 0.852, 'E2': 0.787, 'E3': 0.826, 'E4': 0.499}
+M1 moins occupe vs hasard: diff +0.224 IC95 [+0.186, +0.266] positif 20/20 p=0.0000 -> CONFIRMEE
+   E1: diff +0.306, positif 19/20
+   E2: diff +0.269, positif 18/20
+   E3: diff +0.135, positif 14/20
+   E4: diff +0.187, positif 16/20
+M2 seuils individuels vs collectif: diff +0.002 IC95 [-0.027, +0.031] positif 12/20 p=0.7841 -> INDETERMINEE
+   E1: diff +0.004, positif 10/20
+   E2: diff -0.002, positif 9/20
+   E3: diff -0.007, positif 12/20
+   E4: diff +0.013, positif 13/20

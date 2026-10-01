@@ -1,0 +1,8 @@
+seeds 720 to 739 | n per variant [20, 20, 20, 20]
+aco_thresholds        availability 0.722 (med 0.721) | init 0.892 collapses 0/20 | final 0.550
+aco_global_threshold  availability 0.720 (med 0.731) | init 0.888 collapses 1/20 | final 0.526
+swucb:50:0.05         availability 0.710 (med 0.724) | init 0.747 collapses 2/20 | final 0.756
+ducb:0.98:0.3         availability 0.681 (med 0.682) | init 0.626 collapses 7/20 | final 0.743
+HE1 aco_thresholds - aco_global_threshold: mean diff +0.002 95% CI [-0.020, +0.025] positive 11/20 p=0.92728 -> NOT CONFIRMED
+HE2 aco_thresholds - swucb:50:0.05: mean diff +0.012 95% CI [-0.026, +0.053] positive 8/20 p=0.89832 -> not significant
+HE3 aco_thresholds - ducb:0.98:0.3: mean diff +0.040 95% CI [+0.008, +0.069] positive 16/20 p=0.01362 -> significant, mechanism ahead

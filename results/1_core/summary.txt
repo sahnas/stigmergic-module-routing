@@ -1,0 +1,101 @@
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+retention at end of phase 1
+  mono            mean   -0.466 +/-  0.056   median   -0.462   n=10
+  oracle          mean    0.935 +/-  0.059   median    0.972   n=10
+  soft            mean    0.811 +/-  0.087   median    0.858   n=10
+  cumulative      mean    0.747 +/-  0.298   median    0.956   n=10
+  ema             mean    0.759 +/-  0.239   median    0.950   n=10
+  aco             mean    0.828 +/-  0.175   median    0.941   n=10
+  global          mean    0.071 +/-  0.081   median    0.081   n=10
+  aco_thresholds  mean    0.906 +/-  0.038   median    0.915   n=10
+
+zero-shot compositions
+  mono            mean   -0.501 +/-  0.060   median   -0.497   n=10
+  oracle          mean    0.912 +/-  0.075   median    0.961   n=10
+  soft            mean    0.725 +/-  0.160   median    0.823   n=10
+  cumulative      mean    0.699 +/-  0.357   median    0.938   n=10
+  ema             mean    0.684 +/-  0.314   median    0.935   n=10
+  aco             mean    0.723 +/-  0.305   median    0.916   n=10
+  global          mean   -0.086 +/-  0.133   median   -0.040   n=10
+  aco_thresholds  mean    0.879 +/-  0.046   median    0.883   n=10
+
+k* right after damage
+  mono            mean   -0.375 +/-  0.109   median   -0.387   n=10
+  oracle          mean    0.001 +/-  0.006   median    0.001   n=10
+  soft            mean    0.196 +/-  0.142   median    0.112   n=10
+  cumulative      mean    0.001 +/-  0.006   median    0.001   n=10
+  ema             mean    0.001 +/-  0.006   median    0.001   n=10
+  aco             mean    0.001 +/-  0.006   median    0.001   n=10
+  global          mean    0.001 +/-  0.006   median    0.000   n=10
+  aco_thresholds  mean    0.001 +/-  0.006   median    0.001   n=10
+
+k* after recovery
+  mono            mean   -0.048 +/-  0.090   median   -0.058   n=10
+  oracle          mean    0.001 +/-  0.006   median    0.001   n=10
+  soft            mean    0.976 +/-  0.003   median    0.976   n=10
+  cumulative      mean    0.001 +/-  0.006   median    0.001   n=10
+  ema             mean    0.745 +/-  0.345   median    0.967   n=10
+  aco             mean    0.924 +/-  0.088   median    0.965   n=10
+  global          mean    0.126 +/-  0.035   median    0.116   n=10
+  aco_thresholds  mean    0.973 +/-  0.001   median    0.974   n=10
+
+zero-shot k* after recovery
+  mono            mean   -0.442 +/-  0.091   median   -0.459   n=10
+  oracle          mean   -0.001 +/-  0.004   median   -0.001   n=10
+  soft            mean    0.971 +/-  0.004   median    0.969   n=10
+  cumulative      mean   -0.001 +/-  0.004   median   -0.001   n=10
+  ema             mean    0.696 +/-  0.391   median    0.962   n=10
+  aco             mean    0.907 +/-  0.115   median    0.958   n=10
+  global          mean    0.039 +/-  0.017   median    0.045   n=10
+  aco_thresholds  mean    0.969 +/-  0.002   median    0.969   n=10
+
+other tasks after recovery
+  mono            mean   -0.175 +/-  0.095   median   -0.123   n=10
+  oracle          mean    0.983 +/-  0.002   median    0.982   n=10
+  soft            mean    0.980 +/-  0.006   median    0.982   n=10
+  cumulative      mean    0.844 +/-  0.208   median    0.980   n=10
+  ema             mean    0.901 +/-  0.127   median    0.971   n=10
+  aco             mean    0.902 +/-  0.153   median    0.973   n=10
+  global          mean    0.158 +/-  0.044   median    0.166   n=10
+  aco_thresholds  mean    0.978 +/-  0.003   median    0.979   n=10
+
+rerouting latency (steps)
+  mono            mean      nan +/-    nan   median      nan   n=0
+  oracle          mean      nan +/-    nan   median      nan   n=0
+  soft            mean  382.300 +/- 341.571   median  324.000   n=10
+  cumulative      mean      nan +/-    nan   median      nan   n=0
+  ema             mean  563.100 +/- 278.527   median  524.000   n=10
+  aco             mean  593.200 +/- 129.872   median  555.000   n=10
+  global          mean  106.900 +/- 116.341   median   36.500   n=10
+  aco_thresholds  mean   32.700 +/- 30.680   median    4.500   n=10
+
+time (s)
+  mono            mean    7.040 +/-  0.118   median    7.100   n=10
+  oracle          mean    5.290 +/-  0.326   median    5.200   n=10
+  soft            mean   24.280 +/-  0.577   median   24.050   n=10
+  cumulative      mean    6.520 +/-  0.218   median    6.500   n=10
+  ema             mean    6.660 +/-  0.173   median    6.750   n=10
+  aco             mean    6.780 +/-  0.134   median    6.800   n=10
+  global          mean    6.450 +/-  0.169   median    6.400   n=10
+  aco_thresholds  mean    7.040 +/-  0.349   median    7.200   n=10
+
+cumulative      distinct units for 5 primitives: 4.7   alarms (total): 0.0   successful rerouting: 0/10
+ema             distinct units for 5 primitives: 4.9   alarms (total): 0.0   successful rerouting: 10/10
+aco             distinct units for 5 primitives: 4.8   alarms (total): 0.0   successful rerouting: 10/10
+global          distinct units for 5 primitives: 4.5   alarms (total): 0.0   successful rerouting: 10/10
+aco_thresholds  distinct units for 5 primitives: 5.0   alarms (total): 43.2   successful rerouting: 10/10
+
+Paired Wilcoxon tests (two-sided), Bonferroni threshold 0.0050
+  H1   aco            - cumulative k_train_rec      mean diff +0.923 (median +0.960) aco > cumulative on 10/10 seeds  p=0.0020 *
+  H1   aco            - oracle     k_train_rec      mean diff +0.923 (median +0.960) aco > oracle on 10/10 seeds  p=0.0020 *
+  H2   aco_thresholds - aco        k_train_rec      mean diff +0.049 (median +0.007) aco_thresholds > aco on 10/10 seeds  p=0.0020 *
+  H2   aco_thresholds - aco        reroute_latency  mean diff -560.500 (median -541.500) aco_thresholds > aco on 0/10 seeds  p=0.0020 *
+  H3   aco            - global     train_r2         mean diff +0.757 (median +0.846) aco > global on 10/10 seeds  p=0.0020 *
+  H4   aco            - soft       zero_r2          mean diff -0.002 (median +0.123) aco > soft on 8/10 seeds  p=0.4316 
+  H4   aco            - mono       zero_r2          mean diff +1.223 (median +1.397) aco > mono on 10/10 seeds  p=0.0020 *
+  ctrl aco            - ema        k_train_rec      mean diff +0.179 (median -0.002) aco > ema on 3/10 seeds  p=0.5566 
+  ctrl aco            - ema        train_r2         mean diff +0.069 (median -0.001) aco > ema on 4/10 seeds  p=1.0000 
+  cost aco            - cumulative train_r2         mean diff +0.081 (median -0.013) aco > cumulative on 3/10 seeds  p=0.8457 
+
+figure: results/1_core/recovery.png

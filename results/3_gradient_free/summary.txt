@@ -1,0 +1,22 @@
+seeds [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59] 
+
+ema             availability mean 0.408 med 0.388 | init mean 0.503 collapses at init 10/20 | final 0.215 | final zero-shot 0.071 | alarms 0
+                per event {'E1': 0.434, 'E2': 0.441, 'E3': 0.521, 'E4': 0.236}
+ema_thresholds  availability mean 0.505 med 0.520 | init mean 0.534 collapses at init 7/20 | final 0.609 | final zero-shot 0.449 | alarms 76
+                per event {'E1': 0.403, 'E2': 0.475, 'E3': 0.626, 'E4': 0.516}
+aco             availability mean 0.568 med 0.606 | init mean 0.775 collapses at init 4/20 | final 0.368 | final zero-shot 0.198 | alarms 0
+                per event {'E1': 0.574, 'E2': 0.601, 'E3': 0.757, 'E4': 0.34}
+aco_thresholds  availability mean 0.755 med 0.749 | init mean 0.919 collapses at init 0/20 | final 0.600 | final zero-shot 0.385 | alarms 74
+                per event {'E1': 0.85, 'E2': 0.799, 'E3': 0.825, 'E4': 0.544}
+
+S1 aco_thresholds - ema        mean diff +0.347 95% CI [+0.288, +0.403] positive 20/20 p=0.00000 -> CONFIRMED
+S2 effect of thresholds        mean diff +0.142 95% CI [+0.092, +0.188] positive 18/20 p=0.00013 -> CONFIRMED
+S3 effect of rule (aco - ema)  mean diff +0.205 95% CI [+0.172, +0.234] positive 20/20 p=0.00000 -> CONFIRMED
+
+Descriptive, not preregistered: share of the effect due to initial learning
+  ema             seeds healthy at init (R2>=0.8):  7/20 | on those: init 0.967 availability 0.399 final 0.201 | loss init->final 0.766
+  ema_thresholds  seeds healthy at init (R2>=0.8):  0/20
+  aco             seeds healthy at init (R2>=0.8): 13/20 | on those: init 0.963 availability 0.599 final 0.367 | loss init->final 0.596
+  aco_thresholds  seeds healthy at init (R2>=0.8): 19/20 | on those: init 0.929 availability 0.755 final 0.582 | loss init->final 0.347
+  aco_thresholds - ema availability, seeds healthy for both (n=7): mean diff +0.337, positive 7/7
+  same subset, loss init->final: aco_thresholds loses 0.295, ema loses 0.766

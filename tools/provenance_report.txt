@@ -1,0 +1,48 @@
+1. Code hashes quoted in preregistrations
+  3_gradient_free.md           exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
+  3_gradient_free.md           exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
+  4_standard_bandits.md        bandits.py               1e018844e58d6497  OK (original-fr/bandits.py)
+  4_standard_bandits.md        exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
+  4_standard_bandits.md        exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
+  5_changepoint.md             exp_rupture.py           abc0cf698ac27474  OK (original-fr/exp_rupture.py)
+  5_changepoint.md             exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
+  5_changepoint.md             exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
+  6_ablation.md                exp_mecanisme.py         02670360a17ee25b  OK (original-fr/exp_mecanisme.py)
+  6_ablation.md                exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
+  6_ablation.md                exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
+  7_no_symbols.md              exp_sans_symboles.py     5c558d088ce911c3  OK (original-fr/exp_sans_symboles.py)
+  7_no_symbols.md              exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
+  8_topk_moe.md                exp_topk.py              abfab869d11dba6c  OK (src/exp_topk.py)
+  8_topk_moe.md                exp.py                   6c202cab844bb559  OK (src/exp.py)
+  9_heterogeneous.md           exp_heterogeneous.py     f7f63f18264b82b6  OK (src/exp_heterogeneous.py)
+  9_heterogeneous.md           exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
+  9_heterogeneous.md           exp_bandits.py           aa3d44d1bfc727da  OK (src/exp_bandits.py)
+  9_heterogeneous.md           exp_ablation.py          9d554f028d6cee16  OK (src/exp_ablation.py)
+  9_heterogeneous.md           exp.py                   6c202cab844bb559  OK (src/exp.py)
+  -> all hashes match
+
+2. Seed ledger
+  dev   results/1_core/dev_lr_check.jsonl                                2 seeds  100..101
+  dev   results/1_core/dev_seeds_100_102.jsonl                           3 seeds  100..102
+  test  results/1_core/results.jsonl                                    10 seeds  0..9
+  test  results/2_confirmation/confirmation.jsonl                       10 seeds  20..29
+  dev   results/3_gradient_free/dev_seed_200.jsonl                       1 seeds  200..200
+  test  results/3_gradient_free/gradient_free.jsonl                     20 seeds  40..59
+  test  results/4_standard_bandits/main_seeds_80_99.jsonl               20 seeds  80..99
+  test  results/4_standard_bandits/replication_seeds_60_74.jsonl        15 seeds  60..74
+  dev   results/4_standard_bandits/tuning_seeds_300_302.jsonl            3 seeds  300..302
+  test  results/5_changepoint/changepoint_test.jsonl                    20 seeds  60..79
+  dev   results/5_changepoint/tuning_seeds_300_302.jsonl                 3 seeds  300..302
+  test  results/6_ablation/ablation.jsonl                               20 seeds  80..99
+  dev   results/7_no_symbols/dev_seeds_500_501.jsonl                     2 seeds  500..501
+  test  results/7_no_symbols/no_symbols.jsonl                           10 seeds  600..609
+  test  results/8_topk_moe/aco_thresholds.jsonl                         20 seeds  700..719
+  test  results/8_topk_moe/topk1.jsonl                                  20 seeds  700..719
+  test  results/8_topk_moe/topk2.jsonl                                  20 seeds  700..719
+  dev   results/8_topk_moe/tuning_seeds_100_102.jsonl                    3 seeds  100..102
+  test  results/9_heterogeneous/heterogeneous.jsonl                     20 seeds  720..739
+  dev   results/draft_regimes_dev/tuning_seeds_300_302.jsonl             3 seeds  300..302
+
+  Overlaps between test-seed files of different experiments:
+    4_standard_bandits / 6_ablation: 20 seeds (80..99)
+    4_standard_bandits / 5_changepoint: 15 seeds (60..74)

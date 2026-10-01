@@ -1,0 +1,9 @@
+seeds [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+soft            retention mean 0.884 med 0.911 min 0.781 | zero-shot mean 0.844 med 0.873 min 0.693 | k* recovery mean 0.977
+aco_thresholds  retention mean 0.898 med 0.935 min 0.664 | zero-shot mean 0.852 med 0.921 min 0.364 | k* recovery mean 0.974
+aco             retention mean 0.779 med 0.960 min 0.192 | zero-shot mean 0.629 med 0.946 min -0.274 | k* recovery mean 0.966
+
+C1 zero_r2: mean diff +0.008 (95% bootstrap CI -0.091 to +0.093), aco_thresholds wins 7/10, p=0.6250 -> NOT CONFIRMED
+   per seed [ 0.052 -0.081  0.222 -0.133 -0.329  0.018  0.123  0.027  0.038  0.143]
+C2 train_r2: mean diff +0.014 (95% bootstrap CI -0.039 to +0.065), aco_thresholds wins 7/10, p=0.5566 -> NOT CONFIRMED
+   per seed [ 0.058 -0.057  0.174 -0.11  -0.12   0.008  0.063  0.023  0.032  0.072]
