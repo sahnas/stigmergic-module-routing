@@ -1,0 +1,11 @@
+seeds [1010, 1011, 1012, 1013, 1014] | n per variant [5, 5, 5]
+variant       specialist_took_new  new_purity  rel_err_new  old_err_before  old_err_after  interference  old_purity_after  activations  active_modules
+competition5  5/5                  0.810       0.683        0.371           0.412         +0.041        0.862             0.0          5.0
+competition8  1/5                  0.734       0.493        0.378           0.379         +0.000        0.860             0.0          8.0
+recruit5      0/5                  0.790       0.491        0.371           0.372         +0.002        0.866             1.0          6.0
+
+F1 specialist took the new primitive: competition5 5 /5 ; recruit5 0 /5
+F2: recruit5 - competition5 on rel_error_new: mean -0.192, per seed [-0.084 -0.151 -0.464 -0.124 -0.138], recruit5 higher on 0/5
+F3: recruit5 - competition5 on interference: mean -0.040, per seed [-0.054 -0.004 -0.024 -0.053 -0.063], recruit5 higher on 0/5
+F4a: recruit5 - competition8 on rel_error_new: mean -0.002, per seed [ 0.014  0.001  0.004 -0.013 -0.018], recruit5 higher on 3/5
+F4b: recruit5 - competition8 on interference: mean +0.001, per seed [ 0.025  0.016 -0.038 -0.008  0.01 ], recruit5 higher on 3/5
