@@ -1,7 +1,7 @@
 """Provenance checks, run from the repository root: python tools/check_provenance.py
 
 1. Code hashes: every 'file (sha256 xxxx)' quoted in preregistrations/*.md is recomputed, first in original-fr/
-   (files as executed for experiments 2 to 7), then in src/ (experiments 8 and 9).
+   (files as executed for experiments 2 to 7), then in src/ and src/jepa/ (experiments 8 to 13).
 2. Seed ledger: which seeds appear in which result files, and every overlap between test seeds of different
    experiments (development and tuning files are listed separately).
 """
@@ -15,7 +15,7 @@ bad = 0
 for pre in sorted(glob.glob('preregistrations/*.md')):
     for name, h in re.findall(r'([\w/]+\.py) \(sha256 ([0-9a-f]{16})\)', open(pre).read()):
         base = os.path.basename(name)
-        found = [p for p in ('original-fr/' + base, 'src/' + base) if os.path.exists(p) and sha16(p) == h]
+        found = [p for p in ('original-fr/' + base, 'src/' + base, 'src/jepa/' + base) if os.path.exists(p) and sha16(p) == h]
         bad += not found
         print(f'  {os.path.basename(pre):28s} {base:24s} {h}  ' + (f'OK ({found[0]})' if found else 'MISMATCH'))
 print(f'  -> {"all hashes match" if bad == 0 else str(bad) + " mismatch(es)"}\n')
