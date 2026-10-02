@@ -2,7 +2,7 @@
 
 Gradient-free coordination of learning modules through evaporating trails, anomaly alarms and load-aware recruitment. Preregistered toy experiments, with positive and negative results.
 
-A paper describing experiments 1 to 9 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 1 October 2026 (hal-05773822, under moderation, with transfer to arXiv requested). Earlier submissions of the same day were withdrawn before moderation and replaced by this one. Experiment 10 was run after that submission and is not in the manuscript.
+A paper describing experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 2 October 2026 (hal-05774814, under moderation, with transfer to arXiv requested). Earlier submissions (1 and 2 October) were withdrawn before moderation and replaced; the state submitted on 1 October is tagged `v1-hal-05773822`, the current one `v2-hal-05774814`.
 
 ## Summary
 
@@ -20,7 +20,8 @@ What the experiments do not support:
 - It does not beat the best standard non-stationary bandits (sliding-window UCB and discounted UCB). Differences are small and not significant; the profiles differ (better early learning and early events for the mechanism, better late recovery for the bandits).
 - It does not beat a router learned by gradient when gradients are available. A sparse top-2 mixture of experts ties with it in learning and recovers almost as well; a top-1 router learns better but never recovers from the loss of a module (experiment 8).
 - Individual alarm thresholds bring nothing measurable, even with heterogeneous modules (experiment 9).
-- It does not discover compositional structure. When task symbols are replaced by opaque identifiers, it fails to learn even the known tasks, and no tested method aligns its modules with the underlying primitives.
+- It does not discover compositional structure on its own. When task symbols are replaced by opaque identifiers, it fails to learn even the known tasks, and no tested method aligns its modules with the underlying primitives (experiment 7).
+- When an oracle gives each module its own local error, trace routing learns the tasks, aligns modules with the primitives and learns new compositions fast; gradient routers given the same local losses either smear modules and interfere (dense, top-2) or learn slowly (top-1). The lock of experiment 7 was the modules' learning signal, not the traces (experiments 10, 10b, 11).
 
 In short: a coordination and resilience mechanism, roughly at the level of the best standard non-stationary bandits, not a mechanism for discovering structure or for compositional generalisation.
 
@@ -140,7 +141,7 @@ Production scenario of experiment 3 with module hidden sizes {2, 4, 8, 16, 32, 6
 
 HE1 (individual thresholds help with heterogeneous modules): +0.002, not confirmed. HE2 vs SW-UCB: +0.01, not significant. HE3 vs D-UCB: +0.04 (95 % CI +0.01 to +0.07), 16/20, p = 0.014, significant. Caution: the bandits were tuned for homogeneous modules, and D-UCB collapses at initial learning on 7 of 20 seeds here, so this edge is likely a tuning artefact rather than a structural advantage. The profiles of experiment 4 persist: better initial learning for the mechanism, better final recovery for the bandits.
 
-### 10. Oracle local credit (seeds 800 to 809, run after the submitted manuscript)
+### 10. Oracle local credit (seeds 800 to 809)
 
 Diagnostic of experiment 7: each slot's quality is computed against the true primitive applied to the module's actual input (an oracle, hence an upper bound). `local_routing` uses it for traces and alarms only; `local_full` also lets each module learn on its local target. Preregistration 10; the development seed and the expected outcome were declared in advance.
 
@@ -153,12 +154,37 @@ Diagnostic of experiment 7: each slot's quality is computed against the true pri
 
 O1 and O3 contradicted: local credit for routing alone makes things worse (-0.09 on known tasks, -0.09 in learning speed, 0/10 seeds). O2 not confirmed. O4 confirmed: with a local learning signal for the modules, the trace mechanism learns new compositions fast (+0.63, 10/10, p = 0.002), aligns modules with primitives (0.99) and keeps interference an order of magnitude below the gradient router (0.20 against 2.29, descriptive). Reading: the lock of experiment 7 is the learning signal of the modules, not the traces. Once modules have their own error, traces indexed by opaque identifiers find correct paths. Removing the oracle, i.e. giving modules a self-supervised local error, is the open question.
 
+### 10b. Independent re-implementation of experiment 10, plus a gradient router with local losses (seeds 810 to 819)
+
+Written without knowledge of experiment 10 (see the integrity notes), with a slightly different oracle for slot 2 (the module applied to the true intermediate, compared with y). On the three seeds shared with experiment 10 (800 to 802, kept apart in `10b_seeds_800_802_before_discovery.jsonl`), the two implementations agree to within a few hundredths.
+
+| Variant | Known tasks R² | Speed on new task | Final R² new task | Interference | Alignment |
+|---|---|---|---|---|---|
+| reference (global credit) | 0.20 | 0.30 | 0.58 | 0.22 | -0.28 |
+| level 2: local credit for routing and content | 0.97 | 0.95 | 0.98 | 0.16 | 0.99 |
+| dense gradient router, same local losses | 0.99 | 0.95 | 0.99 | 0.66 | -1.65 |
+
+P1 (replication of O4): +0.65, 10/10. P2: tie on speed with the gradient router (-0.008, p = 0.85). P3: interference 0.16 vs 0.66, 0/10 seeds higher for traces. P4: alignment 0.99 vs -1.65, 10/10. Given the same local losses, hard assignment by traces yields a clean decomposition where the dense gradient mixture smears modules and overwrites known tasks.
+
+### 11. Sparse top-k routers with local losses (seeds 820 to 829)
+
+Same setting as 10b level 2, against top-1 and top-2 routers (configurations of experiment 8) given the same local losses. Prior stated before the test: 60 % that a sparse router aligns as well as traces.
+
+| Variant | Known tasks R² | Speed on new task | Interference | Alignment |
+|---|---|---|---|---|
+| trace routing, local losses | 0.97 | 0.95 | 0.19 | 0.99 |
+| top-1 router, local losses | 0.97 | 0.66 | 0.28 | 0.46 |
+| top-2 router, local losses | 0.99 | 0.87 | 1.21 | 0.94 |
+
+Against top-1: speed +0.29 and alignment +0.53 for traces (10/10 each), interference not significant. Against top-2: speed +0.08 and alignment +0.05 for traces (10/10 each), interference 1.21 vs 0.19 (10/10). The combination of fast learning, clean alignment and low interference is specific to the trace rule among the routers tested. Caveat: top-k configurations were not re-tuned for local losses.
+
 ## Integrity notes
 
 - **Development seeds.** Every test used seeds separate from the development seeds used to check code and tune opponents. What development revealed is stated in the preregistrations.
 - **Protocol found after the fact.** While preparing publication, the files of a preregistered protocol (experiment 4) were found in the execution environment, from an earlier execution absent from the history of the conversation that produced the rest of this work. It had not been reported. Its code hashes match its preregistration; its main test had stopped at 15 of 20 seeds and was completed with the same code before any analysis. It is reported here in full, including the fact that it weakens an earlier claim.
 - **Seed reuse.** The preregistrations of experiments 5 and 6 state that their seeds had never been used. Seeds 60 to 74 and 80 to 99 had in fact been used by experiment 4. No decision depended on those results, which were unknown at the time, and the code is deterministic: the tested mechanism gives bit-identical results on the 20 shared seeds in both runs. The statement was nevertheless false; corrections are attached to the translated preregistrations.
 - **A second set of files from an unseen execution.** After the v1 manuscript, the preregistrations of experiments 8 and 9, their code, the completed test runs of experiment 8 and the beginning of a third, unpreregistered experiment were again found in the execution environment, from an execution absent from the conversation history. The quoted code hashes match, and the preregistrations were written before the test runs. Experiment 8 was analysed and experiment 9 was run according to their written protocols. The third experiment was not continued; its development-seed tuning is kept in `results/draft_regimes_dev/` and `src/exp_regimes.py`, marked as a draft and not analysed.
+- **A third set of files from an unseen execution, and an overwrite.** Experiment 10 (preregistration, code, complete test runs and an amended commit at 2026-10-02T02:50Z) was found in the execution environment while a second, independently written implementation of the same design was being started. That second implementation briefly overwrote the preregistration and code of experiment 10, which were restored byte for byte from the commit; it was then kept as experiment 10b on fresh seeds, with its three runs made before the discovery set apart.
 - **Provenance check.** `python tools/check_provenance.py` recomputes every code hash quoted in the preregistrations and prints a ledger of seeds per result file, with all overlaps between test seeds of different experiments. Output in `tools/provenance_report.txt`: all hashes match, and the only overlaps are the two disclosed above.
 - **Translation.** Everything was first written in French. `original-fr/` contains the files exactly as executed; the hashes quoted in the preregistrations refer to them. The English code in `src/` differs only in comments, strings and identifiers. It was checked by re-running one seed of every experiment family (9 runs): all stored results are reproduced bit for bit. The English analysis scripts reproduce every number of the original outputs.
 - **How this was produced.** The research question, the intuitions (plurality of small units, orchestration plus Unix-style composition, saga-style compensation, per-unit triggers, ants, forgetting) and the decisions at each step come from the author. The code, experiments and write-up were produced with Claude (Anthropic), an AI assistant, in conversation with the author.
@@ -200,6 +226,8 @@ python src/analysis_no_symbols.py results/7_no_symbols/no_symbols.jsonl
 python src/analysis_topk.py results/8_topk_moe
 python src/analysis_heterogeneous.py results/9_heterogeneous/heterogeneous.jsonl
 python src/analysis_local_credit.py results/10_local_credit/local_credit.jsonl
+python src/analysis_local_credit_b.py results/10_local_credit/10b_seeds_810_819.jsonl
+python src/analysis_topk_local.py results/11_topk_local/topk_local.jsonl
 python tools/check_provenance.py
 ```
 
