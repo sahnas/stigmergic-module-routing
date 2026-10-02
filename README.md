@@ -156,7 +156,7 @@ O1 and O3 contradicted: local credit for routing alone makes things worse (-0.09
 
 ### 10b. Independent re-implementation of experiment 10, plus a gradient router with local losses (seeds 810 to 819)
 
-Written without knowledge of experiment 10 (see the integrity notes), with a slightly different oracle for slot 2 (the module applied to the true intermediate, compared with y). On the three seeds shared with experiment 10 (800 to 802, kept apart in `10b_seeds_800_802_before_discovery.jsonl`), the two implementations agree to within a few hundredths.
+Written without knowledge of experiment 10 (see the integrity notes), with a slightly different oracle for slot 2 (the module applied to the true intermediate, compared with y). On the three seeds shared with experiment 10 (800 to 802, kept apart in `10b_seeds_800_802_before_discovery.jsonl`), the reference values are identical and the local variants agree within 0.04, except one known-task value that differs by 0.10.
 
 | Variant | Known tasks R² | Speed on new task | Final R² new task | Interference | Alignment |
 |---|---|---|---|---|---|
