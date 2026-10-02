@@ -2,7 +2,7 @@
 
 Gradient-free coordination of learning modules through evaporating trails, anomaly alarms and load-aware recruitment. Preregistered toy experiments, with positive and negative results.
 
-A paper describing experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 2 October 2026 (hal-05774814, under moderation, with transfer to arXiv requested). Earlier submissions (1 and 2 October) were withdrawn before moderation and replaced; the state submitted on 1 October is tagged `v1-hal-05773822`, the current one `v2-hal-05774814`.
+A paper describing experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 2 October 2026 (hal-05774824, under moderation, with transfer to arXiv requested). Earlier submissions (1 and 2 October) were withdrawn before moderation and replaced; the state submitted on 1 October is tagged `v1-hal-05773822`, the current one `v2-hal-05774824`.
 
 ## Summary
 
