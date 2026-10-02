@@ -7,3 +7,8 @@ S1 consumed_specialist - fresh on AUC: +0.075 [-0.043, +0.191] positive 6/10 p=0
     steps to 0.8, consumed_specialist - fresh: -16 (negative = faster)
 S2 consumed_specialist - other_specialist on AUC: +0.222 [+0.099, +0.351] positive 8/10 p=0.0098 -> significant, consumed_specialist faster
     steps to 0.8, consumed_specialist - other_specialist: -40 (negative = faster)
+
+Exploratory (not preregistered): other_specialist vs fresh
+  other_specialist - fresh on auc: -0.147 [-0.223, -0.066] positive 1/10 Wilcoxon p=0.0195; sign test p=0.021
+  other_specialist - fresh on steps_to_0.8: +24.500 [+14.500, +33.000] positive 9/10 Wilcoxon p=0.0059; sign test p=0.021
+  S2 sign test p=0.109 (Wilcoxon 0.0098)

@@ -178,6 +178,32 @@ Same setting as 10b level 2, against top-1 and top-2 routers (configurations of 
 
 Against top-1: speed +0.29 and alignment +0.53 for traces (10/10 each), interference not significant. Against top-2: speed +0.08 and alignment +0.05 for traces (10/10 each), interference 1.21 vs 0.19 (10/10). The combination of fast learning, clean alignment and low interference is specific to the trace rule among the routers tested. Caveat: top-k configurations were not re-tuned for local losses.
 
+### 14. Does the mechanism preserve a rare specialist? (seeds 1100 to 1109, not in the manuscript)
+
+Production world of experiment 3, one event (death of the module carrying a frequent primitive), one primitive r whose tasks are sampled with relative weight 0.02; measures on the tasks that need r but not the killed primitive. Two scenarios (rare from the start; learned then rare) x reserves (0 or 2 dormant modules) x recruitment rule (least committed; random; none, alarms without recruitment). Preregistered after a development seed whose observations are declared in the preregistration.
+
+| Scenario, reserves, rule | Rare R² before | Rare R² after | Other R² after | First recruit = rare specialist | Rare skill preserved (R² > 0.8) |
+|---|---|---|---|---|---|
+| learned then rare, 0, least committed | 0.87 | -0.09 | 0.68 | 1/10 | 2/10 |
+| learned then rare, 0, random | 0.62 | -0.44 | 0.79 | 0/10 | 0/10 |
+| learned then rare, 0, none | 0.31 | -0.53 | 0.83 | - | 1/10 |
+| learned then rare, 2, least committed | 0.77 | 0.68 | 0.98 | 2/10 | 8/10 |
+| rare from the start, 0, least committed | -0.46 | -0.53 | 0.93 | 6/10 | 0/10 |
+
+A learned skill that becomes rare is not targeted by recruitment (its traces survive rarity, as the solicitation-triggered rule predicts), but it is destroyed anyway once no reserve is available, under every rule including no recruitment at all: alarms cascade (about 38 recruitments per run), trace sampling explores every module for the orphaned symbol, and gradient training through them overwrites their content. Two dormant reserves preserve it (8/10). A skill that is rare from the start is never acquired (10/10) and its module is the preferred target of least-committed recruitment (6/10 vs 1/10 for random). The mechanism allocates work; it protects no function by itself. Criticality (a cost of errors) is not modelled and was not tested.
+
+### 15. Savings of a consumed specialist (seeds 1200 to 1209, not in the manuscript)
+
+After the production phase of experiment 14 (no reserve), the consumed specialist of r, a live module that carried another primitive, and a fresh module relearn the single task (r,) in isolation for 150 steps with the same batches.
+
+| Candidate | R² before relearning | AUC (150 steps) | Steps to R² 0.8 |
+|---|---|---|---|
+| consumed specialist | +0.07 | 0.80 | 43 |
+| fresh module | -0.44 | 0.72 | 58 |
+| module that carried another primitive | -0.71 | 0.58 | 83 |
+
+S1 (consumed vs fresh): +0.075 on AUC, 6/10, p = 0.23, not significant; the residual memory exists but is not a reliable advantage. S2 (consumed vs repurposed module): +0.22, 8/10, p = 0.0098 (sign test p = 0.11). Exploratory, not preregistered: the repurposed module is a worse starting point than a fresh one (-0.15 on AUC, 1/10, p = 0.02; +25 steps to 0.8, 9/10, p = 0.006). Reading: cheap reconstruction is not a reliable protection here, dormant reserves remain the only observed one, and repurposing a trained module costs more than starting fresh. The toy's primitives are easy to learn from scratch (58 steps), which bounds how much savings can matter; on a real world model the same question has a different cost scale.
+
 ## Modular JEPA study (experiments 12 and 13, not in the manuscript)
 
 Design note: [`design/modular_jepa.md`](design/modular_jepa.md), written after a review of the state of the art (MOSAIC, COMET, RIM/NPS, NEO, the JEPA line) and before any result. World: sequential states with five unnamed primitives that persist for a few steps then switch, plus eight noise channels per observation; a tiny JEPA (shared encoder, EMA target encoder) with competing predictors in representation space. Stage 0 (sanity, seed 0): representation-space prediction works and does not collapse (linear probe keeps the state at R² 0.998, drops the noise at 0.007, effective rank 7.9 of 8). Five test seeds per stage, so results are effect sizes with per-seed values; no test reaches a threshold.
@@ -255,6 +281,8 @@ python src/analysis_heterogeneous.py results/9_heterogeneous/heterogeneous.jsonl
 python src/analysis_local_credit.py results/10_local_credit/local_credit.jsonl
 python src/analysis_local_credit_b.py results/10_local_credit/10b_seeds_810_819.jsonl
 python src/analysis_topk_local.py results/11_topk_local/topk_local.jsonl
+python src/analysis_preservation.py results/14_preservation/preservation.jsonl
+python src/analysis_savings.py results/15_savings/savings.jsonl
 python tools/check_provenance.py
 ```
 

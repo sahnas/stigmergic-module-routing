@@ -15,6 +15,13 @@
   13_jepa_stage2.md            stage2_lifelong.py       c580e20533978d08  OK (src/jepa/stage2_lifelong.py)
   13_jepa_stage2.md            stage1_competition.py    a061925fbfbebb3a  OK (src/jepa/stage1_competition.py)
   13_jepa_stage2.md            world_seq.py             be0713217e1343f9  OK (src/jepa/world_seq.py)
+  14_preservation.md           exp_preservation.py      b112fd314196a825  OK (src/exp_preservation.py)
+  14_preservation.md           exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
+  14_preservation.md           exp.py                   6c202cab844bb559  OK (src/exp.py)
+  15_savings.md                exp_savings.py           1967f6424c6d635a  OK (src/exp_savings.py)
+  15_savings.md                exp_preservation.py      b112fd314196a825  OK (src/exp_preservation.py)
+  15_savings.md                exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
+  15_savings.md                exp.py                   6c202cab844bb559  OK (src/exp.py)
   3_gradient_free.md           exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
   3_gradient_free.md           exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
   4_standard_bandits.md        bandits.py               1e018844e58d6497  OK (original-fr/bandits.py)
@@ -48,6 +55,9 @@
   test  results/12_jepa_stage1/stage1.jsonl                              5 seeds  1000..1004
   dev   results/13_jepa_stage2/dev_seed_960.jsonl                        1 seeds  960..960
   test  results/13_jepa_stage2/stage2.jsonl                              5 seeds  1010..1014
+  test  results/14_preservation/preservation.jsonl                      10 seeds  1100..1109
+  dev   results/15_savings/dev_seeds_951_952.jsonl                       2 seeds  951..952
+  test  results/15_savings/savings.jsonl                                10 seeds  1200..1209
   dev   results/1_core/dev_lr_check.jsonl                                2 seeds  100..101
   dev   results/1_core/dev_seeds_100_102.jsonl                           3 seeds  100..102
   test  results/1_core/results.jsonl                                    10 seeds  0..9
