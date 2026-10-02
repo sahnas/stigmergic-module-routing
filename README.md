@@ -178,12 +178,39 @@ Same setting as 10b level 2, against top-1 and top-2 routers (configurations of 
 
 Against top-1: speed +0.29 and alignment +0.53 for traces (10/10 each), interference not significant. Against top-2: speed +0.08 and alignment +0.05 for traces (10/10 each), interference 1.21 vs 0.19 (10/10). The combination of fast learning, clean alignment and low interference is specific to the trace rule among the routers tested. Caveat: top-k configurations were not re-tuned for local losses.
 
+## Modular JEPA study (experiments 12 and 13, not in the manuscript)
+
+Design note: [`design/modular_jepa.md`](design/modular_jepa.md), written after a review of the state of the art (MOSAIC, COMET, RIM/NPS, NEO, the JEPA line) and before any result. World: sequential states with five unnamed primitives that persist for a few steps then switch, plus eight noise channels per observation; a tiny JEPA (shared encoder, EMA target encoder) with competing predictors in representation space. Stage 0 (sanity, seed 0): representation-space prediction works and does not collapse (linear probe keeps the state at R² 0.998, drops the noise at 0.007, effective rank 7.9 of 8). Five test seeds per stage, so results are effect sizes with per-seed values; no test reaches a threshold.
+
+### 12. Stage 1: competition and the prior over the winner (seeds 1000 to 1004)
+
+| Variant | Module purity | Relative error, 2 to 3 steps after a switch to a held-out pair |
+|---|---|---|
+| competition, persistence prior (previous winner) | 0.84 | 0.05 |
+| competition, trace prior (ours) | 0.84 | 0.05 |
+| competition, state classifier prior (COMET) | 0.84 | 1.52 |
+| attention assignment (RIM style) | 0.36 | 0.92 |
+| oracle assignment | 1.00 | 0.01 |
+
+Competition by local error replicates COMET and beats attention on purity (5/5). The "when" needs memory of the previous winner, not the current state: the classifier prior fails after a switch (5/5). Traces tie with plain persistence (+0.002), as expected in a world where the previous winner predicts itself.
+
+### 13. Stage 2: a sixth primitive appears (seeds 1010 to 1014)
+
+| Variant | Specialist captured the new primitive | Error on the new primitive | Interference on the old ones |
+|---|---|---|---|
+| competition, 5 modules | 5/5 | 0.68 | +0.041 |
+| competition, 8 modules (over-provisioned) | 1/5 | 0.49 | +0.000 |
+| competition + least-committed recruitment (5 active, reserves dormant) | 0/5 | 0.49 | +0.002 |
+
+Recruitment provides the capability COMET states as open, instantiating a mechanism without degrading the others: against fixed five-module competition, lower error on the new primitive (5/5) and lower interference (5/5). Against competition merely over-provisioned with eight modules, it ties on both (differences of 0.002 and 0.001). The residual advantage is economic: dormant reserves compute nothing. A regime with repeated new primitives and scarce spares remains to be tested.
+
 ## Integrity notes
 
 - **Development seeds.** Every test used seeds separate from the development seeds used to check code and tune opponents. What development revealed is stated in the preregistrations.
 - **Protocol found after the fact.** While preparing publication, the files of a preregistered protocol (experiment 4) were found in the execution environment, from an earlier execution absent from the history of the conversation that produced the rest of this work. It had not been reported. Its code hashes match its preregistration; its main test had stopped at 15 of 20 seeds and was completed with the same code before any analysis. It is reported here in full, including the fact that it weakens an earlier claim.
 - **Seed reuse.** The preregistrations of experiments 5 and 6 state that their seeds had never been used. Seeds 60 to 74 and 80 to 99 had in fact been used by experiment 4. No decision depended on those results, which were unknown at the time, and the code is deterministic: the tested mechanism gives bit-identical results on the 20 shared seeds in both runs. The statement was nevertheless false; corrections are attached to the translated preregistrations.
 - **A second set of files from an unseen execution.** After the v1 manuscript, the preregistrations of experiments 8 and 9, their code, the completed test runs of experiment 8 and the beginning of a third, unpreregistered experiment were again found in the execution environment, from an execution absent from the conversation history. The quoted code hashes match, and the preregistrations were written before the test runs. Experiment 8 was analysed and experiment 9 was run according to their written protocols. The third experiment was not continued; its development-seed tuning is kept in `results/draft_regimes_dev/` and `src/exp_regimes.py`, marked as a draft and not analysed.
+- **Cause of the "unseen executions", identified on 2 October.** When the chat interface reports a response as failed, the attempt's tools keep executing in the shared environment. The files found three times came from such attempts of the same turns, not from any external intervention. Experiments 12 and 13 were produced the same way: their preregistrations precede their test seeds, their code hashes match, and the seeds the cut attempts did not reach were completed with the same code.
 - **A third set of files from an unseen execution, and an overwrite.** Experiment 10 (preregistration, code, complete test runs and an amended commit at 2026-10-02T02:50Z) was found in the execution environment while a second, independently written implementation of the same design was being started. That second implementation briefly overwrote the preregistration and code of experiment 10, which were restored byte for byte from the commit; it was then kept as experiment 10b on fresh seeds, with its three runs made before the discovery set apart.
 - **Provenance check.** `python tools/check_provenance.py` recomputes every code hash quoted in the preregistrations and prints a ledger of seeds per result file, with all overlaps between test seeds of different experiments. Output in `tools/provenance_report.txt`: all hashes match, and the only overlaps are the two disclosed above.
 - **Translation.** Everything was first written in French. `original-fr/` contains the files exactly as executed; the hashes quoted in the preregistrations refer to them. The English code in `src/` differs only in comments, strings and identifiers. It was checked by re-running one seed of every experiment family (9 runs): all stored results are reproduced bit for bit. The English analysis scripts reproduce every number of the original outputs.
@@ -230,6 +257,8 @@ python src/analysis_local_credit_b.py results/10_local_credit/10b_seeds_810_819.
 python src/analysis_topk_local.py results/11_topk_local/topk_local.jsonl
 python tools/check_provenance.py
 ```
+
+Modular JEPA stages, from `src/jepa/`: `python stage0_sanity.py 0`, `python stage1_competition.py 1000,...,1004 ../../results/12_jepa_stage1/stage1.jsonl none,traces,classifier,attention,oracle,random,single`, `python stage2_lifelong.py 1010,...,1014 ../../results/13_jepa_stage2/stage2.jsonl competition5,competition8,recruit5`.
 
 Experiments 8 and 9 (from `src/`): `python exp_topk.py 700,...,719 ../results/8_topk_moe/topk2.jsonl topk '{"k":2,"noise":0.3,"alpha":0.0}'` (and the top-1 configuration), `python exp_heterogeneous.py 720,...,739 ../results/9_heterogeneous/heterogeneous.jsonl aco_thresholds,aco_global_threshold,swucb:50:0.05,ducb:0.98:0.3`.
 

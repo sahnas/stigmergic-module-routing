@@ -10,6 +10,11 @@
   11_topk_local.md             exp_topk.py              abfab869d11dba6c  OK (src/exp_topk.py)
   11_topk_local.md             exp_no_symbols.py        88c033106677b739  OK (src/exp_no_symbols.py)
   11_topk_local.md             exp.py                   6c202cab844bb559  OK (src/exp.py)
+  12_jepa_stage1.md            stage1_competition.py    a061925fbfbebb3a  MISMATCH
+  12_jepa_stage1.md            world_seq.py             be0713217e1343f9  MISMATCH
+  13_jepa_stage2.md            stage2_lifelong.py       c580e20533978d08  MISMATCH
+  13_jepa_stage2.md            stage1_competition.py    a061925fbfbebb3a  MISMATCH
+  13_jepa_stage2.md            world_seq.py             be0713217e1343f9  MISMATCH
   3_gradient_free.md           exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
   3_gradient_free.md           exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
   4_standard_bandits.md        bandits.py               1e018844e58d6497  OK (original-fr/bandits.py)
@@ -30,7 +35,7 @@
   9_heterogeneous.md           exp_bandits.py           aa3d44d1bfc727da  OK (src/exp_bandits.py)
   9_heterogeneous.md           exp_ablation.py          9d554f028d6cee16  OK (src/exp_ablation.py)
   9_heterogeneous.md           exp.py                   6c202cab844bb559  OK (src/exp.py)
-  -> all hashes match
+  -> 5 mismatch(es)
 
 2. Seed ledger
   test  results/10_local_credit/10b_seeds_800_802_before_discovery.jsonl   3 seeds  800..802
@@ -39,6 +44,10 @@
   test  results/10_local_credit/local_credit.jsonl                      10 seeds  800..809
   dev   results/11_topk_local/dev_seed_901.jsonl                         1 seeds  901..901
   test  results/11_topk_local/topk_local.jsonl                          10 seeds  820..829
+  dev   results/12_jepa_stage1/dev_seed_950.jsonl                        1 seeds  950..950
+  test  results/12_jepa_stage1/stage1.jsonl                              5 seeds  1000..1004
+  dev   results/13_jepa_stage2/dev_seed_960.jsonl                        1 seeds  960..960
+  test  results/13_jepa_stage2/stage2.jsonl                              5 seeds  1010..1014
   dev   results/1_core/dev_lr_check.jsonl                                2 seeds  100..101
   dev   results/1_core/dev_seeds_100_102.jsonl                           3 seeds  100..102
   test  results/1_core/results.jsonl                                    10 seeds  0..9
