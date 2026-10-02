@@ -1,0 +1,22 @@
+seeds 1100 to 1109
+scenario           res rule             rare_before rare_after other_after avail  spec_recruited first_dormant recruits
+learned_then_rare    0 least_committed  +0.87       -0.09       +0.68        0.434  10/10            0/10           38.3
+learned_then_rare    0 random           +0.62       -0.44       +0.79        0.374  10/10            0/10           41.5
+learned_then_rare    0 none             +0.31       -0.53       +0.83        0.366  0/10            0/10           0.0
+learned_then_rare    2 least_committed  +0.77       +0.68       +0.98        0.827  5/10            6/10           27.0
+learned_then_rare    2 random           +0.66       +0.50       +0.94        0.628  9/10            4/10           27.0
+learned_then_rare    2 none             +0.63       +0.39       +0.96        0.616  0/10            0/10           0.0
+rare_from_start      0 least_committed  -0.46       -0.53       +0.93        0.342  10/10            0/10           36.7
+rare_from_start      0 random           -0.59       -0.46       +0.87        0.235  10/10            0/10           37.7
+rare_from_start      0 none             -0.42       -0.37       +0.78        0.228  0/10            0/10           0.0
+rare_from_start      2 least_committed  -0.64       -0.21       +0.95        0.463  8/10            3/10           34.6
+rare_from_start      2 random           -0.57       -0.38       +0.92        0.343  10/10            4/10           35.6
+rare_from_start      2 none             -0.45       -0.15       +0.82        0.320  0/10            0/10           0.0
+
+Q1 rare R2 after < 0.5: 7 /10 ; specialist among recruits: 10 /10
+Q2 rule none, rare R2 after < 0.5: 9 /10
+   least_committed - none on rare_r2_after: +0.434 [-0.061, +0.917] positive 8/10 p=0.1309 -> not significant
+   least_committed - none on availability: +0.068 [-0.043, +0.188] positive 6/10 p=0.3223 -> not significant
+Q3 two reserves: first recruit dormant 6 /10 ; rare R2 after > 0.8: 8 /10
+Q4 rare from start: rare R2 before < 0.5: 10 /10
+control random: specialist among recruits 10 /10
