@@ -1,0 +1,9 @@
+seeds 1200 to 1209 | n 10 | specialist recruited during production: 10 /10 | recruits per run 38.2
+specialist R2 on (r,) before the event 0.938
+consumed_specialist  R2 start +0.073 | AUC 0.800 | steps to 0.8 43 | final 0.980
+other_specialist     R2 start -0.712 | AUC 0.577 | steps to 0.8 83 | final 0.968
+fresh                R2 start -0.440 | AUC 0.724 | steps to 0.8 58 | final 0.968
+S1 consumed_specialist - fresh on AUC: +0.075 [-0.043, +0.191] positive 6/10 p=0.2324 -> not significant
+    steps to 0.8, consumed_specialist - fresh: -16 (negative = faster)
+S2 consumed_specialist - other_specialist on AUC: +0.222 [+0.099, +0.351] positive 8/10 p=0.0098 -> significant, consumed_specialist faster
+    steps to 0.8, consumed_specialist - other_specialist: -40 (negative = faster)
