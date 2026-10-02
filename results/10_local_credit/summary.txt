@@ -1,0 +1,9 @@
+seeds 800 to 809
+aco_thresholds  known tasks 0.181 | speed on new 0.306 | final new 0.593 | interference 0.211 | alignment -0.240
+local_routing   known tasks 0.093 | speed on new 0.215 | final new 0.401 | interference 0.187 | alignment -0.265
+local_full      known tasks 0.967 | speed on new 0.937 | final new 0.981 | interference 0.199 | alignment 0.991
+soft            known tasks 0.902 | speed on new 0.888 | final new 0.963 | interference 2.286 | alignment -8.632
+O1 local_routing - aco_thresholds on phaseA_r2: mean diff -0.089 95% CI [-0.112, -0.066] positive 0/10 p=0.0020 -> CONTRADICTED
+O2 local_routing - aco_thresholds on alignment: mean diff -0.025 95% CI [-0.047, -0.006] positive 3/10 p=0.0840 -> NOT CONFIRMED
+O3 local_routing - aco_thresholds on fewshot_auc: mean diff -0.091 95% CI [-0.118, -0.068] positive 0/10 p=0.0020 -> CONTRADICTED
+O4 local_full - aco_thresholds on fewshot_auc: mean diff +0.631 95% CI [+0.598, +0.663] positive 10/10 p=0.0020 -> CONFIRMED

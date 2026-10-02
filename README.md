@@ -2,7 +2,7 @@
 
 Gradient-free coordination of learning modules through evaporating trails, anomaly alarms and load-aware recruitment. Preregistered toy experiments, with positive and negative results.
 
-A paper describing experiments 1 to 9 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 1 October 2026 (hal-05773822, under moderation, with transfer to arXiv requested). Earlier submissions of the same day were withdrawn before moderation and replaced by this one.
+A paper describing experiments 1 to 9 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 1 October 2026 (hal-05773822, under moderation, with transfer to arXiv requested). Earlier submissions of the same day were withdrawn before moderation and replaced by this one. Experiment 10 was run after that submission and is not in the manuscript.
 
 ## Summary
 
@@ -140,6 +140,19 @@ Production scenario of experiment 3 with module hidden sizes {2, 4, 8, 16, 32, 6
 
 HE1 (individual thresholds help with heterogeneous modules): +0.002, not confirmed. HE2 vs SW-UCB: +0.01, not significant. HE3 vs D-UCB: +0.04 (95 % CI +0.01 to +0.07), 16/20, p = 0.014, significant. Caution: the bandits were tuned for homogeneous modules, and D-UCB collapses at initial learning on 7 of 20 seeds here, so this edge is likely a tuning artefact rather than a structural advantage. The profiles of experiment 4 persist: better initial learning for the mechanism, better final recovery for the bandits.
 
+### 10. Oracle local credit (seeds 800 to 809, run after the submitted manuscript)
+
+Diagnostic of experiment 7: each slot's quality is computed against the true primitive applied to the module's actual input (an oracle, hence an upper bound). `local_routing` uses it for traces and alarms only; `local_full` also lets each module learn on its local target. Preregistration 10; the development seed and the expected outcome were declared in advance.
+
+| Variant | Known tasks R² | Learning speed on new task | Final R² new task | Interference | Alignment |
+|---|---|---|---|---|---|
+| global credit (experiment 7 baseline) | 0.18 | 0.31 | 0.59 | 0.21 | -0.24 |
+| local credit for routing only | 0.09 | 0.22 | 0.40 | 0.19 | -0.27 |
+| local credit for routing and learning | 0.97 | 0.94 | 0.98 | 0.20 | 0.99 |
+| router learned by gradient (reference) | 0.90 | 0.89 | 0.96 | 2.29 | -8.6 |
+
+O1 and O3 contradicted: local credit for routing alone makes things worse (-0.09 on known tasks, -0.09 in learning speed, 0/10 seeds). O2 not confirmed. O4 confirmed: with a local learning signal for the modules, the trace mechanism learns new compositions fast (+0.63, 10/10, p = 0.002), aligns modules with primitives (0.99) and keeps interference an order of magnitude below the gradient router (0.20 against 2.29, descriptive). Reading: the lock of experiment 7 is the learning signal of the modules, not the traces. Once modules have their own error, traces indexed by opaque identifiers find correct paths. Removing the oracle, i.e. giving modules a self-supervised local error, is the open question.
+
 ## Integrity notes
 
 - **Development seeds.** Every test used seeds separate from the development seeds used to check code and tune opponents. What development revealed is stated in the preregistrations.
@@ -186,6 +199,7 @@ python src/analysis_ablation.py results/6_ablation/ablation.jsonl
 python src/analysis_no_symbols.py results/7_no_symbols/no_symbols.jsonl
 python src/analysis_topk.py results/8_topk_moe
 python src/analysis_heterogeneous.py results/9_heterogeneous/heterogeneous.jsonl
+python src/analysis_local_credit.py results/10_local_credit/local_credit.jsonl
 python tools/check_provenance.py
 ```
 
