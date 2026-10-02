@@ -1,0 +1,13 @@
+seeds [1000, 1001, 1002, 1003, 1004] | n per variant [5, 5, 5, 5, 5, 5, 5]
+variant     coverage purity distinct rel_err | before_sw  switch1  steps23 (seen) | before_sw  switch1  steps23 (held)
+none        0.764   0.838  8.0    0.423  | 0.032     1.782   0.050        | 0.037     1.808   0.053
+traces      0.764   0.838  8.0    0.421  | 0.033     1.784   0.049        | 0.037     1.808   0.055
+classifier  0.764   0.838  8.0    0.943  | 0.511     1.653   1.185        | 0.470     1.736   1.515
+attention   0.250   0.360  8.0    0.638  | 0.462     0.971   0.777        | 0.447     1.131   0.924
+oracle      1.000   1.000  5.0    0.010  | 0.008     0.011   0.011        | 0.009     0.014   0.014
+random      1.000   0.271  1.0    0.593  | 0.447     0.785   0.733        | 0.442     0.956   0.836
+single      1.000   0.271  1.0    0.619  | 0.465     0.837   0.755        | 0.449     1.050   0.864
+
+E1 (purity, competition vs attention): none - attention on module_purity: mean +0.477, per seed [0.474 0.432 0.502 0.444 0.535], positive 5/5
+E2 (recovery after held-out switch): traces - none on held_switch_steps23: mean +0.002, per seed [ 0.01   0.     0.     0.    -0.001], positive 1/5
+E3 (recovery, persistence vs classifier): none - classifier on held_switch_steps23: mean -1.462, per seed [-1.55  -1.109 -1.487 -1.637 -1.526], positive 0/5
