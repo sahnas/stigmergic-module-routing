@@ -71,4 +71,24 @@ for v, (a, i, n, f) in {'aco_thresholds': (0.72, 0.89, 0, 0.55), 'aco_global_thr
     C(f'E9 {v} collapses', n, (g(r, v, 'train_r2_init') < 0.5).sum(), 0.5); C(f'E9 {v} final', f, g(r, v, 'train_r2_final').mean())
 for opp, val in [('aco_global_threshold', 0.002), ('swucb:50:0.05', 0.01), ('ducb:0.98:0.3', 0.04)]:
     C(f'E9 diff vs {opp}', val, (g(r, 'aco_thresholds', 'availability') - g(r, opp, 'availability')).mean(), 0.0006 if opp == 'aco_global_threshold' else 0.006)
+
+def LC(f): return [json.loads(l) for l in open(R + '10_local_credit/' + f)]
+r = LC('local_credit.jsonl')
+for v, (k, sp, i, a) in {'aco_thresholds': (0.18, 0.31, 0.21, -0.24), 'local_routing': (0.09, 0.22, 0.19, -0.27), 'local_full': (0.97, 0.94, 0.20, 0.99)}.items():
+    C(f'E10 {v} known', k, g(r, v, 'phaseA_r2').mean()); C(f'E10 {v} speed', sp, g(r, v, 'fewshot_auc').mean()); C(f'E10 {v} interference', i, g(r, v, 'interference').mean()); C(f'E10 {v} alignment', a, g(r, v, 'alignment').mean())
+C('E10 level1 known diff', -0.09, (g(r, 'local_routing', 'phaseA_r2') - g(r, 'aco_thresholds', 'phaseA_r2')).mean())
+C('E10 level1 speed diff', -0.09, (g(r, 'local_routing', 'fewshot_auc') - g(r, 'aco_thresholds', 'fewshot_auc')).mean())
+C('E10 level2 speed diff', 0.63, (g(r, 'local_full', 'fewshot_auc') - g(r, 'aco_thresholds', 'fewshot_auc')).mean())
+r = LC('10b_seeds_810_819.jsonl')
+for v, (k, sp, i, a) in {'aco_thresholds': (0.20, 0.30, 0.22, -0.28), 'aco_local_both': (0.97, 0.95, 0.16, 0.99), 'soft_local_both': (0.99, 0.95, 0.66, -1.65)}.items():
+    C(f'E10b {v} known', k, g(r, v, 'phaseA_r2').mean()); C(f'E10b {v} speed', sp, g(r, v, 'fewshot_auc').mean()); C(f'E10b {v} interference', i, g(r, v, 'interference').mean()); C(f'E10b {v} alignment', a, g(r, v, 'alignment').mean())
+C('E10b P1', 0.65, (g(r, 'aco_local_both', 'fewshot_auc') - g(r, 'aco_thresholds', 'fewshot_auc')).mean())
+C('E10b P2', -0.008, (g(r, 'aco_local_both', 'fewshot_auc') - g(r, 'soft_local_both', 'fewshot_auc')).mean(), 0.0006)
+r = L('11_topk_local/topk_local.jsonl')
+for v, (k, sp, i, a) in {'aco_local_both': (0.97, 0.95, 0.19, 0.99), 'topk1_local_both': (0.97, 0.66, 0.28, 0.46), 'topk2_local_both': (0.99, 0.87, 1.21, 0.94)}.items():
+    C(f'E11 {v} known', k, g(r, v, 'phaseA_r2').mean()); C(f'E11 {v} speed', sp, g(r, v, 'fewshot_auc').mean()); C(f'E11 {v} interference', i, g(r, v, 'interference').mean()); C(f'E11 {v} alignment', a, g(r, v, 'alignment').mean())
+C('E11 K1 speed vs top1', -0.29, (g(r, 'topk1_local_both', 'fewshot_auc') - g(r, 'aco_local_both', 'fewshot_auc')).mean())
+C('E11 K3 alignment vs top1', -0.53, (g(r, 'topk1_local_both', 'alignment') - g(r, 'aco_local_both', 'alignment')).mean())
+C('E11 K4 speed vs top2', -0.08, (g(r, 'topk2_local_both', 'fewshot_auc') - g(r, 'aco_local_both', 'fewshot_auc')).mean())
+C('E11 K6 alignment vs top2', -0.05, (g(r, 'topk2_local_both', 'alignment') - g(r, 'aco_local_both', 'alignment')).mean())
 print(f'\n{sum(chk)} / {len(chk)} values match')

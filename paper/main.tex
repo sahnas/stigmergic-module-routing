@@ -9,7 +9,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{url}
 
-\title{Commitment-Based Recruitment for Gradient-Free\\ Resilience in Modular Learning Systems:\\ Nine Preregistered Toy Experiments}
+\title{Commitment-Based Recruitment for Gradient-Free\\ Resilience in Modular Learning Systems:\\ Eleven Preregistered Toy Experiments}
 \author{Hassan Akaou\\
 \small Independent researcher, France\\
 \small \url{https://github.com/sahnas/stigmergic-module-routing}}
@@ -19,7 +19,7 @@
 \maketitle
 
 \begin{abstract}
-We study a distributed heuristic for backup capacity in modular learning systems that uses no routing gradient. Each edge between a task symbol and a module carries a trace, reinforced by successful use and evaporated when the symbol is solicited. When a module's quality drops abnormally, an alarm fires and the least committed module, the one with the lowest total trace, is recruited to relearn the lost function. The design is inspired by stigmergy and response-threshold models of insect societies, although the traces form a shared table rather than an environment. In nine preregistered experiments on a synthetic compositional regression world, with the mechanism never tuned and opponents tuned on separate development seeds, we find that: (i) forgetting is necessary for compensation after the permanent loss of a module, and, at equal rate, evaporation triggered by solicitation preserves retention whereas time-based evaporation destroys it; (ii) resilience is carried by recruiting the least committed module, while per-module alarm thresholds bring nothing measurable, even with heterogeneous modules; (iii) without a routing gradient, the mechanism outperforms recency-based routing and change-point bandits and matches sliding-window and discounted UCB; (iv) with gradients available, it does not outperform routers trained by gradient, including sparse top-$k$ mixtures of experts, although top-1 routing fails to recover from module loss; and (v) with opaque task identifiers, it fails to learn the tasks, and no tested method recovers the compositional structure. We report these results together with the integrity issues of this AI-assisted study, including files from unseen executions found in the execution environment, and provide a provenance check. Code, data and preregistrations are public.
+We study a distributed heuristic for backup capacity in modular learning systems that uses no routing gradient. Each edge between a task symbol and a module carries a trace, reinforced by successful use and evaporated when the symbol is solicited. When a module's quality drops abnormally, an alarm fires and the least committed module, the one with the lowest total trace, is recruited to relearn the lost function. The design is inspired by stigmergy and response-threshold models of insect societies, although the traces form a shared table rather than an environment. In eleven preregistered experiments on a synthetic compositional regression world, with the mechanism never tuned and opponents tuned on separate development seeds, we find that: (i) forgetting is necessary for compensation after the permanent loss of a module, and, at equal rate, evaporation triggered by solicitation preserves retention whereas time-based evaporation destroys it; (ii) resilience is carried by recruiting the least committed module, while per-module alarm thresholds bring nothing measurable, even with heterogeneous modules; (iii) without a routing gradient, the mechanism outperforms recency-based routing and change-point bandits and matches sliding-window and discounted UCB; (iv) with gradients available, it does not outperform routers trained by gradient, including sparse top-$k$ mixtures of experts, although top-1 routing fails to recover from module loss; (v) with opaque task identifiers, it fails to learn the tasks, and no tested method recovers the compositional structure; and (vi) when an oracle gives each module its own local error, trace routing learns the tasks, aligns modules with the primitives and learns new compositions fast, whereas gradient routers given the same local losses either smear modules and interfere (dense and top-2 gating) or learn slowly (top-1 gating): the lock in (v) was the learning signal of the modules, not the traces. We report these results together with the integrity issues of this AI-assisted study, including files from unseen executions found in the execution environment, and provide a provenance check. Code, data and preregistrations are public.
 \end{abstract}
 
 \section{Introduction}
@@ -30,7 +30,7 @@ Social insects solve a related problem without a central controller. Ants coordi
 
 We ask whether these ingredients, transposed to routing between modules that learn during operation, produce a useful coordination mechanism, and where it breaks. The mechanism combines evaporating traces on symbol-to-module edges, an alarm on abnormal quality drops, and recruitment of the least committed module. We test it in a deliberately small synthetic world, using preregistered hypotheses \citep{nosek2018preregistration}, separate development and test seeds, tuned opponents and an untuned mechanism.
 
-Our contributions are empirical and include negative results. Stated in its most defensible form, the finding is that a distributed backup-capacity heuristic, based on the historical commitment of modules, provides resilience comparable to good non-stationary bandits without any routing gradient. An ablation identifies recruitment of the least committed module as the active ingredient. The mechanism is, however, only on par with the best standard non-stationary bandits, it does not beat routers trained by gradient (dense or sparse), and it does not discover compositional structure when the decomposition of tasks is not given.
+Our contributions are empirical and include negative results. Stated in its most defensible form, the finding is that a distributed backup-capacity heuristic, based on the historical commitment of modules, provides resilience comparable to good non-stationary bandits without any routing gradient. An ablation identifies recruitment of the least committed module as the active ingredient. The mechanism is, however, only on par with the best standard non-stationary bandits, it does not beat routers trained by gradient (dense or sparse), and it does not discover compositional structure when the decomposition of tasks is not given. When each module receives its own local error, however, trace routing recovers the structure cleanly, which gradient routers with the same local losses do not, and this identifies the missing ingredient as a local learning signal per module.
 
 \section{Related work}
 
@@ -233,13 +233,58 @@ D-UCB ($\gamma = 0.98$) & 0.68 & 0.63 & 7/20 & 0.74 \\
 
 Individual thresholds still bring nothing ($+0.002$, $[-0.02, +0.03]$, $p = 0.93$), contrary to the hypothesis that heterogeneity would make them useful. The mechanism ties with SW-UCB ($+0.01$, $p = 0.90$) and is ahead of D-UCB ($+0.04$, $[+0.01, +0.07]$, 16/20, $p = 0.014$). That last edge should not be read as structural: the bandits were tuned for homogeneous modules, and D-UCB collapses at initial learning on 7 of 20 seeds. The profiles of Experiment~4 persist, with better initial learning for the mechanism and better final recovery for the bandits.
 
+\subsection{Experiments 10 and 10b: oracle local credit (seeds 800--809 and 810--819)}
+
+The diagnosis of Experiment~7 is put to the test in the same opaque-identifier world. An oracle gives each slot of the path its own local quality: slot 1 is compared with the true intermediate $P_i(x)$, slot 2 with $y$. Level 1 uses the local quality for traces and alarms only, modules still learning on the global loss; level 2 also gives each module its own learning target. Experiments 10 and 10b are two independent implementations of this design, written without knowledge of each other (Section~\ref{sec:integrity}) and differing slightly in the oracle for slot 2; on three shared seeds they agree to within a few hundredths. Experiment 10b adds a dense gradient router given the same local losses.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llcccc}
+\toprule
+Exp. & Variant & Known & Speed & Interf. & Align. \\
+\midrule
+10 & Reference (global credit) & 0.18 & 0.31 & 0.21 & $-0.24$ \\
+10 & Level 1: local credit, routing only & 0.09 & 0.22 & 0.19 & $-0.27$ \\
+10 & Level 2: local credit, routing + content & 0.97 & 0.94 & 0.20 & 0.99 \\
+10b & Reference & 0.20 & 0.30 & 0.22 & $-0.28$ \\
+10b & Level 2 & 0.97 & 0.95 & 0.16 & 0.99 \\
+10b & Dense gradient router, local losses & 0.99 & 0.95 & 0.66 & $-1.65$ \\
+\bottomrule
+\end{tabular}
+\caption{Experiments 10 and 10b, means over 10 seeds each. Columns as in Table~\ref{tab:exp7}.}
+\label{tab:exp10}
+\end{table}
+
+Local credit for routing alone makes things worse (known tasks $-0.09$ and speed $-0.09$, 0/10 seeds each): the traces favour modules that resemble primitives while the global loss trains them towards something else. Level 2 learns the new compositions far faster than the reference ($+0.63$, 10/10 in Experiment~10; $+0.65$, 10/10 in 10b), with modules aligned with the primitives. Given the same local losses, the dense gradient router ties on speed ($-0.008$, $p = 0.85$) but smears the modules (alignment $-1.65$ vs $0.99$, 10/10) and interferes with the known tasks (0.66 vs 0.16, 10/10). The lock of Experiment~7 was therefore the learning signal of the modules, not an inability of the traces to find a path once modules are correct.
+
+\subsection{Experiment 11: sparse routers with local losses (seeds 820--829)}
+
+Is the clean decomposition of 10b a property of traces or of hard assignment in general? Top-1 and top-2 routers, with the configurations of Experiment~8 and the same local losses, are compared with trace routing. The prior, stated before the test, gave a 60\% chance that a sparse router would align as well.
+
+\begin{table}[h]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+Variant & Known tasks & Speed on new & Interference & Alignment \\
+\midrule
+Trace routing, local losses & 0.97 & 0.95 & 0.19 & 0.99 \\
+Top-1 router, local losses & 0.97 & 0.66 & 0.28 & 0.46 \\
+Top-2 router, local losses & 0.99 & 0.87 & 1.21 & 0.94 \\
+\bottomrule
+\end{tabular}
+\caption{Experiment 11, means over 10 seeds.}
+\label{tab:exp11}
+\end{table}
+
+Neither sparse router matches the traces. Top-1 gating learns new compositions slowly ($-0.29$ vs traces, 10/10) and aligns modules only partially ($-0.53$, 10/10), with no significant difference in interference. Top-2 gating aligns almost as well ($-0.05$, 10/10) but interferes far more (1.21 vs 0.19, 10/10) and learns somewhat slower ($-0.08$, 10/10). The combination of fast learning, clean alignment and low interference is specific to the trace rule among the routers tested.
+
 \section{Discussion}
 
 \paragraph{What the mechanism is.} Across experiments, the mechanism behaves as a coordination and resilience device. It needs forgetting, and at the rate tested, forgetting tied to solicitation: time-based evaporation at the same rate erases routes for symbols that are simply not being used, while a much slower time-based rate was not tested. Its resilience comes from recruiting the least committed module, which avoids disturbing specialists; this echoes the reallocation of idle workers in insect societies \citep{bonabeau1996threshold,krieger2000robots}. The individuality of alarm thresholds, which was one of the starting intuitions, is not supported, with homogeneous or heterogeneous modules. A reading in terms of local traces in normal operation and a collective quantity consulted only under exception fits the ablation, but remains an interpretation.
 
-\paragraph{What it is not.} It is not better than the best standard non-stationary bandits, which come with theoretical guarantees \citep{garivier2011switching}, and it does not beat routers trained by gradient when gradients are available, whether dense or sparse; its only clear advantage there is over top-1 routing after a module dies. It does not discover structure. A plausible explanation for the last failure, which we have not tested, is credit assignment: the only learning signal is the quality of a whole path, which is not noisy but conjunctive, staying near zero until both modules are right at once, and nothing in the traces, indexed by opaque task identifiers, can represent that two tasks share a primitive. Giving each module an exact local error would separate the two causes. Modules with their own local prediction error, for instance predictors trained in a latent space, would supply the missing signal. The difficulty of learning module layouts reported by \citet{bahdanau2019systematic} points in the same direction.
+\paragraph{What it is not.} It is not better than the best standard non-stationary bandits, which come with theoretical guarantees \citep{garivier2011switching}, and it does not beat routers trained by gradient when gradients are available, whether dense or sparse; its only clear advantage there is over top-1 routing after a module dies. It does not discover structure on its own. The explanation, tested in Experiments 10 to 11, is credit assignment: the only learning signal is the quality of a whole path, which is not noisy but conjunctive, staying near zero until both modules are right at once, and nothing in the traces, indexed by opaque task identifiers, can represent that two tasks share a primitive. Giving each module an exact local error settles it: with local errors, traces find the shared primitives across opaque tasks, and do so with a cleaner decomposition and less interference than dense or sparse gradient routers given the same local losses. The remaining question is where a module's local error can come from without an oracle; a module that predicts in a latent space supplies its own. Modules with their own local prediction error, for instance predictors trained in a latent space, would supply the missing signal. The difficulty of learning module layouts reported by \citet{bahdanau2019systematic} points in the same direction.
 
-\paragraph{Limitations.} All results come from a single toy world (five primitives in dimension 8). The production scenarios were designed to probe resilience and are not neutral. Opponents received modest tuning budgets (8 to 20 configurations on three seeds), contextual bandits are not among them, and in Experiment~9 the bandits were not re-tuned for heterogeneous modules. Heterogeneity was limited to module size; costs, latencies and partial failures were not modelled. The decomposition of tasks is given in Experiments 1 to 6. Modules are supervised regressors, and no real data are used. A regime in which commitment-based recruitment beats sliding-window and discounted UCB, for example with frequent failures and scarce reserves, with opponents re-tuned for that regime, remains to be identified.
+\paragraph{Limitations.} All results come from a single toy world (five primitives in dimension 8). The production scenarios were designed to probe resilience and are not neutral. Opponents received modest tuning budgets (8 to 20 configurations on three seeds), contextual bandits are not among them, and in Experiment~9 the bandits were not re-tuned for heterogeneous modules. Heterogeneity was limited to module size; costs, latencies and partial failures were not modelled. The decomposition of tasks is given in Experiments 1 to 6, and the local errors of Experiments 10 and 11 come from an oracle, which amounts to supervising the decomposition. Sparse routers in Experiment~11 kept the configurations of Experiment~8, not re-tuned for local losses. Modules are supervised regressors, and no real data are used. A regime in which commitment-based recruitment beats sliding-window and discounted UCB, for example with frequent failures and scarce reserves, with opponents re-tuned for that regime, remains to be identified.
 
 \section{Research integrity statement}
 \label{sec:integrity}
@@ -252,13 +297,15 @@ Individual thresholds still bring nothing ($+0.002$, $[-0.02, +0.03]$, $p = 0.93
 
 \paragraph{A second set of files from an unseen execution.} After the first version of this manuscript, the preregistrations and code of Experiments 8 and 9, the completed test runs of Experiment~8 and the beginning of a third, unpreregistered experiment were again found in the execution environment, from an execution absent from the conversation history. The quoted code hashes match, and the preregistrations were written before the test runs. Experiment~8 was analysed and Experiment~9 was run according to their written protocols; the third experiment was not continued and is kept as a marked draft.
 
+\paragraph{A third set of files, and an overwrite.} Experiment~10 (preregistration, code, complete test runs and a commit) was found in the execution environment while a second implementation of the same design was being written without knowledge of it. The second implementation briefly overwrote the first's preregistration and code, which were restored byte for byte from the commit, and was then kept as Experiment~10b on fresh seeds.
+
 \paragraph{Provenance check.} A script in the repository recomputes every code hash quoted in the preregistrations and prints a ledger of seeds per result file with all overlaps between test seeds of different experiments. All hashes match, and the only overlaps are the two disclosed above.
 
 \paragraph{Translation and reproducibility.} The study was conducted in French. The repository keeps all files exactly as executed; the English code differs only in comments, strings and identifiers, and reproduces stored results bit for bit on nine runs covering every experiment family.
 
 \section{Conclusion}
 
-A distributed backup-capacity heuristic, recruiting the least committed module on an anomaly and forgetting by solicitation, gives a modular system resilience to module loss without any routing gradient, at the level of the best standard non-stationary bandits but not above them. It neither beats routers trained by gradient nor discovers compositional structure, and the individuality of alarm thresholds plays no measurable role. The most informative next steps are a regime with frequent failures and scarce reserves, with re-tuned opponents, and modules with their own local error so that structure can be discovered.
+A distributed backup-capacity heuristic, recruiting the least committed module on an anomaly and forgetting by solicitation, gives a modular system resilience to module loss without any routing gradient, at the level of the best standard non-stationary bandits but not above them. It neither beats routers trained by gradient nor discovers compositional structure on its own, and the individuality of alarm thresholds plays no measurable role. When each module is given its own local error, however, trace routing recovers the compositional structure with a clean decomposition and little interference, where dense and sparse gradient routers given the same local losses do not. The next step is to obtain that local error without an oracle, for instance from modules that predict in a latent space.
 
 \section*{Code and data availability}
 Code, raw results, preregistrations (original French and English translations) and analysis scripts: \url{https://github.com/sahnas/stigmergic-module-routing}. Archived by Software Heritage with snapshot identifier \texttt{swh:1:snp:ec5e807533a26aef69001187d77b62911d3cb4c8}.

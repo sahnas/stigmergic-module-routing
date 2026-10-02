@@ -1,0 +1,10 @@
+seeds 820 to 829 | n [10, 10, 10]
+aco_local_both    known tasks 0.974 | speed on new 0.949 | final new 0.979 | interference 0.191 | alignment 0.990
+topk1_local_both  known tasks 0.973 | speed on new 0.659 | final new 0.924 | interference 0.276 | alignment 0.457
+topk2_local_both  known tasks 0.987 | speed on new 0.871 | final new 0.976 | interference 1.208 | alignment 0.937
+K1 aco_local_both - topk1_local_both on fewshot_auc: mean diff +0.291 95% CI [+0.246, +0.344] positive 10/10 p=0.0020 -> significant, traces higher
+K2 aco_local_both - topk1_local_both on interference: mean diff -0.085 95% CI [-0.183, +0.010] positive 3/10 p=0.1934 -> not significant
+K3 aco_local_both - topk1_local_both on alignment: mean diff +0.532 95% CI [+0.425, +0.640] positive 10/10 p=0.0020 -> significant, traces higher
+K4 aco_local_both - topk2_local_both on fewshot_auc: mean diff +0.078 95% CI [+0.060, +0.094] positive 10/10 p=0.0020 -> significant, traces higher
+K5 aco_local_both - topk2_local_both on interference: mean diff -1.017 95% CI [-1.164, -0.870] positive 0/10 p=0.0020 -> significant, top-k higher
+K6 aco_local_both - topk2_local_both on alignment: mean diff +0.053 95% CI [+0.048, +0.058] positive 10/10 p=0.0020 -> significant, traces higher

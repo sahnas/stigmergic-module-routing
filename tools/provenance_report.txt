@@ -5,6 +5,11 @@
   10b_local_credit_replication.md exp_local_credit_b.py    e930daf98bb4019d  OK (src/exp_local_credit_b.py)
   10b_local_credit_replication.md exp_no_symbols.py        88c033106677b739  OK (src/exp_no_symbols.py)
   10b_local_credit_replication.md exp.py                   6c202cab844bb559  OK (src/exp.py)
+  11_topk_local.md             exp_local_credit_topk.py c907bfb67d603426  OK (src/exp_local_credit_topk.py)
+  11_topk_local.md             exp_local_credit_b.py    e930daf98bb4019d  OK (src/exp_local_credit_b.py)
+  11_topk_local.md             exp_topk.py              abfab869d11dba6c  OK (src/exp_topk.py)
+  11_topk_local.md             exp_no_symbols.py        88c033106677b739  OK (src/exp_no_symbols.py)
+  11_topk_local.md             exp.py                   6c202cab844bb559  OK (src/exp.py)
   3_gradient_free.md           exp_dynamique.py         c5f0595ecf9201ca  OK (original-fr/exp_dynamique.py)
   3_gradient_free.md           exp.py                   9b0d44c40e14df1d  OK (original-fr/exp.py)
   4_standard_bandits.md        bandits.py               1e018844e58d6497  OK (original-fr/bandits.py)
@@ -32,6 +37,8 @@
   test  results/10_local_credit/10b_seeds_810_819.jsonl                 10 seeds  810..819
   dev   results/10_local_credit/dev_seed_900.jsonl                       1 seeds  900..900
   test  results/10_local_credit/local_credit.jsonl                      10 seeds  800..809
+  dev   results/11_topk_local/dev_seed_901.jsonl                         1 seeds  901..901
+  test  results/11_topk_local/topk_local.jsonl                          10 seeds  820..829
   dev   results/1_core/dev_lr_check.jsonl                                2 seeds  100..101
   dev   results/1_core/dev_seeds_100_102.jsonl                           3 seeds  100..102
   test  results/1_core/results.jsonl                                    10 seeds  0..9

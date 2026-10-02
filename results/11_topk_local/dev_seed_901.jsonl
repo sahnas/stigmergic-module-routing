@@ -1,0 +1,2 @@
+{"variant": "topk1_local_both", "seed": 901, "cfg": {}, "phaseA_r2": 0.9661695415428849, "alignment": 0.3606069863553128, "fewshot_auc": 0.7170616677517773, "fewshot_final": 0.9521060638878684, "fewshot_start": -0.015191862082452004, "interference": 0.24826998218952614, "secs": 13.4}
+{"variant": "topk2_local_both", "seed": 901, "cfg": {}, "phaseA_r2": 0.989306966807271, "alignment": 0.9423769275514587, "fewshot_auc": 0.8854770537726573, "fewshot_final": 0.978495677846857, "fewshot_start": 0.009672021858780883, "interference": 1.3638954307789353, "secs": 19.6}
