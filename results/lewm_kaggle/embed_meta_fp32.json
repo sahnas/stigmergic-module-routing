@@ -1,0 +1,17 @@
+{
+ "parity": {
+  "max_abs_fp32": 0.0,
+  "max_abs_mixed": 0.022636711597442627,
+  "max_abs_mixed_then_fp16_storage": 0.022636711597442627,
+  "ref_abs_mean": 0.7904534339904785,
+  "ref_std": 0.9977019429206848
+ },
+ "frames": 920809,
+ "emb_abs_mean": 0.7987498641014099,
+ "emb_std": 1.005257487297058,
+ "per_dim_std_min": 0.8498844504356384,
+ "per_dim_std_max": 1.158759593963623,
+ "model": "quentinll/lewm-tworooms",
+ "precision": "fp32 throughout, stored float32",
+ "seconds": 1820
+}
