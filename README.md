@@ -218,6 +218,22 @@ Same as 15, with the relearning batches and the evaluation batch drawn once per 
 
 S1 (consumed vs fresh): +0.06, 6/10, p = 0.32, not significant. S2 (consumed vs repurposed): +0.26, 8/10, p = 0.020, not significant at the preregistered threshold of 0.0167 (it was significant in 15, which had the flawed streams). S3 (repurposed vs fresh, preregistered this time): -0.20, 0/10, p = 0.002, significant. The stable finding across 15 and 15b is the negative transfer: a module trained for one function is a worse starting point for another than a fresh one. The savings of the consumed specialist remain unproven.
 
+### 14b and 16b. Preservation and reset on a common-state harness (seeds 1400 to 1409)
+
+Corrected protocol (see the flaws recorded under 14 and 15): per seed and capacity, one model learned up to the event and deep-copied before every condition (weights, optimizer state, traces, alarm statistics, counters, routing generator); production data drawn once and shared; recruitments timestamped. Capacity: none (5 active), spare (7 active from the start), dormant (5 active + 2 inactive held back until the event). Rules after the event: least committed, random, none. 16b: at the first post-event recruitment, keep / reset optimizer state / reset weights and optimizer state.
+
+| Capacity | Rule or intervention | Availability | Rare R² before | Rare R² after | Killed function recovered | Other R² after | First recruit dormant |
+|---|---|---|---|---|---|---|---|
+| none | least committed | 0.46 | 0.89 | -0.54 | 0.59 | 0.86 | - |
+| none | random | 0.41 | 0.89 | -0.33 | 0.54 | 0.58 | - |
+| none | none | 0.47 | 0.89 | -0.54 | 0.58 | 0.84 | - |
+| spare | least committed | 0.76 | 0.59 | 0.61 | 0.92 | 0.97 | - |
+| dormant | least committed | 0.87 | 0.89 | 0.92 | 0.96 | 0.98 | 10/10 |
+| none | 16b reset optimizer | 0.45 | 0.89 | -0.54 | 0.60 | 0.85 | - |
+| none | 16b reset weights and optimizer | 0.40 | 0.89 | -0.78 | 0.66 | 0.87 | - |
+
+U1: with no spare capacity, the recruitment rule changes nothing (least committed minus none: -0.01 on availability, -0.002 on the rare skill, both p = 0.77); the rare skill collapses identically with and without recruitment, and the first post-event recruit is the rare specialist in 3/10 seeds (random: 2/10), so there is no targeting. U2: held-back dormant reserves versus spares active from the start: +0.11 on availability (6/10, p = 0.32) and +0.31 on the rare skill (8/10, p = 0.037), neither significant at the threshold of 0.0083; the difference comes mostly from acquisition, since spares active during learning dilute the rare skill before the event (0.59 vs 0.89), while both conditions preserve what they had. W1: resetting the recruited module's optimizer state changes nothing (-0.01, p = 0.46) and resetting its weights is, if anything, worse (-0.06, 1/10, p = 0.039); the negative transfer of 15b does not matter inside the production loop, where a recruited module keeps serving its previous symbols. Reading: the protection of a function comes entirely from held-back capacity, not from any rule of the mechanism.
+
 ## Modular JEPA study (experiments 12 and 13, not in the manuscript)
 
 Design note: [`design/modular_jepa.md`](design/modular_jepa.md), written after a review of the state of the art (MOSAIC, COMET, RIM/NPS, NEO, the JEPA line) and before any result. World: sequential states with five unnamed primitives that persist for a few steps then switch, plus eight noise channels per observation; a tiny JEPA (shared encoder, EMA target encoder) with competing predictors in representation space. Stage 0 (sanity, seed 0): representation-space prediction works and does not collapse (linear probe keeps the state at R² 0.998, drops the noise at 0.007, effective rank 7.9 of 8). Five test seeds per stage, so results are effect sizes with per-seed values; no test reaches a threshold.
@@ -298,6 +314,7 @@ python src/analysis_topk_local.py results/11_topk_local/topk_local.jsonl
 python src/analysis_preservation.py results/14_preservation/preservation.jsonl
 python src/analysis_savings.py results/15_savings/savings.jsonl
 python src/exp_savings_b.py  # 15b; its summary is results/15b_savings/summary.txt
+python src/analysis_common_state.py results/14b_16b_common_state/common_state.jsonl
 python tools/check_provenance.py
 ```
 

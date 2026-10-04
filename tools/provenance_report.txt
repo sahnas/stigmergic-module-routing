@@ -18,6 +18,9 @@
   14_preservation.md           exp_preservation.py      b112fd314196a825  OK (src/exp_preservation.py)
   14_preservation.md           exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
   14_preservation.md           exp.py                   6c202cab844bb559  OK (src/exp.py)
+  14b_16b_common_state.md      exp_common_state.py      8e962faa971c8297  OK (src/exp_common_state.py)
+  14b_16b_common_state.md      exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
+  14b_16b_common_state.md      exp.py                   6c202cab844bb559  OK (src/exp.py)
   15_savings.md                exp_savings.py           1967f6424c6d635a  OK (src/exp_savings.py)
   15_savings.md                exp_preservation.py      b112fd314196a825  OK (src/exp_preservation.py)
   15_savings.md                exp_dynamic.py           c3329b81c02b0eb6  OK (src/exp_dynamic.py)
@@ -64,6 +67,7 @@
   dev   results/13_jepa_stage2/dev_seed_960.jsonl                        1 seeds  960..960
   test  results/13_jepa_stage2/stage2.jsonl                              5 seeds  1010..1014
   test  results/14_preservation/preservation.jsonl                      10 seeds  1100..1109
+  test  results/14b_16b_common_state/common_state.jsonl                 10 seeds  1400..1409
   dev   results/15_savings/dev_seeds_951_952.jsonl                       2 seeds  951..952
   test  results/15_savings/savings.jsonl                                10 seeds  1200..1209
   dev   results/15b_savings/dev_seed_953.jsonl                           1 seeds  953..953
