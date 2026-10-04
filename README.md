@@ -180,7 +180,9 @@ Against top-1: speed +0.29 and alignment +0.53 for traces (10/10 each), interfer
 
 ### 14. Does the mechanism preserve a rare specialist? (seeds 1100 to 1109, not in the manuscript)
 
-Production world of experiment 3, one event (death of the module carrying a frequent primitive), one primitive r whose tasks are sampled with relative weight 0.02; measures on the tasks that need r but not the killed primitive. Two scenarios (rare from the start; learned then rare) x reserves (0 or 2 dormant modules) x recruitment rule (least committed; random; none, alarms without recruitment). Preregistered after a development seed whose observations are declared in the preregistration.
+Production world of experiment 3, one event (death of the module carrying a frequent primitive), one primitive r whose tasks are sampled with relative weight 0.02; measures on the tasks that need r but not the killed primitive. Two scenarios (rare from the start; learned then rare) x spare modules (0 or 2) x recruitment rule (least committed; random; none, alarms without recruitment). Preregistered after a development seed whose observations are declared in the preregistration.
+
+Three protocol flaws were identified by an external review on 2026-10-04 and are kept visible here rather than hidden: the two "reserve" modules are active from the start (they take part in sampling and training), so that condition measures over-provisioning, not dormancy; the recruitment rule also acts during initial learning, where alarms fire too, so the three rules diverge before the event and their states before it differ (visible in the "rare R² before" column); and the "first recruit" column counts recruitments from the start of learning, not from the event. A corrected replication (14b: common learned state duplicated at the event, rules applied only afterwards, recruitments timestamped, a true dormant condition) is planned; the results below describe full-policy trajectories and should be read as such.
 
 | Scenario, reserves, rule | Rare R² before | Rare R² after | Other R² after | First recruit = rare specialist | Rare skill preserved (R² > 0.8) |
 |---|---|---|---|---|---|
@@ -190,7 +192,7 @@ Production world of experiment 3, one event (death of the module carrying a freq
 | learned then rare, 2, least committed | 0.77 | 0.68 | 0.98 | 2/10 | 8/10 |
 | rare from the start, 0, least committed | -0.46 | -0.53 | 0.93 | 6/10 | 0/10 |
 
-A learned skill that becomes rare is not targeted by recruitment (its traces survive rarity, as the solicitation-triggered rule predicts), but it is destroyed anyway once no reserve is available, under every rule including no recruitment at all: alarms cascade (about 38 recruitments per run), trace sampling explores every module for the orphaned symbol, and gradient training through them overwrites their content. Two dormant reserves preserve it (8/10). A skill that is rare from the start is never acquired (10/10) and its module is the preferred target of least-committed recruitment (6/10 vs 1/10 for random). The mechanism allocates work; it protects no function by itself. Criticality (a cost of errors) is not modelled and was not tested.
+A learned skill that becomes rare is not targeted by recruitment (its traces survive rarity, as the solicitation-triggered rule predicts), but it is destroyed anyway once no reserve is available, under every rule including no recruitment at all: alarms cascade (about 38 recruitments per run), trace sampling explores every module for the orphaned symbol, and gradient training through them overwrites their content. Two spare active modules preserve it (8/10). A skill that is rare from the start is never acquired (10/10) and its module is the preferred target of least-committed recruitment (6/10 vs 1/10 for random). The mechanism allocates work; nothing in it protects a function in use, and only spare capacity protected one here. Criticality (a cost of errors) is not modelled and was not tested.
 
 ### 15. Savings of a consumed specialist (seeds 1200 to 1209, not in the manuscript)
 
@@ -202,7 +204,7 @@ After the production phase of experiment 14 (no reserve), the consumed specialis
 | fresh module | -0.44 | 0.72 | 58 |
 | module that carried another primitive | -0.71 | 0.58 | 83 |
 
-S1 (consumed vs fresh): +0.075 on AUC, 6/10, p = 0.23, not significant; the residual memory exists but is not a reliable advantage. S2 (consumed vs repurposed module): +0.22, 8/10, p = 0.0098 (sign test p = 0.11). Exploratory, not preregistered: the repurposed module is a worse starting point than a fresh one (-0.15 on AUC, 1/10, p = 0.02; +25 steps to 0.8, 9/10, p = 0.006). Reading: cheap reconstruction is not a reliable protection here, dormant reserves remain the only observed one, and repurposing a trained module costs more than starting fresh. The toy's primitives are easy to learn from scratch (58 steps), which bounds how much savings can matter; on a real world model the same question has a different cost scale.
+S1 (consumed vs fresh): +0.075 on AUC, 6/10, p = 0.23, not significant; the residual memory exists but is not a reliable advantage. S2 (consumed vs repurposed module): +0.22, 8/10, p = 0.0098 (sign test p = 0.11). Exploratory, not preregistered: the repurposed module is a worse starting point than a fresh one (-0.15 on AUC, 1/10, p = 0.02; +25 steps to 0.8, 9/10, p = 0.006). Reading: cheap reconstruction is not a reliable protection here, spare capacity remains the only observed one, and repurposing a trained module costs more than starting fresh. Protocol flaw found by the external review of 2026-10-04: `torch.manual_seed` does not reset the world's own generator, so the three candidates did not receive the same batches, contrary to the comment in the code; a corrected replication (15b) with identical pre-drawn streams is planned. The toy's primitives are easy to learn from scratch (58 steps), which bounds how much savings can matter; on a real world model the same question has a different cost scale.
 
 ## Modular JEPA study (experiments 12 and 13, not in the manuscript)
 
@@ -228,7 +230,7 @@ Competition by local error replicates COMET and beats attention on purity (5/5).
 | competition, 8 modules (over-provisioned) | 1/5 | 0.49 | +0.000 |
 | competition + least-committed recruitment (5 active, reserves dormant) | 0/5 | 0.49 | +0.002 |
 
-Recruitment provides the capability COMET states as open, instantiating a mechanism without degrading the others: against fixed five-module competition, lower error on the new primitive (5/5) and lower interference (5/5). Against competition merely over-provisioned with eight modules, it ties on both (differences of 0.002 and 0.001). The residual advantage is economic: dormant reserves compute nothing. A regime with repeated new primitives and scarce spares remains to be tested.
+Recruitment provides the capability COMET states as open, instantiating a mechanism without degrading the others: against fixed five-module competition, lower error on the new primitive (5/5) and lower interference (5/5). Against competition merely over-provisioned with eight modules, it ties on both (differences of 0.002 and 0.001). No economic advantage can be claimed from this implementation: the predictions of all modules, reserves included, are computed before the inactive ones are masked, so a dormant reserve still costs its forward pass (pointed out by an external review on 2026-10-04). A regime with repeated new primitives and scarce spares remains to be tested.
 
 ## Integrity notes
 
