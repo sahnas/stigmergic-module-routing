@@ -1,0 +1,5 @@
+Environment of the toy experiments (results/1_* to results/16_*, 14b, 15b):
+python 3.12.3, torch 2.14.1+cpu, numpy 2.4.4, scipy 1.17.1, torch threads 1, Ubuntu 24.04, CPU only.
+Control replay on 2026-10-04: 14b seed 1400, capacity spare, rules none and least_committed reproduce the published
+values exactly (rare_after -0.629 / -0.258, availability 0.173 / 0.448). An external reviewer found different values for the
+spare capacity under torch 2.5.1 CPU, so these results are reproducible in this environment but not across torch versions.
