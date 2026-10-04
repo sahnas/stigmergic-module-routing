@@ -1,0 +1,1 @@
+{"id": "hassanakaou/lewm-timing", "title": "lewm-timing", "code_file": "timing.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_tpu": false, "enable_internet": true, "dataset_sources": [], "competition_sources": [], "kernel_sources": ["hassanakaou/lewm-data-tworoom"], "model_sources": []}

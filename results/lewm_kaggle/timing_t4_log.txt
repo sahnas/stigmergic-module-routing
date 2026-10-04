@@ -1,0 +1,31 @@
+Tesla T4, 15360 MiB
+Tesla T4, 15360 MiB
+$ apt-get install -y -qq swig zstd > /dev/null 2>&1; git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; pip install -q 'stable-worldmodel[train,env]' 2>&1 | grep -ciE 'error'  [t=0s]
+$ python -c "import stable_worldmodel.data.formats as f, stable_worldmodel.data.format as g; print('formats avant:', g.list_formats())"; python -c 'import hdf5plugin' 2>&1 | tail -1; pip install -q hdf5plugin 2>&1 | tail -1; python -c "import stable_worldmodel.data.formats as f, stable_worldmodel.data.format as g; print('formats apres:', g.list_formats())"; pip show stable-worldmodel | head -2  [t=93s]
+formats avant: ['lance', 'folder', 'lerobot', 'video']
+ModuleNotFoundError: No module named 'hdf5plugin'
+formats apres: ['lance', 'folder', 'lerobot', 'hdf5', 'video']
+Version: 0.1.1
+BrokenPipeError: [Errno 32] Broken pipe
+$ ls -la /kaggle/working/stablewm/datasets/; cat /kaggle/tmp/le-wm/config/train/data/tworoom.yaml  [t=132s]
+$ cd /kaggle/tmp/le-wm && timeout 2000 python train.py data=tworoom trainer.max_epochs=1 +trainer.limit_train_batches=60 +trainer.limit_val_batches=5 trainer.precision=16-mixed trainer.devices=1 2>&1 | grep -vE 'arn' | tail -80  [t=132s]
+0mvalidate/sigreg_loss_epoch[0m |       [0;32;40m55.3125[0m       |
+[Epoch 0/1] step 50/60 (1.1 it/s)
+|            [0;34;40mfit/loss[0m            |  [0;32;40m2.041256904602051[0m  |
+|         [0;34;40mfit/pred_loss[0m          | [0;32;40m0.48168671131134033[0m |
+|        [0;34;40mfit/sigreg_loss[0m         |      [0;32;40m17.328125[0m      |
+|         [0;34;40mvalidate/loss[0m          |  [0;32;40m10.190624237060547[0m |
+|      [0;34;40mvalidate/loss_epoch[0m       |  [0;32;40m10.190624237060547[0m |
+|       [0;34;40mvalidate/pred_loss[0m       |  [0;32;40m0.9984369277954102[0m |
+|    [0;34;40mvalidate/pred_loss_epoch[0m    |  [0;32;40m0.9984369277954102[0m |
+|      [0;34;40mvalidate/sigreg_loss[0m      |  [0;32;40m102.1500015258789[0m  |
+|   [0;34;40mvalidate/sigreg_loss_epoch[0m   |  [0;32;40m102.1500015258789[0m  |
+[Epoch 0/1] done in 68.2s
+17:40:51 | INFO  | atomic_chec~| [atomic_save] → /root/.cache/stable-pretraining/runs/20261002/173849/513196956b26/checkpoints/epoch=0-step=60.ckpt
+17:40:54 | INFO  | atomic_chec~| [atomic_save] ✓ epoch=0-step=60.ckpt saved (206.8 MiB, serialise=2.11s write=1.76s rename=0.1ms)
+17:40:55 | INFO  | atomic_chec~| [atomic_save] → /root/.cache/stable-pretraining/runs/20261002/173849/513196956b26/checkpoints/last.ckpt
+17:40:57 | INFO  | atomic_chec~| [atomic_save] ✓ last.ckpt saved (206.8 MiB, serialise=1.49s write=1.25s rename=0.1ms)
+`Trainer.fit` stopped: `max_epochs=1` reached.
+Epoch 0/0  ━━━━━━━━━━━━━━━━━━━━━━━━━━ 60/60 0:00:56 • 0:00:00 1.12it/s v_num: _0
+$ nvidia-smi --query-gpu=memory.used --format=csv; ls -la /kaggle/working/stablewm; find /kaggle/working -name '*.ckpt' -exec ls -la {} \;  [t=323s]
+drwxr-xr-x 2 root root 4096 Oct  2 17:35 datasets

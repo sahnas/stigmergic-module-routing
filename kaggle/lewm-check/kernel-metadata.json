@@ -1,0 +1,1 @@
+{"id": "hassanakaou/lewm-check", "title": "lewm-check", "code_file": "check.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": false, "enable_tpu": false, "enable_internet": false, "dataset_sources": [], "competition_sources": [], "kernel_sources": ["hassanakaou/lewm-data-tworoom"], "model_sources": []}

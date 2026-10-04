@@ -1,0 +1,7 @@
+$ apt-get install -y -qq swig zstd libegl1 libgl1 > /dev/null 2>&1; git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; pip install -q 'stable-worldmodel[train,env]' hdf5plugin 2>&1 | grep -ciE 'error'; pip show stable-worldmodel | head -2  [t=0s]
+BrokenPipeError: [Errno 32] Broken pipe
+type LeWM | load: <All keys matched successfully>
+$ cd /kaggle/tmp/le-wm && timeout 5000 python eval.py --config-name=tworoom.yaml policy=quentinll/lewm-tworooms world.max_episode_steps=60 output.filename=/kaggle/working/quentinll_lewm-tworooms_results.txt 2>&1 | grep -vE 'arn' | tail -40  [t=160s]
+{'success_rate': 86.0, 'episode_successes': array([ True, False,  True, False,  True,  True,  True, False, False,
+metrics: {'success_rate': 86.0, 'episode_successes': array([ True, False,  True, False,  True,  True,  True, False, False,
+TOTAL 339s
