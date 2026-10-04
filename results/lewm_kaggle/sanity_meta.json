@@ -1,0 +1,56 @@
+{
+ "windows_train": 693257,
+ "windows_test": 77552,
+ "history": 3,
+ "frameskip": 5,
+ "action_block_dim": 10,
+ "action_norm_source": "training frames",
+ "reference_relative": 0.06660978188794427,
+ "copy_last_relative": 1.517188861872238,
+ "target_var": 0.9694710969924927,
+ "trained": {
+  "lewm_arch_fresh_8ep": {
+   "relative": 0.0059,
+   "curve": [
+    0.0331,
+    0.0311,
+    0.0183,
+    0.0152,
+    0.0102,
+    0.0079,
+    0.0064,
+    0.0059
+   ],
+   "steps": 21672,
+   "lr": 0.0003,
+   "batch": 256
+  },
+  "mlp_fresh_8ep": {
+   "relative": 0.3004,
+   "curve": [
+    0.7616,
+    0.57,
+    0.4355,
+    0.3679,
+    0.3304,
+    0.3106,
+    0.3021,
+    0.3004
+   ],
+   "steps": 21672,
+   "lr": 0.0003,
+   "batch": 256
+  },
+  "released_finetuned_2ep": {
+   "relative": 0.007,
+   "curve": [
+    0.0081,
+    0.007
+   ],
+   "steps": 5418,
+   "lr": 5e-05,
+   "batch": 256
+  }
+ },
+ "seconds": 1507
+}

@@ -59,24 +59,42 @@ def ref_fn(h, a):
     return model.predict(h, ae)[:, -1]
 mse_ref, var = eval_fn(ref_fn, te); print(f"reference predictor: mse {mse_ref:.4f} relative {mse_ref/var:.4f} (target var {var:.4f}) [{time.time()-t0:.0f}s]", flush=True)
 mse_copy, _ = eval_fn(lambda h, a: h[:, -1], te); print(f"copy-last baseline: relative {mse_copy/var:.4f}", flush=True)
-# 2. a fresh predictor trained on the cache, same windows and normalisation
+# 2. fresh predictors trained on the cache, same windows and normalisation
+import hydra
+from huggingface_hub import hf_hub_download
+cfg = json.load(open(hf_hub_download("quentinll/lewm-tworooms", "config.json")))
+class LeWMPred(nn.Module):
+    """LeWM's own predictor stack (action encoder, predictor, pred_proj) at random init"""
+    def __init__(self):
+        super().__init__()
+        self.action_encoder = hydra.utils.instantiate(cfg["action_encoder"]); self.predictor = hydra.utils.instantiate(cfg["predictor"]); self.pred_proj = hydra.utils.instantiate(cfg["pred_proj"])
+    def forward(self, h, a):
+        p = self.predictor(h, self.action_encoder(a)); B, T, Dd = p.shape
+        return self.pred_proj(p.reshape(B * T, Dd)).reshape(B, T, -1)[:, -1]
 class Fresh(nn.Module):
     def __init__(self, d=192, a=10, hid=512):
         super().__init__(); self.net = nn.Sequential(nn.Linear(H * (d + a), hid), nn.GELU(), nn.Linear(hid, hid), nn.GELU(), nn.Linear(hid, d))
-    def forward(self, h, a): return self.net(torch.cat([h.flatten(1), a.flatten(1)], 1)) + h[:, -1]   # residual on the last embedding
-res = {}
-for name, epochs in [("fresh_mlp_2ep", 2), ("fresh_mlp_6ep", 6)]:
-    torch.manual_seed(1); net = Fresh().to(dev); opt = torch.optim.AdamW(net.parameters(), 1e-3, weight_decay=1e-4)
-    BS = 1024; steps = 0
+    def forward(self, h, a): return self.net(torch.cat([h.flatten(1), a.flatten(1)], 1)) + h[:, -1]
+def train_eval(name, net, epochs, lr, bs=256):
+    torch.manual_seed(1); net = net.to(dev); opt = torch.optim.AdamW(net.parameters(), lr, weight_decay=1e-3)
+    total = epochs * ((len(tr) + bs - 1) // bs); sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=lr, total_steps=total, pct_start=0.05)
+    steps = 0; curve = []
     for ep in range(epochs):
         perm = rng.permutation(len(tr))
-        for i in range(0, len(perm), BS):
-            h, a, y = window(tr[perm[i:i+BS]]); loss = ((net(h, a) - y) ** 2).mean()
-            opt.zero_grad(); loss.backward(); opt.step(); steps += 1
-    mse, _ = eval_fn(net, te); res[name] = dict(relative=mse / var, steps=steps)
-    print(f"{name}: relative {mse/var:.4f} after {steps} steps [{time.time()-t0:.0f}s]", flush=True)
+        for i in range(0, len(perm), bs):
+            h, a, y = window(tr[perm[i:i+bs]]); loss = ((net(h, a) - y) ** 2).mean()
+            opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0); opt.step(); sched.step(); steps += 1
+        net.eval(); mse, _ = eval_fn(net, te); net.train(); curve.append(round(mse / var, 4))
+        print(f"{name} epoch {ep+1}: test relative {mse/var:.4f} [{time.time()-t0:.0f}s]", flush=True)
+    return dict(relative=curve[-1], curve=curve, steps=steps, lr=lr, batch=bs)
+res = {}
+res["lewm_arch_fresh_8ep"] = train_eval("lewm_arch_fresh", LeWMPred(), 8, 3e-4)
+res["mlp_fresh_8ep"] = train_eval("mlp_fresh", Fresh(), 8, 3e-4)
+# upper bound: the released predictor stack fine-tuned on the cache for 2 epochs
+ft = LeWMPred(); ft.action_encoder.load_state_dict(model.action_encoder.state_dict()); ft.predictor.load_state_dict(model.predictor.state_dict()); ft.pred_proj.load_state_dict(model.pred_proj.state_dict())
+res["released_finetuned_2ep"] = train_eval("released_finetuned", ft, 2, 5e-5)
 meta = dict(windows_train=int(len(tr)), windows_test=int(len(te)), history=H, frameskip=FS, action_block_dim=int(act.shape[1] * FS),
-            action_norm_source="training frames", reference_relative=mse_ref / var, copy_last_relative=mse_copy / var, target_var=var, fresh=res, seconds=round(time.time() - t0))
+            action_norm_source="training frames", reference_relative=mse_ref / var, copy_last_relative=mse_copy / var, target_var=var, trained=res, seconds=round(time.time() - t0))
 json.dump(meta, open("/kaggle/working/sanity_meta.json", "w"), indent=1); print(json.dumps(meta, indent=1))
 '''
 open("/kaggle/working/sanity_run.py", "w").write(code)
