@@ -206,6 +206,18 @@ After the production phase of experiment 14 (no reserve), the consumed specialis
 
 S1 (consumed vs fresh): +0.075 on AUC, 6/10, p = 0.23, not significant; the residual memory exists but is not a reliable advantage. S2 (consumed vs repurposed module): +0.22, 8/10, p = 0.0098 (sign test p = 0.11). Exploratory, not preregistered: the repurposed module is a worse starting point than a fresh one (-0.15 on AUC, 1/10, p = 0.02; +25 steps to 0.8, 9/10, p = 0.006). Reading: cheap reconstruction is not a reliable protection here, spare capacity remains the only observed one, and repurposing a trained module costs more than starting fresh. Protocol flaw found by the external review of 2026-10-04: `torch.manual_seed` does not reset the world's own generator, so the three candidates did not receive the same batches, contrary to the comment in the code; a corrected replication (15b) with identical pre-drawn streams is planned. The toy's primitives are easy to learn from scratch (58 steps), which bounds how much savings can matter; on a real world model the same question has a different cost scale.
 
+### 15b. Savings, corrected protocol (seeds 1210 to 1219)
+
+Same as 15, with the relearning batches and the evaluation batch drawn once per seed and reused for every candidate.
+
+| Candidate | R² before relearning | AUC (150 steps) | Steps to R² 0.8 |
+|---|---|---|---|
+| consumed specialist | -0.01 | 0.79 | 48 |
+| fresh module | -0.40 | 0.73 | 58 |
+| module that carried another primitive | -0.83 | 0.53 | 90 |
+
+S1 (consumed vs fresh): +0.06, 6/10, p = 0.32, not significant. S2 (consumed vs repurposed): +0.26, 8/10, p = 0.020, not significant at the preregistered threshold of 0.0167 (it was significant in 15, which had the flawed streams). S3 (repurposed vs fresh, preregistered this time): -0.20, 0/10, p = 0.002, significant. The stable finding across 15 and 15b is the negative transfer: a module trained for one function is a worse starting point for another than a fresh one. The savings of the consumed specialist remain unproven.
+
 ## Modular JEPA study (experiments 12 and 13, not in the manuscript)
 
 Design note: [`design/modular_jepa.md`](design/modular_jepa.md), written after a review of the state of the art (MOSAIC, COMET, RIM/NPS, NEO, the JEPA line) and before any result. World: sequential states with five unnamed primitives that persist for a few steps then switch, plus eight noise channels per observation; a tiny JEPA (shared encoder, EMA target encoder) with competing predictors in representation space. Stage 0 (sanity, seed 0): representation-space prediction works and does not collapse (linear probe keeps the state at R² 0.998, drops the noise at 0.007, effective rank 7.9 of 8). Five test seeds per stage, so results are effect sizes with per-seed values; no test reaches a threshold.
@@ -285,6 +297,7 @@ python src/analysis_local_credit_b.py results/10_local_credit/10b_seeds_810_819.
 python src/analysis_topk_local.py results/11_topk_local/topk_local.jsonl
 python src/analysis_preservation.py results/14_preservation/preservation.jsonl
 python src/analysis_savings.py results/15_savings/savings.jsonl
+python src/exp_savings_b.py  # 15b; its summary is results/15b_savings/summary.txt
 python tools/check_provenance.py
 ```
 

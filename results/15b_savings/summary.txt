@@ -1,0 +1,7 @@
+seeds 1210 to 1219 | n 10 | specialist recruited: 10 /10
+consumed_specialist  R2 start -0.014 | AUC 0.788 | steps to 0.8 48 | final 0.979
+other_specialist     R2 start -0.834 | AUC 0.525 | steps to 0.8 90 | final 0.967
+fresh                R2 start -0.402 | AUC 0.725 | steps to 0.8 58 | final 0.968
+S1 consumed_specialist - fresh on AUC: +0.063 [-0.073, +0.190] positive 6/10 p=0.3223 -> not significant ; steps diff -10
+S2 consumed_specialist - other_specialist on AUC: +0.264 [+0.109, +0.415] positive 8/10 p=0.0195 -> not significant ; steps diff -42
+S3 other_specialist - fresh on AUC: -0.201 [-0.284, -0.127] positive 0/10 p=0.0020 -> significant ; steps diff +31
