@@ -4,7 +4,8 @@ def run(cmd, timeout=11000):
     """fail fast: raises on a non-zero exit code, prints the tail of the output"""
     print(f"\n$ {cmd}  [t={time.time()-t0:.0f}s]", flush=True)
     r = subprocess.run(["bash", "-o", "pipefail", "-c", cmd], capture_output=True, text=True, timeout=timeout)
-    print((r.stdout + r.stderr)[-3000:], flush=True)
+    out = r.stdout + r.stderr
+    print(out[:1500] + ('\n...\n' + out[-2500:] if len(out) > 4000 else out[1500:]), flush=True)
     if r.returncode != 0:
         raise SystemExit(f"STEP FAILED (exit {r.returncode}): {cmd}")
 cands = glob.glob("/kaggle/input/**/tworoom.h5", recursive=True)
@@ -12,7 +13,7 @@ if not cands or os.path.getsize(cands[0]) < 1e9:
     raise SystemExit("DATASET MISSING")
 H = "/kaggle/working/stablewm"; os.environ["STABLEWM_HOME"] = H; os.environ["WANDB_MODE"] = "disabled"; os.environ["H5"] = cands[0]
 run("nvidia-smi --query-gpu=name,driver_version --format=csv,noheader")
-run("pip install 'stable-worldmodel[train,format]==0.1.1' 2>&1 | tail -3")   # no [env]: gymnasium[all] needs box2d and labmaze builds that fail on Kaggle, and the environments are not needed to embed frames
+run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' 2>&1 | tail -3")   # transformers 5.x renames ViT modules and breaks the released state dict   # no [env]: gymnasium[all] needs box2d and labmaze builds that fail on Kaggle, and the environments are not needed to embed frames
 run("python -c 'import hdf5plugin, h5py, stable_worldmodel, torch, numpy; print(\"versions:\", stable_worldmodel.__version__ if hasattr(stable_worldmodel, \"__version__\") else \"?\", torch.__version__, numpy.__version__, h5py.__version__)'")
 run("pip freeze | grep -iE 'stable-worldmodel|stable-pretraining|^torch==|^numpy==|h5py|hdf5plugin|transformers' > /kaggle/working/environment.txt; python --version >> /kaggle/working/environment.txt; cat /kaggle/working/environment.txt")
 code = r'''
@@ -44,10 +45,10 @@ e32 = embed(px, False); e16 = embed(px, True)
 par = dict(max_abs_fp32=float((e32 - ref).abs().max()), max_abs_mixed=float((e16 - ref).abs().max()),
            max_abs_mixed_then_fp16_storage=float((e16.half().float() - ref).abs().max()), ref_abs_mean=float(ref.abs().mean()), ref_std=float(ref.std()))
 print("parity vs model.encode:", json.dumps(par), flush=True)
-emb = np.zeros((N, 192), dtype=np.float16)
+emb = np.zeros((N, 192), dtype=np.float32)   # fp32 throughout: the mixed-precision pass differed from model.encode by up to 0.023 (embedding std about 1)
 CH = 512
 for i in range(0, N, CH):
-    emb[i:i+CH] = embed(prep(f["pixels"][i:i+CH]), True).cpu().numpy().astype(np.float16)
+    emb[i:i+CH] = embed(prep(f["pixels"][i:i+CH]), False).cpu().numpy()
     if (i // CH) % 200 == 0:
         el = time.time() - t0; print(f"{i}/{N} {el:.0f}s eta {el/(i+CH)*(N-i-CH)/60:.1f} min", flush=True)
 assert np.isfinite(emb.astype(np.float32)).all(), "non-finite embeddings"
@@ -56,7 +57,7 @@ for k in ["action", "ep_idx", "ep_len", "ep_offset", "pos_agent", "pos_target", 
     np.save(f"/kaggle/working/{k}.npy", f[k][:])
 e = emb.astype(np.float32)
 json.dump(dict(parity=par, frames=int(N), emb_abs_mean=float(np.abs(e).mean()), emb_std=float(e.std()), per_dim_std_min=float(e.std(0).min()), per_dim_std_max=float(e.std(0).max()),
-               model="quentinll/lewm-tworooms", precision="autocast fp16, stored float16", seconds=round(time.time()-t0)), open("/kaggle/working/embed_meta.json", "w"), indent=1)
+               model="quentinll/lewm-tworooms", precision="fp32 throughout, stored float32", seconds=round(time.time()-t0)), open("/kaggle/working/embed_meta.json", "w"), indent=1)
 print("done", round(time.time() - t0), "s", flush=True)
 '''
 open("/kaggle/working/embed_run.py", "w").write(code)
