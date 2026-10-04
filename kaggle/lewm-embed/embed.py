@@ -12,7 +12,7 @@ if not cands or os.path.getsize(cands[0]) < 1e9:
     raise SystemExit("DATASET MISSING")
 H = "/kaggle/working/stablewm"; os.environ["STABLEWM_HOME"] = H; os.environ["WANDB_MODE"] = "disabled"; os.environ["H5"] = cands[0]
 run("nvidia-smi --query-gpu=name,driver_version --format=csv,noheader")
-run("pip install 'stable-worldmodel[train,env,format]==0.1.1' 2>&1 | tail -3")
+run("pip install 'stable-worldmodel[train,format]==0.1.1' 2>&1 | tail -3")   # no [env]: gymnasium[all] needs box2d and labmaze builds that fail on Kaggle, and the environments are not needed to embed frames
 run("python -c 'import hdf5plugin, h5py, stable_worldmodel, torch, numpy; print(\"versions:\", stable_worldmodel.__version__ if hasattr(stable_worldmodel, \"__version__\") else \"?\", torch.__version__, numpy.__version__, h5py.__version__)'")
 run("pip freeze | grep -iE 'stable-worldmodel|stable-pretraining|^torch==|^numpy==|h5py|hdf5plugin|transformers' > /kaggle/working/environment.txt; python --version >> /kaggle/working/environment.txt; cat /kaggle/working/environment.txt")
 code = r'''

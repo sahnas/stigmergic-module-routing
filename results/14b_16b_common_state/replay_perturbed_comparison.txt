@@ -1,0 +1,21 @@
+Replay with initial weights perturbed by N(0, 1e-6) vs published: same code, same seeds
+  per-run |difference| on availability: median 0.000, mean 0.016, max 0.318, within 0.05 in 103/110 runs
+  per-run |difference| on rare_after: median 0.000, mean 0.053, max 1.056, within 0.05 in 100/110 runs
+  seed 1400 spare/none rare_after: published -0.629, perturbed -0.149 (external reviewer: -0.135)
+
+condition                          avail pub avail rep  rare pub  rare rep
+none least_committed keep              0.460     0.452    -0.538    -0.432
+none random keep                       0.412     0.411    -0.329    -0.326
+none none keep                         0.472     0.472    -0.536    -0.531
+spare least_committed keep             0.756     0.783     0.608     0.609
+dormant least_committed keep           0.866     0.865     0.918     0.918
+none least_committed reset_opt         0.446     0.448    -0.545    -0.435
+none least_committed reset_both        0.404     0.398    -0.779    -0.740
+
+preregistered contrasts, published vs perturbed replay (mean diff, p, positive/10):
+  U1 lc-none avail         published -0.012 (p=0.770, 6/10) | perturbed -0.020 (p=1.000, 5/10)
+  U1 lc-none rare          published -0.002 (p=0.770, 4/10) | perturbed +0.098 (p=0.922, 5/10)
+  U2 dormant-spare avail   published +0.109 (p=0.322, 6/10) | perturbed +0.082 (p=0.275, 6/10)
+  U2 dormant-spare rare    published +0.310 (p=0.037, 8/10) | perturbed +0.309 (p=0.037, 8/10)
+  W1 reset_opt-keep        published -0.014 (p=0.461, 3/10) | perturbed -0.004 (p=0.547, 3/10)
+  W1 reset_both-keep       published -0.056 (p=0.039, 1/10) | perturbed -0.054 (p=0.039, 1/10)
