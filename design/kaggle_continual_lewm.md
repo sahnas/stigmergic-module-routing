@@ -10,13 +10,20 @@ experiments 14b and 16b (protection comes from held-back capacity, not from a ru
   with LeWM's own preprocessing (ImageNet normalisation, 224 px). All later experiments run on these
   embeddings, on CPU or a small GPU. The encoder saw regime A only (it was trained on the original Two-rooms
   data); this is documented as the continual-learning claim requires.
-- Predictors: small networks mapping a history of 3 embeddings and the (z-scored) action to the next embedding,
-  as LeWM's predictor does; trained by gradient on precomputed embeddings. No EMA target is needed since the
-  representation is frozen.
+- Predictors: aligned with LeWM's Two-rooms configuration (history_size 3, frameskip 5): the input is three
+  embeddings five environment steps apart with the three corresponding blocks of five actions (z-scored with
+  statistics estimated on the initially available training data and kept fixed), the target is the embedding
+  five steps later. Windows never cross an episode boundary. A one-step predictor, if used, is a different task
+  and is reported as such; its error is not compared with LeWM's five-step error. No EMA target is needed since
+  the representation is frozen. The cache's numerical parity with model.encode is checked on sample frames
+  (fp32, mixed precision, float16 storage) and the check is logged.
 - Dynamics A: the original Two-rooms transitions. Dynamics B: the same observations with a remapped action
-  (a fixed rotation of the action vector), so that the visual context is identical and only the
-  action-to-transition mapping changes; a regime can then be inferred only from prediction errors and history,
-  never from appearance. Regime identities are used for evaluation only, never given to the system.
+  (a fixed rotation R of the action vector, a_B = R a_A, chosen within the action bounds; an environment running
+  B executes R^-1 a_B, and the same convention is used in planning), so that the visual context is identical and
+  only the action-to-transition mapping changes; a regime can then be inferred only from prediction errors and
+  history, never from appearance. The episode-level train/test split is made before any variant or window is
+  built, so no test episode reappears in training under another rotation. Regime identities are used for
+  evaluation only, never given to the system.
 
 ## Scenario (one stream, no labels)
 
@@ -34,10 +41,11 @@ A rare-from-the-start variant is kept separate (acquisition, not loss).
 - a single predictor with a small replay buffer (the standard remedy; the local-forgetting replay of 2023 is
   the reference to read first);
 - a bank of predictors with hindsight competition by error and a persistence prior, with explicit
-  preservation: specialists frozen once acquired, reserves held back until a surprise (the configuration that
-  protected in 14b);
-- the same bank with trace assignment and least-committed recruitment (ours), with and without held-back
-  reserves.
+  preservation: specialists frozen once acquired (a new intervention, not tested in 14b) and reserves held
+  back until a surprise (the policy associated with preservation in 14b);
+- the same bank with trace assignment and least-committed recruitment (ours), under the same freezing and
+  activation rules and the same budget, so that the comparison isolates the assignment rule; otherwise the
+  comparison is one of complete systems and is presented as such.
 Reserve cost is measured honestly: a reserve is excluded from forward computation until activated.
 
 ## Measures, kept separate
@@ -55,5 +63,7 @@ Reserve cost is measured honestly: a reserve is excluded from forward computatio
 
 0. Precompute embeddings (one GPU session); sanity: a single predictor on precomputed embeddings reaches an
    error comparable to LeWM's predictor on held-out A transitions.
-1. Preregister and run the scenario with the systems above; 5 seeds minimum, more if cheap.
+1. Pilot with 5 seeds (descriptive; a two-sided exact Wilcoxon on 5 same-sign differences cannot go below
+   p = 0.0625), then choose the confirmatory sample size from the pilot's variance and a useful margin, on new
+   seeds, before preregistering the confirmatory run.
 2. Planning evaluation for the two best systems.
