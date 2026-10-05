@@ -1,0 +1,21 @@
+Experiment 17 pilot, seeds [0, 1, 2, 3, 4] | steps P1/P2/P3 1500 1500 500
+
+system             A end P1  A during B  B end P2  A end P3  B end P3  fresh A P3  forwards
+single            0.070±0.005 1.603±0.047 0.063±0.005 0.058±0.004 1.676±0.012 0.168±0.010      3500
+single_replay     0.064±0.004 0.131±0.012 0.080±0.004 0.072±0.004 0.107±0.004 0.166±0.012      3500
+bank_persistence  0.108±0.007 0.132±0.007 0.116±0.002 0.111±0.007 0.138±0.003 0.163±0.005      6982
+bank_traces       0.108±0.007 0.132±0.007 0.116±0.002 0.111±0.007 0.138±0.003 0.163±0.005      6982
+
+content (best module in hindsight) for the banks:
+  bank_persistence  contentA during B 0.107±0.007 | contentB end P3 0.110±0.003 | active 2.0 frozen 2.0 surprises 1.0 activations 1.0 recruits 0.0
+  bank_traces       contentA during B 0.107±0.007 | contentB end P3 0.110±0.003 | active 2.0 frozen 2.0 surprises 1.0 activations 1.0 recruits 0.0
+
+stop rule: bank vs replay, per seed (negative = bank better), on A during B, B end P3, A end P3
+  bank_persistence  A during B  diff +0.000 per seed [-0.003  0.013  0.002  0.004 -0.015] bank better in 2/5
+  bank_persistence  B end P3    diff +0.031 per seed [0.031 0.033 0.032 0.034 0.025] bank better in 0/5
+  bank_persistence  A end P3    diff +0.039 per seed [0.037 0.037 0.046 0.038 0.038] bank better in 0/5
+  bank_traces       A during B  diff +0.000 per seed [-0.003  0.013  0.002  0.004 -0.015] bank better in 2/5
+  bank_traces       B end P3    diff +0.031 per seed [0.031 0.033 0.032 0.034 0.025] bank better in 0/5
+  bank_traces       A end P3    diff +0.039 per seed [0.037 0.037 0.046 0.038 0.038] bank better in 0/5
+
+bank_traces - bank_persistence on A during B: [-0.  0.  0. -0.  0.]

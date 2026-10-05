@@ -262,7 +262,20 @@ Competition by local error replicates COMET and beats attention on purity (5/5).
 
 Recruitment provides the capability COMET states as open, instantiating a mechanism without degrading the others: against fixed five-module competition, lower error on the new primitive (5/5) and lower interference (5/5). Against competition merely over-provisioned with eight modules, it ties on both (differences of 0.002 and 0.001). No economic advantage can be claimed from this implementation: the predictions of all modules, reserves included, are computed before the inactive ones are masked, so a dormant reserve still costs its forward pass (pointed out by an external review on 2026-10-04). A regime with repeated new primitives and scarce spares remains to be tested.
 
-## Integrity notes
+## Continual dynamics on LeWorldModel's frozen representation (experiment 17, pilot, not in the manuscript)
+
+Preregistration: `preregistrations/17_continual_lewm_pilot.md` (with the three development runs declared). Code: `kaggle/lewm-pilot/`. Results: `results/lewm_pilot/`. Setting: the fp32 embedding cache of the released LeWM for Two-rooms, predictors with LeWM's own architecture trained on it; regime A = original actions, regime B = actions rotated by 90 degrees (same images); stream P1 A (1500 steps of 4 episodes), P2 B with A at 2 % (1500 steps), P3 A (500 steps). Errors are relative 5-step latent prediction errors on 60 held-out episodes; "access" is the module chosen before observing the outcome.
+
+| System | A end of P1 | A during B | B end of P2 | A end of P3 | B end of P3 | Forward passes |
+|---|---|---|---|---|---|---|
+| single predictor | 0.070 | 1.60 | 0.063 | 0.058 | 1.68 | 3500 |
+| single + replay (20k windows) | 0.064 | 0.131 | 0.080 | 0.072 | 0.107 | 3500 |
+| bank, persistence prior | 0.108 | 0.132 | 0.116 | 0.111 | 0.138 | 6982 |
+| bank, trace prior + least-committed recruitment | 0.108 | 0.132 | 0.116 | 0.111 | 0.138 | 6982 |
+
+Five seeds, standard deviations between 0.002 and 0.047 (largest for the forgetting single predictor); a fresh predictor trained on the P3 stream alone reaches 0.16 to 0.17 at the end of P3, so every system retains more of A than a fresh start. The banks behaved as designed on every seed: the A specialist froze before B, B triggered exactly one surprise and one activation, no recruitment, two active and two frozen modules at the end. The two banks are identical to the fourth decimal: with one module per regime, the prior has nothing to decide.
+
+Verdict under the preregistered stop rule. Against replay, the banks are not better on any retention measure: A during B tie (+0.000, better in 2/5 seeds), B at the end worse (+0.031, 0/5), A at the end worse (+0.039, 0/5); they also cap A at the level where it froze (0.108 vs 0.064) and cost twice the forward passes. The trace and recruitment line therefore stops for continual world models, and this pilot is reported as a negative result: in this setting, a reservoir replay buffer of 20,000 windows, with no tuned parameter, preserves both dynamics at least as well as a bank of specialists with freezing and held-back reserves, whose thresholds had to be set on a development seed. The mechanism's one structural asset, instantiating a new predictor on surprise without touching the old one, worked, and was not worth more than replay. Not tested here: planning success under A and B (phase 2 of the design note), which remains the only measure that would turn these latent errors into a claim about control.
 
 - **Development seeds.** Every test used seeds separate from the development seeds used to check code and tune opponents. What development revealed is stated in the preregistrations.
 - **Protocol found after the fact.** While preparing publication, the files of a preregistered protocol (experiment 4) were found in the execution environment, from an earlier execution absent from the history of the conversation that produced the rest of this work. It had not been reported. Its code hashes match its preregistration; its main test had stopped at 15 of 20 seeds and was completed with the same code before any analysis. It is reported here in full, including the fact that it weakens an earlier claim.
