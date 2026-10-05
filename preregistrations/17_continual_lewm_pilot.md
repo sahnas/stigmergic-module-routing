@@ -42,3 +42,9 @@ replay on any of the three retention measures (A during B, B after A's return, A
 recruitment line stops for continual world models and the pilot is reported as a negative result; the
 confirmatory sample size is then not needed. If a bank is better on at least one measure by more than the
 pilot's between-seed spread, a confirmatory run on new seeds is sized and preregistered.
+
+
+Note added 2026-10-05 after the run: pilot.py was changed after this preregistration was written, by one line, to
+make the preregistered 5-seed mode the default (sha256 of the run version: ac410a0fccaea4d4). pilot_lib.py, which
+holds the whole protocol, is unchanged: the hash logged by the kernel at run time (results/lewm_pilot/pilot_seeds_0_4.log)
+is 096dcbad729c085f, the one quoted above.

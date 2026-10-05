@@ -6,24 +6,17 @@ A manuscript draft covering experiments 1 to 11 is in [`paper/`](paper/) (LaTeX 
 
 ## Summary
 
-A pool of small neural modules must share a family of tasks. Which module handles which part of a task is not decided by a learned router, but by traces on the edges between task symbols and modules, in the spirit of ant pheromones: traces are reinforced when a module succeeds and evaporate when it is used without success. When a module's performance drops abnormally, an alarm triggers, and the least committed module (the one the routing relies on least) is recruited to take over and relearn the lost function.
+Seventeen preregistered experiments, from a synthetic compositional world to the released LeWorldModel, on the idea that small learning modules could coordinate through stigmergic traces (reinforced by use, evaporated when solicited) and recruit the least committed module when one fails. What held, what did not, and what was found on the way:
 
-What the experiments support, on a toy world:
+- **Resilience without a routing gradient (experiments 1 to 6, 9).** Forgetting is necessary to compensate the permanent loss of a module, and at equal rate evaporation triggered by solicitation preserves retention where time-based evaporation destroys it. The resilience comes from recruiting the least committed module; per-module alarm thresholds bring nothing, even with heterogeneous modules. Against standard non-stationary bandits the mechanism matches sliding-window and discounted UCB and beats change-point and recency rules.
+- **No advantage with gradients (experiments 1, 2, 8).** It does not beat a router trained by gradient, dense or sparse; a top-1 router cannot reroute after a module dies, a top-2 router can.
+- **No structure discovery without a local signal (7, 10, 10b, 11).** With opaque task identifiers nothing is learned. With an oracle local error per module, trace routing finds the shared structure with a clean decomposition and little interference, where dense and sparse gradient routers each fail on speed, alignment or interference. The lock was the modules' learning signal.
+- **No protection of functions (14, 14b, 15, 15b, 16b).** Once no spare capacity is left, a specialist is consumed whatever the recruitment rule, through exploration itself; only reserves held back until an event preserve it; a consumed specialist relearns no faster than a fresh module, a module repurposed to another function relearns slower than a fresh one, and resetting a recruited module does not help.
+- **Modular JEPA (12, 13).** Competition by local error replicates COMET and beats attention; the prior over the winner needs memory, not the current state; traces add nothing to persistence; surprise-triggered recruitment instantiates a new mechanism without degrading the old ones, but no better than over-provisioning.
+- **Continual dynamics on LeWorldModel's frozen representation (17).** Against a 20,000-window reservoir replay with no tuned parameter, banks of specialists with freezing and held-back reserves are not better on any retention measure, at twice the forward passes. The line stops by the preregistered rule.
+- **Found on the way.** LeWorldModel's own predictor architecture, retrained from scratch on the frozen released encoder, has ten times lower latent prediction error on held-out expert trajectories (0.006 vs 0.067) and plans far worse (36 % vs 85 % success on Two-rooms, 100 episodes each). One-step error on random actions does not explain it (both degrade to about 0.55 to 0.60); the cause is open. In-distribution latent error is not a proxy for control.
 
-- Forgetting is necessary for compensation. Without it, the system never recovers from the permanent loss of a module.
-- At equal rate, forgetting triggered by solicitation preserves memory, whereas literal time-based evaporation destroys it. A much slower time-based rate was not tested.
-- What carries the resilience is load-aware recruitment, i.e. a piece of collective information read at the moment of failure. Here a module's load is its total trace, how much the routing already relies on it, not its computational load: the recruit is the least committed module. Recruiting at random is much worse. Individual alarm thresholds per unit bring nothing measurable over a single collective threshold.
-- Without any routing gradient, the mechanism clearly beats simple recency-based routing and change-point bandits (M-UCB family).
-
-What the experiments do not support:
-
-- It does not beat the best standard non-stationary bandits (sliding-window UCB and discounted UCB). Differences are small and not significant; the profiles differ (better early learning and early events for the mechanism, better late recovery for the bandits).
-- It does not beat a router learned by gradient when gradients are available. A sparse top-2 mixture of experts ties with it in learning and recovers almost as well; a top-1 router learns better but never recovers from the loss of a module (experiment 8).
-- Individual alarm thresholds bring nothing measurable, even with heterogeneous modules (experiment 9).
-- It does not discover compositional structure on its own. When task symbols are replaced by opaque identifiers, it fails to learn even the known tasks, and no tested method aligns its modules with the underlying primitives (experiment 7).
-- When an oracle gives each module its own local error, trace routing learns the tasks, aligns modules with the primitives and learns new compositions fast; gradient routers given the same local losses either smear modules and interfere (dense, top-2) or learn slowly (top-1). The lock of experiment 7 was the modules' learning signal, not the traces (experiments 10, 10b, 11).
-
-In short: a coordination and resilience mechanism, roughly at the level of the best standard non-stationary bandits, not a mechanism for discovering structure or for compositional generalisation.
+Defensible statement of the whole: a distributed backup-capacity heuristic based on module commitment gives resilience comparable to good non-stationary bandits without a routing gradient; it protects no function by itself, discovers no structure without a local learning signal, and is not worth more than replay for continual world models. Every claim has its preregistration, seeds, code hashes and raw results in this repository; the integrity notes list what went wrong and how it was corrected.
 
 ## The mechanism
 

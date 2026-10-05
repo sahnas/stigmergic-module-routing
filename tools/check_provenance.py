@@ -15,7 +15,7 @@ bad = 0
 for pre in sorted(glob.glob('preregistrations/*.md')):
     for name, h in re.findall(r'([\w/]+\.py) \(sha256 ([0-9a-f]{16})\)', open(pre).read()):
         base = os.path.basename(name)
-        found = [p for p in ('original-fr/' + base, 'src/' + base, 'src/jepa/' + base) if os.path.exists(p) and sha16(p) == h]
+        found = [p for p in ['original-fr/' + base, 'src/' + base, 'src/jepa/' + base] + glob.glob('kaggle/*/' + base) if os.path.exists(p) and sha16(p) == h]
         bad += not found
         print(f'  {os.path.basename(pre):28s} {base:24s} {h}  ' + (f'OK ({found[0]})' if found else 'MISMATCH'))
 print(f'  -> {"all hashes match" if bad == 0 else str(bad) + " mismatch(es)"}\n')
