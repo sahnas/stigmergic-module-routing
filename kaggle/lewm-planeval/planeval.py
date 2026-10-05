@@ -10,7 +10,7 @@ if not cache or not h5: raise SystemExit(f"INPUTS MISSING cache={cache} h5={h5}"
 H = "/kaggle/working/stablewm"; os.environ.update(CACHE_DIR=os.path.dirname(cache[0]), STABLEWM_HOME=H, WANDB_MODE="disabled", MUJOCO_GL="egl", PYOPENGL_PLATFORM="egl")
 os.makedirs(f"{H}/datasets", exist_ok=True); os.symlink(h5[0], f"{H}/datasets/tworoom.h5")
 run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
-run("pip install 'stable-worldmodel[train,env,format]==0.1.1' 'transformers<5' 2>&1 | tail -2; pip freeze | grep -iE 'stable-worldmodel|^torch==|transformers'")
+run("pip install 'stable-worldmodel[train,env,format]==0.1.1' 'transformers<5' hydra-core 2>&1 | tail -2; pip freeze | grep -iE 'stable-worldmodel|^torch==|transformers|hydra'; python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin, gymnasium; print(\"imports ok\")'")
 run("git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git log -1 --format='le-wm %h %cd' --date=short")
 train = r'''
 import os, json, time, numpy as np, torch, torch.nn as nn, hydra, shutil
