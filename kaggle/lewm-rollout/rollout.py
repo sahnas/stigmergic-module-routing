@@ -11,7 +11,7 @@ H = "/kaggle/working/stablewm"; os.environ.update(CACHE_DIR=os.path.dirname(cach
 run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core pygame pymunk shapely opencv-python-headless 2>&1 | tail -1")
 run("python -c 'import hydra, stable_worldmodel, pygame, pymunk, shapely, cv2; print(\"imports ok\")'")
-code = r"""
+code = r'''
 import os, json, time, numpy as np, torch
 import stable_worldmodel as swm
 t0 = time.time(); D = os.environ["CACHE_DIR"]; dev = "cuda"; H, FS, K = 3, 5, 10
@@ -69,7 +69,7 @@ res["random_actions"] = {mk: rollout_errors(m, E, (A_raw - mu) / sd, starts) for
 res["windows"] = dict(expert=int(len(te)), random=int(len(starts))); res["seconds"] = round(time.time() - t0)
 print("random-action rollouts:", {k: [round(v, 3) for v in vv] for k, vv in res["random_actions"].items()}, flush=True)
 json.dump(res, open("/kaggle/working/rollout.json", "w"), indent=1)
-"""
+'''
 open("/kaggle/working/ro_run.py", "w").write(code)
 run("python /kaggle/working/ro_run.py 2>&1 | grep -v Warning")
 run("rm -f /kaggle/working/ro_run.py; cat /kaggle/working/rollout.json | head -40")

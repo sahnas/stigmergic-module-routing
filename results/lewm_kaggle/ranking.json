@@ -1,0 +1,43 @@
+{
+ "released": {
+  "spearman": {
+   "mean": 0.899078947368421,
+   "std": 0.11393854719174269
+  },
+  "top1_regret": {
+   "mean": 0.018626018454961014,
+   "std": 0.043281350112512704
+  },
+  "pred_spread": {
+   "mean": 0.40160777596756814,
+   "std": 0.20060298672188145
+  }
+ },
+ "retrained": {
+  "spearman": {
+   "mean": 0.9801315789473684,
+   "std": 0.03971153971555984
+  },
+  "top1_regret": {
+   "mean": 0.00782580364466412,
+   "std": 0.024433411259829344
+  },
+  "pred_spread": {
+   "mean": 0.44120079558342695,
+   "std": 0.22687581017770914
+  }
+ },
+ "true_cost_spread": 0.43462990690022707,
+ "starts": 40,
+ "candidates_per_start": 19,
+ "spearman_diff_released_minus_retrained": {
+  "mean": -0.08105263157894739,
+  "positive": 2,
+  "p_wilcoxon": 1.2810014784779857e-06
+ },
+ "regret_diff_retrained_minus_released": {
+  "mean": -0.010800214810296893,
+  "positive": 5,
+  "p_wilcoxon": 0.11666446478102344
+ }
+}
