@@ -5,15 +5,13 @@ def run(cmd, timeout=20000):
     r = subprocess.run(["bash", "-o", "pipefail", "-c", cmd], capture_output=True, text=True, timeout=timeout)
     out = r.stdout + r.stderr; print(out[:2000] + ('\n...\n' + out[-5000:] if len(out) > 7000 else out[2000:]), flush=True)
     if r.returncode != 0: raise SystemExit(f"STEP FAILED (exit {r.returncode}): {cmd}")
-cache = glob.glob("/kaggle/input/**/emb_tworoom.npy", recursive=True); h5 = glob.glob("/kaggle/input/**/tworoom.h5", recursive=True)
-if not cache or not h5: raise SystemExit(f"INPUTS MISSING cache={cache} h5={h5}")
+cache = glob.glob("/kaggle/input/**/emb_tworoom.npy", recursive=True)
+if not cache: raise SystemExit(f"INPUTS MISSING cache={cache}")
 H = "/kaggle/working/stablewm"; os.environ.update(CACHE_DIR=os.path.dirname(cache[0]), STABLEWM_HOME=H, WANDB_MODE="disabled", MUJOCO_GL="egl", PYOPENGL_PLATFORM="egl")
-os.makedirs(f"{H}/datasets", exist_ok=True); os.symlink(h5[0], f"{H}/datasets/tworoom.h5")
 run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
 # the [env] extra pulls gymnasium[all], whose labmaze and box2d wheels do not build on Kaggle; Two-rooms only needs pygame, pymunk, shapely, opencv
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core pygame pymunk shapely opencv-python-headless 2>&1 | tail -2")
 run("python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin, gymnasium, pygame, pymunk, shapely, cv2; print(\"imports ok\")'; pip freeze | grep -iE 'stable-worldmodel|^torch==|transformers|hydra-core|pymunk|pygame'")
-run("git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git log -1 --format='le-wm %h %cd' --date=short")
 train = r'''
 import os, json, time, numpy as np, torch, torch.nn as nn, hydra, shutil
 from huggingface_hub import hf_hub_download, snapshot_download
@@ -64,8 +62,6 @@ json.dump(dict(a_mean=a_mean.tolist(), a_std=a_std.tolist(), epochs=epochs, seco
 '''
 open("/kaggle/working/train_pred.py", "w").write(train)
 run("python /kaggle/working/train_pred.py 2>&1 | grep -v Warning")
-for pol, tag in [("quentinll/lewm-tworooms", "released"), ("tworoom_retrained", "retrained")]:
-    run(f"cd /kaggle/tmp/le-wm && python eval.py --config-name=tworoom.yaml policy={pol} eval.num_eval=100 output.filename=/kaggle/working/{tag}_results.txt 2>&1 | grep -vE 'arn' | tail -15", timeout=9000)
-    run(f"cat /kaggle/working/{tag}_results.txt | tail -20")
+run("cp -r /kaggle/working/stablewm/checkpoints/tworoom_retrained /kaggle/working/; ls -la /kaggle/working/tworoom_retrained")
 run("rm -f /kaggle/working/train_pred.py; ls -la /kaggle/working/")
 print(f"\nTOTAL {time.time()-t0:.0f}s")
