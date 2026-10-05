@@ -107,10 +107,10 @@ class Single(System):
 
 
 class Bank(System):
-    def __init__(self, make, lr, K=4, prior='persistence', freeze_thr=0.05, freeze_eps=20, surprise_ratio=4.0, surprise_floor=0.3, warmup=200, rho=0.05, seed=0):
+    def __init__(self, make, lr, K=4, prior='persistence', freeze_thr=0.1, freeze_eps=20, surprise_ratio=4.0, surprise_floor=0.3, warmup=200, cooldown=100, rho=0.05, seed=0):
         super().__init__(make, lr, K)
-        self.K, self.prior, self.freeze_thr, self.freeze_eps, self.surprise_ratio, self.surprise_floor, self.warmup, self.rho = K, prior, freeze_thr, freeze_eps, surprise_ratio, surprise_floor, warmup, rho
-        self.steps = 0
+        self.K, self.prior, self.freeze_thr, self.freeze_eps, self.surprise_ratio, self.surprise_floor, self.warmup, self.cooldown, self.rho = K, prior, freeze_thr, freeze_eps, surprise_ratio, surprise_floor, warmup, cooldown, rho
+        self.steps, self.last_change = 0, -10**9
         self.active = np.zeros(K, bool); self.active[0] = True
         self.frozen = np.zeros(K, bool); self.ema = np.full(K, np.nan); self.good_run = np.zeros(K, int)
         self.tau = np.zeros((K, K)); self.prev = 0; self.rng = np.random.default_rng(seed)
@@ -130,7 +130,8 @@ class Bank(System):
         winner = torch.as_tensor(act, device=err.device)[err.argmin(0)]
         self.steps += 1
         ref = np.nanmin(self.ema[act]) if np.isfinite(self.ema[act]).any() else np.nan
-        surprise = int(self.steps > self.warmup and best.mean().item() > max(self.surprise_floor, self.surprise_ratio * ref if np.isfinite(ref) else np.inf))
+        in_cooldown = self.steps - self.last_change < self.cooldown    # a newly activated or recruited module needs time to learn before another surprise can fire
+        surprise = int(self.steps > self.warmup and not in_cooldown and best.mean().item() > max(self.surprise_floor, self.surprise_ratio * ref if np.isfinite(ref) else np.inf))
         activated = 0
         if surprise:
             self.n_surprise += 1
@@ -145,7 +146,7 @@ class Bank(System):
                 else:
                     r = None
             if r is not None:
-                winner = torch.full_like(winner, r)
+                winner = torch.full_like(winner, r); self.last_change = self.steps
         for i in np.where(self.active)[0]:
             mask = winner == i
             if mask.any():
