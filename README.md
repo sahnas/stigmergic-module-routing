@@ -2,7 +2,7 @@
 
 Gradient-free coordination of learning modules through evaporating trails, anomaly alarms and load-aware recruitment. Preregistered toy experiments, with positive and negative results.
 
-A paper describing experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is the version submitted to HAL on 2 October 2026 (hal-05774824, under moderation, with transfer to arXiv requested). Earlier submissions (1 and 2 October) were withdrawn before moderation and replaced; the state submitted on 1 October is tagged `v1-hal-05773822`, the current one `v2-hal-05774824`.
+A manuscript draft covering experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is a working draft, not a published preprint: the study has grown well beyond it (experiments 12 to 17 below), and a fuller manuscript will be written once the Kaggle line is complete. Draft states are tagged `v1-draft` and `v2-draft`.
 
 ## Summary
 
@@ -348,7 +348,7 @@ Experiments 8 and 9 (from `src/`): `python exp_topk.py 700,...,719 ../results/8_
 
 ## Archived versions
 
-The Git history of this repository was squashed into a single commit. Earlier states remain available on Software Heritage: `swh:1:snp:ec5e807533a26aef69001187d77b62911d3cb4c8` (first publication, code and data), `swh:1:snp:78775eeca41089d5cc7dcbc89d25f15d25ad7ec2` (manuscript added), `swh:1:snp:c2c564fadd4d0c73cd3af983ec94d25d23592d77` (references verified), `swh:1:snp:4b4ffa5b9b0b5d2de38c75d5a270979e7f9158ac` (licence added).
+The Git history of this repository was squashed into a single commit on 1 October 2026; from the tag `v2-draft` on, the history is linear and complete. Earlier states remain available on Software Heritage (first publication: `swh:1:snp:ec5e807533a26aef69001187d77b62911d3cb4c8`, 1 October 2026 06:07 UTC).
 
 ## License
 
