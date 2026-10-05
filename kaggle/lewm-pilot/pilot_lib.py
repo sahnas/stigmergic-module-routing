@@ -107,9 +107,10 @@ class Single(System):
 
 
 class Bank(System):
-    def __init__(self, make, lr, K=4, prior='persistence', freeze_thr=0.02, freeze_eps=20, surprise_thr=0.3, rho=0.05, seed=0):
+    def __init__(self, make, lr, K=4, prior='persistence', freeze_thr=0.05, freeze_eps=20, surprise_ratio=4.0, surprise_floor=0.3, warmup=200, rho=0.05, seed=0):
         super().__init__(make, lr, K)
-        self.K, self.prior, self.freeze_thr, self.freeze_eps, self.surprise_thr, self.rho = K, prior, freeze_thr, freeze_eps, surprise_thr, rho
+        self.K, self.prior, self.freeze_thr, self.freeze_eps, self.surprise_ratio, self.surprise_floor, self.warmup, self.rho = K, prior, freeze_thr, freeze_eps, surprise_ratio, surprise_floor, warmup, rho
+        self.steps = 0
         self.active = np.zeros(K, bool); self.active[0] = True
         self.frozen = np.zeros(K, bool); self.ema = np.full(K, np.nan); self.good_run = np.zeros(K, int)
         self.tau = np.zeros((K, K)); self.prev = 0; self.rng = np.random.default_rng(seed)
@@ -127,7 +128,9 @@ class Bank(System):
         self.forwards += len(act)
         best = err.min(0).values                                  # hindsight per window
         winner = torch.as_tensor(act, device=err.device)[err.argmin(0)]
-        surprise = int(best.mean().item() > self.surprise_thr)
+        self.steps += 1
+        ref = np.nanmin(self.ema[act]) if np.isfinite(self.ema[act]).any() else np.nan
+        surprise = int(self.steps > self.warmup and best.mean().item() > max(self.surprise_floor, self.surprise_ratio * ref if np.isfinite(ref) else np.inf))
         activated = 0
         if surprise:
             self.n_surprise += 1
@@ -179,20 +182,26 @@ def evaluate(system, data, eps, regime, var, n_eps=60):
     return float(np.mean(acc)), float(np.mean(con))
 
 
-def run_pilot(data, make, seed, n1=2000, n2=3000, n3=1000, p_rare=0.02, lr=3e-4, systems=('single', 'single_replay', 'bank_persistence', 'bank_traces'), log_every=100, var=None):
+def run_pilot(data, make, seed, n1=1500, n2=1500, n3=500, E=4, p_rare=0.02, lr=3e-4, systems=('single', 'single_replay', 'bank_persistence', 'bank_traces'), log_every=100, var=None):
+    """n1, n2, n3 are numbers of gradient steps; each step uses E consecutive episodes (regime drawn per episode)"""
     torch.manual_seed(seed); rng = np.random.default_rng(seed + 1)
     train = data.train_eps.copy(); rng.shuffle(train)
-    sched = [(train[i % len(train)], 'A') for i in range(n1)] + [(train[(n1 + i) % len(train)], 'A' if rng.random() < p_rare else 'B') for i in range(n2)] + [(train[(n1 + n2 + i) % len(train)], 'A') for i in range(n3)]
+    sched = []
+    for step in range(n1 + n2 + n3):
+        phase_regime = (lambda: 'A') if step < n1 or step >= n1 + n2 else (lambda: 'A' if rng.random() < p_rare else 'B')
+        sched.append([(train[(step * E + k) % len(train)], phase_regime()) for k in range(E)])
     if var is None:
         with torch.no_grad():
             ys = torch.cat([data.episode(e, 'A')[2] for e in data.test_eps[:60]]); var = ys.var(0).mean().item()
     out = {}
+    print('schedule: steps', len(sched), 'episodes per step', E, flush=True)
     for name in systems:
         torch.manual_seed(seed)
         sysm = Single(make, lr, replay=0) if name == 'single' else Single(make, lr, replay=20000, seed=seed) if name == 'single_replay' else Bank(make, lr, prior='persistence', seed=seed) if name == 'bank_persistence' else Bank(make, lr, prior='traces', seed=seed)
         fresh = Single(make, lr); log = []; t0 = time.time(); marks = {}
-        for step, (e, regime) in enumerate(sched):
-            h, a, y = data.episode(e, regime)
+        for step, group in enumerate(sched):
+            parts = [data.episode(e, regime) for e, regime in group]
+            h, a, y = (torch.cat([p[i] for p in parts]) for i in range(3))
             sysm.train_episode(h, a, y, var)
             if step >= n1 + n2:
                 fresh.train_episode(h, a, y, var)

@@ -8,7 +8,7 @@ def run(cmd, timeout=40000):
 cache = glob.glob("/kaggle/input/**/emb_tworoom.npy", recursive=True)
 if not cache: raise SystemExit("CACHE MISSING")
 os.environ["CACHE_DIR"] = os.path.dirname(cache[0]); os.environ["STABLEWM_HOME"] = "/kaggle/working/stablewm"; os.environ["WANDB_MODE"] = "disabled"
-MODE = os.environ.get("PILOT_MODE", "dev")     # dev: one short seed to check the thresholds; pilot: the preregistered 5 seeds
+MODE = os.environ.get("PILOT_MODE", "dev"); os.environ["PILOT_MODE"] = MODE     # dev: one short seed to check the thresholds; pilot: the preregistered 5 seeds
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' 2>&1 | tail -1; pip freeze | grep -iE 'stable-worldmodel|^torch==|transformers' ")
 run("cp $(find /kaggle/input -name pilot_lib.py | head -1) /kaggle/working/pilot_lib.py; sha256sum /kaggle/working/pilot_lib.py")
 driver = r'''
@@ -26,9 +26,9 @@ class LeWMPred(nn.Module):
         return self.pred_proj(p.reshape(B * T, Dd)).reshape(B, T, -1)[:, -1]
 make = lambda: LeWMPred().cuda()
 if MODE == "dev":
-    seeds, kw = [100], dict(n1=600, n2=900, n3=300, log_every=100)
+    seeds, kw = [100], dict(n1=1500, n2=1200, n3=400, log_every=100)
 else:
-    seeds, kw = [0, 1, 2, 3, 4], dict(n1=2000, n2=3000, n3=1000, log_every=100)
+    seeds, kw = [0, 1, 2, 3, 4], dict(n1=1500, n2=1500, n3=500, log_every=100)
 with open(f"/kaggle/working/pilot_{MODE}.jsonl", "a") as f:
     for s in seeds:
         data = P.Data(emb, act, ep_len, ep_off, seed=s).to("cuda")
