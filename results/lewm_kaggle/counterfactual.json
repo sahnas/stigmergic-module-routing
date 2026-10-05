@@ -1,0 +1,16 @@
+{
+ "in_distribution": {
+  "released/train_frames": 0.06660978188794427,
+  "retrained/train_frames": 0.006128110077881843,
+  "released/dataset": 0.06665368732653376,
+  "retrained/dataset": 0.006140588878804545
+ },
+ "counterfactual_random_actions": {
+  "released/train_frames": 0.5993494771637299,
+  "retrained/train_frames": 0.5482980862518462,
+  "released/dataset": 0.5994326709296658,
+  "retrained/dataset": 0.5483814053336182
+ },
+ "counterfactual_windows": 8500,
+ "seconds": 117
+}
