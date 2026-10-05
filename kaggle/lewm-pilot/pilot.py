@@ -8,7 +8,7 @@ def run(cmd, timeout=40000):
 cache = glob.glob("/kaggle/input/**/emb_tworoom.npy", recursive=True)
 if not cache: raise SystemExit("CACHE MISSING")
 os.environ["CACHE_DIR"] = os.path.dirname(cache[0]); os.environ["STABLEWM_HOME"] = "/kaggle/working/stablewm"; os.environ["WANDB_MODE"] = "disabled"
-MODE = os.environ.get("PILOT_MODE", "dev"); os.environ["PILOT_MODE"] = MODE     # dev: one short seed to check the thresholds; pilot: the preregistered 5 seeds
+MODE = os.environ.get("PILOT_MODE", "pilot"); os.environ["PILOT_MODE"] = MODE     # dev: one short seed to check the thresholds; pilot: the preregistered 5 seeds
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' 2>&1 | tail -1; pip freeze | grep -iE 'stable-worldmodel|^torch==|transformers' ")
 run("cp $(find /kaggle/input -name pilot_lib.py | head -1) /kaggle/working/pilot_lib.py; sha256sum /kaggle/working/pilot_lib.py")
 driver = r'''
