@@ -1,9 +1,13 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[min(2026)]{mindthegap2026}
+Mind the gap: Promises and pitfalls of hierarchical planning in leworldmodel.
+\newblock \emph{arXiv preprint arXiv:2607.12547}, 2026.
 
 \bibitem[Bahdanau et~al.(2019)Bahdanau, Murty, Noukhovitch, Nguyen, de~Vries,
   and Courville]{bahdanau2019systematic}
@@ -179,5 +183,18 @@ Ronald~J. Williams.
 \newblock Simple statistical gradient-following algorithms for connectionist
   reinforcement learning.
 \newblock \emph{Machine Learning}, 8:\penalty0 229--256, 1992.
+
+\bibitem[Wu et~al.(2026)Wu, Balestriero, and Levine]{viscore2026}
+Haiyu Wu, Randall Balestriero, and Morgan Levine.
+\newblock Viscore: Diagnosing planning-relevant quality in latent world models.
+\newblock \emph{arXiv preprint arXiv:2608.11174}, 2026.
+
+\bibitem[Zhang et~al.(2026)Zhang, Terver, Rabbat, LeCun, and
+  Balestriero]{hjepa2026}
+Wancong Zhang, Basile Terver, Michael Rabbat, Yann LeCun, and Randall
+  Balestriero.
+\newblock H-jepa: End-to-end learning of hierarchical world models for visual
+  planning.
+\newblock \emph{arXiv preprint arXiv:2610.06805}, 2026.
 
 \end{thebibliography}

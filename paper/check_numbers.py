@@ -107,4 +107,8 @@ for mk_, (p, t) in {'released': (12.4, 43.8), 'retrained': (0.68, 37.0)}.items()
     C(f'gap exploit {mk_} predicted', p, ex[mk_]['predicted_cost_of_chosen_plan'], 0.06 if p > 1 else 0.006); C(f'gap exploit {mk_} true', t, ex[mk_]['true_cost_of_chosen_plan'], 0.06)
 rm = json.load(open(R + 'lewm_kaggle/rooms.json'))
 C('gap rooms released same', 0.90, rm['released']['same_room'], 0.006); C('gap rooms retrained same', 0.40, rm['retrained']['same_room'], 0.006); C('gap rooms released cross', 0.67, rm['released']['cross_room'], 0.006); C('gap rooms retrained cross', 0.19, rm['retrained']['cross_room'], 0.006)
+
+vs = json.load(open(R + 'lewm_kaggle/viscore.json'))
+for mk_, (v, so, pr) in {'released': (0.862, 0.703, 0.606), 'retrained': (0.998, 0.984, 0.982)}.items():
+    C(f'viscore {mk_} veracity', v, vs[mk_]['veracity'], 0.0006); C(f'viscore {mk_} sobriety', so, vs[mk_]['sobriety'], 0.0006); C(f'viscore {mk_} product', pr, vs[mk_]['VIScore'], 0.0006)
 print(f'\n{sum(chk)} / {len(chk)} values match')
