@@ -2,7 +2,7 @@
 
 Gradient-free coordination of learning modules through evaporating trails, anomaly alarms and load-aware recruitment. Preregistered toy experiments, with positive and negative results.
 
-A manuscript draft covering experiments 1 to 11 is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF). It is a working draft, not a published preprint: the study has grown well beyond it (experiments 12 to 17 below), and a fuller manuscript will be written once the Kaggle line is complete. Draft states are tagged `v1-draft` and `v2-draft`.
+A manuscript draft covering the whole study is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF): the toy experiments, the preservation and modular JEPA experiments, the continual pilot on LeWorldModel's frozen representation, and the planning gap with its diagnostics. It is a working draft, kept in step with the results below; its 214 reported numbers are recomputed from the raw results by `paper/check_numbers.py`. Earlier draft states are tagged `v1-draft` and `v2-draft`.
 
 ## Summary
 

@@ -91,4 +91,20 @@ C('E11 K1 speed vs top1', -0.29, (g(r, 'topk1_local_both', 'fewshot_auc') - g(r,
 C('E11 K3 alignment vs top1', -0.53, (g(r, 'topk1_local_both', 'alignment') - g(r, 'aco_local_both', 'alignment')).mean())
 C('E11 K4 speed vs top2', -0.08, (g(r, 'topk2_local_both', 'fewshot_auc') - g(r, 'aco_local_both', 'fewshot_auc')).mean())
 C('E11 K6 alignment vs top2', -0.05, (g(r, 'topk2_local_both', 'alignment') - g(r, 'aco_local_both', 'alignment')).mean())
+
+# --- experiment 17 pilot and the planning gap ---
+rows = [json.loads(l) for l in open(R + 'lewm_pilot/pilot_seeds_0_4.jsonl')]
+def mk(sysn, ph, k): return float(np.mean([r['systems'][sysn]['marks'][ph][k] for r in rows]))
+for sysn, vals in {'single': (0.070, 1.60, 0.063, 0.058, 1.68), 'single_replay': (0.064, 0.131, 0.080, 0.072, 0.107), 'bank_persistence': (0.108, 0.132, 0.116, 0.111, 0.138), 'bank_traces': (0.108, 0.132, 0.116, 0.111, 0.138)}.items():
+    for (ph, k), v in zip([('P1','accessA'),('P2','accessA'),('P2','accessB'),('P3','accessA'),('P3','accessB')], vals):
+        C(f'E17 {sysn} {ph} {k}', v, mk(sysn, ph, k), 0.0006 if v < 0.2 else 0.006)
+cf = json.load(open(R + 'lewm_kaggle/counterfactual.json'))
+C('gap counterfactual released', 0.60, cf['counterfactual_random_actions']['released/dataset'], 0.006); C('gap counterfactual retrained', 0.55, cf['counterfactual_random_actions']['retrained/dataset'], 0.006)
+C('gap in-distribution retrained', 0.006, cf['in_distribution']['retrained/dataset'], 0.0006); C('gap in-distribution released', 0.067, cf['in_distribution']['released/dataset'], 0.0006)
+rk = json.load(open(R + 'lewm_kaggle/ranking.json')); C('gap ranking retrained', 0.98, rk['retrained']['spearman']['mean'], 0.006); C('gap ranking released', 0.90, rk['released']['spearman']['mean'], 0.006)
+ex = json.load(open(R + 'lewm_kaggle/exploit.json'))
+for mk_, (p, t) in {'released': (12.4, 43.8), 'retrained': (0.68, 37.0)}.items():
+    C(f'gap exploit {mk_} predicted', p, ex[mk_]['predicted_cost_of_chosen_plan'], 0.06 if p > 1 else 0.006); C(f'gap exploit {mk_} true', t, ex[mk_]['true_cost_of_chosen_plan'], 0.06)
+rm = json.load(open(R + 'lewm_kaggle/rooms.json'))
+C('gap rooms released same', 0.90, rm['released']['same_room'], 0.006); C('gap rooms retrained same', 0.40, rm['retrained']['same_room'], 0.006); C('gap rooms released cross', 0.67, rm['released']['cross_room'], 0.006); C('gap rooms retrained cross', 0.19, rm['retrained']['cross_room'], 0.006)
 print(f'\n{sum(chk)} / {len(chk)} values match')

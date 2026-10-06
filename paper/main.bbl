@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -56,6 +56,13 @@ Aur{\'e}lien Garivier and Eric Moulines.
   Computer Science, pages 174--188, 2011.
 \newblock \doi{10.1007/978-3-642-24412-4_16}.
 
+\bibitem[Goyal et~al.(2021)Goyal, Lamb, Hoffmann, Sodhani, Levine, Bengio, and
+  Sch{\"o}lkopf]{goyal2021rim}
+Anirudh Goyal, Alex Lamb, Jordan Hoffmann, Shagun Sodhani, Sergey Levine,
+  Yoshua Bengio, and Bernhard Sch{\"o}lkopf.
+\newblock Recurrent independent mechanisms.
+\newblock In \emph{International Conference on Learning Representations}, 2021.
+
 \bibitem[Goyal et~al.(2022)Goyal, Didolkar, Lamb, Badola, Ke, Rahaman, Binas,
   Blundell, Mozer, and Bengio]{goyal2022workspace}
 Anirudh Goyal, Aniket Didolkar, Alex Lamb, Kartikeya Badola, Nan~Rosemary Ke,
@@ -71,6 +78,12 @@ Pierre-Paul Grass{\'e}.
   de la stigmergie.
 \newblock \emph{Insectes Sociaux}, 6\penalty0 (1):\penalty0 41--80, 1959.
 
+\bibitem[Haruno et~al.(2001)Haruno, Wolpert, and Kawato]{mosaic2001}
+Masahiko Haruno, Daniel~M. Wolpert, and Mitsuo Kawato.
+\newblock Mosaic model for sensorimotor learning and control.
+\newblock \emph{Neural Computation}, 13\penalty0 (10):\penalty0 2201--2220,
+  2001.
+
 \bibitem[Jacobs et~al.(1991)Jacobs, Jordan, Nowlan, and
   Hinton]{jacobs1991experts}
 Robert~A. Jacobs, Michael~I. Jordan, Steven~J. Nowlan, and Geoffrey~E. Hinton.
@@ -81,6 +94,20 @@ Robert~A. Jacobs, Michael~I. Jordan, Steven~J. Nowlan, and Geoffrey~E. Hinton.
 Michael J.~B. Krieger, Jean-Bernard Billeter, and Laurent Keller.
 \newblock Ant-like task allocation and recruitment in cooperative robots.
 \newblock \emph{Nature}, 406:\penalty0 992--995, 2000.
+
+\bibitem[Lei et~al.(2024)Lei, Nolte, Sch{\"o}lkopf, and Posner]{comet2024}
+Anson Lei, Frederik Nolte, Bernhard Sch{\"o}lkopf, and Ingmar Posner.
+\newblock Compete and compose: Learning independent mechanisms for modular
+  world models.
+\newblock \emph{arXiv preprint arXiv:2404.15109}, 2024.
+
+\bibitem[Maes et~al.(2026)Maes, Le~Lidec, Scieur, LeCun, and
+  Balestriero]{lewm2026}
+Lucas Maes, Quentin Le~Lidec, Damien Scieur, Yann LeCun, and Randall
+  Balestriero.
+\newblock Leworldmodel: Stable end-to-end joint-embedding predictive
+  architecture from pixels.
+\newblock \emph{arXiv preprint arXiv:2603.19312}, 2026.
 
 \bibitem[McCloskey and Cohen(1989)]{mccloskey1989catastrophic}
 Michael McCloskey and Neal~J. Cohen.

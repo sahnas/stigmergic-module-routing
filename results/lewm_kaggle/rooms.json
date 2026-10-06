@@ -1,0 +1,45 @@
+{
+ "episodes": 100,
+ "cross_room": 21,
+ "same_room": 79,
+ "released": {
+  "overall": 0.85,
+  "same_room": 0.8987341772151899,
+  "cross_room": 0.6666666666666666
+ },
+ "retrained": {
+  "overall": 0.36,
+  "same_room": 0.4050632911392405,
+  "cross_room": 0.19047619047619047
+ },
+ "mcnemar_same_room": {
+  "table": [
+   [
+    31,
+    40
+   ],
+   [
+    1,
+    7
+   ]
+  ],
+  "p": 3.8198777474462986e-11
+ },
+ "mcnemar_cross_room": {
+  "table": [
+   [
+    3,
+    11
+   ],
+   [
+    1,
+    6
+   ]
+  ],
+  "p": 0.00634765625
+ },
+ "goal_distance_px": {
+  "same_room": 39.66544723510742,
+  "cross_room": 52.40076446533203
+ }
+}
