@@ -111,4 +111,7 @@ C('gap rooms released same', 0.90, rm['released']['same_room'], 0.006); C('gap r
 vs = json.load(open(R + 'lewm_kaggle/viscore.json'))
 for mk_, (v, so, pr) in {'released': (0.862, 0.703, 0.606), 'retrained': (0.998, 0.984, 0.982)}.items():
     C(f'viscore {mk_} veracity', v, vs[mk_]['veracity'], 0.0006); C(f'viscore {mk_} sobriety', so, vs[mk_]['sobriety'], 0.0006); C(f'viscore {mk_} product', pr, vs[mk_]['VIScore'], 0.0006)
+
+zz = json.load(open(R + 'lewm_kaggle/zigzag.json'))['summary']
+C('zigzag retrained err zig', 1.8, zz['retrained']['err_zig'], 0.06); C('zigzag released err zig', 4.4, zz['released']['err_zig'], 0.06)
 print(f'\n{sum(chk)} / {len(chk)} values match')

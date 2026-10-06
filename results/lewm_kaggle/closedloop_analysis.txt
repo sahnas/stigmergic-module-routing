@@ -1,0 +1,22 @@
+
+== released: 50 steps x 100 envs | success 85% | action shape (50, 100, 2)
+  action norm while live: mean 1.104 | near saturation (|a|>0.9) 0.462 | near idle (|a|<0.1) 0.007
+  distance to target: start 111.4 | end 22.7 | min 19.5 | ending farther than start 0.03
+  change of distance per live step: -4.192 | steps moving away 0.353
+  first success step: median 19.0 | never 0.15
+  failed (15): start 118.4 | end 73.2 | min 51.9 | |a| 1.398 | steps moving away 0.514 | reversals 0.440
+  succeeded (85): start 110.2
+  cosine between consecutive action blocks: mean 0.401 | reversals (cos<0) 0.247
+
+== retrained: 50 steps x 100 envs | success 35% | action shape (50, 100, 2)
+  action norm while live: mean 1.260 | near saturation (|a|>0.9) 0.504 | near idle (|a|<0.1) 0.013
+  distance to target: start 111.4 | end 43.8 | min 30.5 | ending farther than start 0.04
+  change of distance per live step: -1.886 | steps moving away 0.494
+  first success step: median 5.0 | never 0.65
+  failed (65): start 114.3 | end 60.3 | min 39.8 | |a| 1.275 | steps moving away 0.521 | reversals 0.432
+  succeeded (35): start 106.0
+  cosine between consecutive action blocks: mean 0.102 | reversals (cos<0) 0.436
+
+(plan_config: horizon 5 blocks of 5 steps, receding_horizon 5 blocks: the whole 25-step plan is executed before replanning; two plans per 50-step episode)
+released   plan efficiency |sum a| / sum |a|: mean 0.510 (1 = straight, 0 = cancelling) | cosine between consecutive raw actions 0.223 | between consecutive blocks within a plan 0.321 | plans with efficiency < 0.3: 0.18
+retrained  plan efficiency |sum a| / sum |a|: mean 0.300 (1 = straight, 0 = cancelling) | cosine between consecutive raw actions 0.177 | between consecutive blocks within a plan 0.089 | plans with efficiency < 0.3: 0.52
