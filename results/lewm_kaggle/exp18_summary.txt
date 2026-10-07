@@ -1,0 +1,11 @@
+bilinear_seed43         99/100  exact 95% CI 94.6-100.0
+bilinear_seed44        100/100  exact 95% CI 96.4-100.0
+bilinear_seed45         96/100  exact 95% CI 90.1-98.9
+linear_seed42           57/100  exact 95% CI 46.7-66.9
+markov_seed42           96/100  exact 95% CI 90.1-98.9
+released_seed43         83/100  exact 95% CI 74.2-89.8
+released_seed44         87/100  exact 95% CI 78.8-92.9
+released_seed45         80/100  exact 95% CI 70.8-87.3
+ridge_d10_seed42        97/100  exact 95% CI 91.5-99.4
+ridge_x10_seed42        96/100  exact 95% CI 90.1-98.9
+exploit (30 cloned starts, authors' CEM): operator predicted 57.7 true 84.8 ratio median 1.64; released 11.8/37.7; retrained 0.75/26.7
