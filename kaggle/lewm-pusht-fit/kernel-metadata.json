@@ -1,0 +1,16 @@
+{
+  "id": "hassanakaou/lewm-pusht-fit",
+  "title": "lewm-pusht-fit",
+  "code_file": "pusht_fit.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": ["hassanakaou/lewm-pusht-cache"],
+  "model_sources": []
+}

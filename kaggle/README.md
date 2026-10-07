@@ -32,6 +32,10 @@ private under the account hassanakaou. Logs kept in `results/lewm_kaggle/`.
 | lewm-planeval-v2 | `eval.py` on the corrected retrained predictor, seeds 42 to 45 | 84, 85, 89, 81 (released 85, 83, 87, 80): the 36 % was an artefact of the last-position loss (`exp18_retrained_v2_*`) |
 | lewm-bounding | The exploitation probe with the bilinear error measured at contexts 1 to 3 and, for each chosen plan, the predicted cost before and after clipping the solver's unbounded actions to the environment's bounds | Bilinear context errors 0.66 / 0.68 / 0.69. Median true/predicted cost, unclipped then clipped: released 1.5 then 0.8, corrected network 18 then 1.5, bilinear 1.6 then 1.3; saturated components 13 % (neural) and 24 % (bilinear). For these three predictors the ratios mostly measure clipping (the defective checkpoint's earlier 27.5 and 13.1 were not re-measured). True costs: corrected network 23.7, released 37.7, bilinear 84.8; the probe did not reproduce the official ranking (`results/lewm_kaggle/bounding.json`, per-start values included) |
 
+
+| lewm-pusht-cache | Experiment 19: frozen PushT encoder cache; the executed retry uses temporary storage for the 46.3 GB raw dataset | COMPLETE on 2026-10-07: 2,336,736 frames, 18,685 episodes, 192-d fp32 cache (1.79 GB), 5,395 s total; repeated-encode sanity max error 1.55e-6. This sanity check is not an independent preprocessing comparison (`exp19_cache.log`) |
+| lewm-pusht-fit | Experiment 19: independent cache parity with the pinned official preprocessing, then fixed bilinear ridge and 8-epoch all-position neural retraining | Prepared 2026-10-07; local episode-boundary, feature-parity and short-context checks pass. Completion and scientific results require the kernel outputs; no planning result is available yet. |
+
 Install note for Kaggle: the `env` extra of stable-worldmodel does not build there (labmaze, box2d); the Two-rooms environment runs with `stable-worldmodel[train,format]` plus pygame, pymunk, shapely and opencv-python-headless.
 
 The README corrections were submitted upstream: https://github.com/lucas-maes/le-wm/pull/106 and

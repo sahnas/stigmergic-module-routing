@@ -5,19 +5,19 @@ def run(cmd, timeout=40000):
     r = subprocess.run(["bash", "-o", "pipefail", "-c", cmd], capture_output=True, text=True, timeout=timeout)
     out = r.stdout + r.stderr; print(out[:1500] + ('\n...\n' + out[-5000:] if len(out) > 6500 else out[1500:]), flush=True)
     if r.returncode != 0: raise SystemExit(f"STEP FAILED (exit {r.returncode}): {cmd}")
-H = "/kaggle/working/stablewm"; os.environ.update(STABLEWM_HOME=H, WANDB_MODE="disabled")
-run("nvidia-smi --query-gpu=name --format=csv,noheader; df -h /kaggle/working | tail -1; apt-get install -y -qq zstd > /dev/null 2>&1; which zstd")
+H = "/kaggle/tmp/stablewm"; os.environ.update(STABLEWM_HOME=H, WANDB_MODE="disabled")   # /kaggle/tmp has more room than the 20 GB output disk; the 13 GB archive decompresses beyond it
+run("nvidia-smi --query-gpu=name --format=csv,noheader; df -h /kaggle/working /kaggle/tmp / | tail -3; apt-get install -y -qq zstd > /dev/null 2>&1; which zstd")
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core 2>&1 | tail -1; python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin; print(\"imports ok\")'")
 # the dataset archive published with the model, revision recorded in the preregistration
 dl = r"""
 from huggingface_hub import hf_hub_download
 import os, time
-p = hf_hub_download("quentinll/lewm-pusht", "pusht_expert_train.h5.zst", repo_type="dataset", revision="655cd446b992", local_dir="/kaggle/working/dl")
+p = hf_hub_download("quentinll/lewm-pusht", "pusht_expert_train.h5.zst", repo_type="dataset", revision="655cd446b992", local_dir="/kaggle/tmp/dl")
 print("archive", p, round(os.path.getsize(p) / 1e9, 2), "GB", flush=True)
 """
 open("/kaggle/working/dl.py", "w").write(dl); run("python /kaggle/working/dl.py")
 os.makedirs(f"{H}/datasets", exist_ok=True)
-run(f"zstd -d -q /kaggle/working/dl/pusht_expert_train.h5.zst -o {H}/datasets/pusht_expert_train.h5 && rm -rf /kaggle/working/dl && ls -la {H}/datasets && df -h /kaggle/working | tail -1", timeout=3600)
+run(f"zstd -d -q /kaggle/tmp/dl/pusht_expert_train.h5.zst -o {H}/datasets/pusht_expert_train.h5 && rm -rf /kaggle/tmp/dl && ls -la {H}/datasets && df -h /kaggle/tmp | tail -1", timeout=3600)
 code = r'''
 import os, json, time, numpy as np, torch, h5py, hdf5plugin
 import stable_worldmodel as swm

@@ -1,0 +1,111 @@
+[{"stream_name":"stdout","time":0.6419835,"data":"\n"}
+,{"stream_name":"stdout","time":0.64201718,"data":"$ nvidia-smi --query-gpu=name --format=csv,noheader; df -h /kaggle/working /kaggle/tmp / | tail -3; apt-get install -y -qq zstd \u003e /dev/null 2\u003e\u00261; which zstd  [t=0s]\n"}
+,{"stream_name":"stdout","time":71.542772584,"data":"Tesla T4\n"}
+,{"stream_name":"stdout","time":71.542804913,"data":"Tesla T4\n"}
+,{"stream_name":"stdout","time":71.542814068,"data":"Filesystem      Size  Used Avail Use% Mounted on\n"}
+,{"stream_name":"stdout","time":71.5428173,"data":"/dev/loop2       20G  112K   20G   1% /kaggle/working\n"}
+,{"stream_name":"stdout","time":71.54282034,"data":"overlay         8.0T  7.0T  1.1T  87% /\n"}
+,{"stream_name":"stdout","time":71.542823205,"data":"/usr/bin/zstd\n"}
+,{"stream_name":"stdout","time":71.542825994,"data":"df: /kaggle/tmp: No such file or directory\n"}
+,{"stream_name":"stdout","time":71.542828886,"data":"\n"}
+,{"stream_name":"stdout","time":71.542831581,"data":"\n"}
+,{"stream_name":"stdout","time":71.542834411,"data":"$ pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers\u003c5' hydra-core 2\u003e\u00261 | tail -1; python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin; print(\"imports ok\")'  [t=71s]\n"}
+,{"stream_name":"stdout","time":129.845586997,"data":"Successfully installed cattrs-26.2.1 decord-0.6.0 hdf5plugin-7.1.0 huggingface-hub-0.36.2 hydra-core-1.3.7 hydra-submitit-launcher-1.2.0 lance-namespace-0.11.1 lance-namespace-urllib3-client-0.11.1 lancedb-0.40.0 lightning-2.6.6 loguru-0.7.3 minari-0.5.4 pylance-13.0.0 requests-cache-1.3.3 richuru-0.1.1 scikit-learn-1.9.1 stable-pretraining-0.1.8 stable-worldmodel-0.1.1 submitit-1.5.4 tokenizers-0.22.2 transformers-4.57.6 url-normalize-3.0.1\n"}
+,{"stream_name":"stdout","time":129.845618633,"data":"imports ok\n"}
+,{"stream_name":"stdout","time":129.845624094,"data":"\n"}
+,{"stream_name":"stdout","time":129.845769791,"data":"\n"}
+,{"stream_name":"stdout","time":129.84579584,"data":"$ python /kaggle/working/dl.py  [t=129s]\n"}
+,{"stream_name":"stdout","time":196.824085576,"data":"archive /kaggle/tmp/dl/pusht_expert_train.h5.zst 13.14 GB\n"}
+,{"stream_name":"stdout","time":196.824115162,"data":"\n"}
+,{"stream_name":"stdout","time":196.8244692,"data":"\n"}
+,{"stream_name":"stdout","time":196.824487601,"data":"$ zstd -d -q /kaggle/tmp/dl/pusht_expert_train.h5.zst -o /kaggle/tmp/stablewm/datasets/pusht_expert_train.h5 \u0026\u0026 rm -rf /kaggle/tmp/dl \u0026\u0026 ls -la /kaggle/tmp/stablewm/datasets \u0026\u0026 df -h /kaggle/tmp | tail -1  [t=196s]\n"}
+,{"stream_name":"stdout","time":491.601018699,"data":"total 45215760\n"}
+,{"stream_name":"stdout","time":491.601078173,"data":"drwxr-xr-x 2 root root        4096 Oct  7 18:50 .\n"}
+,{"stream_name":"stdout","time":491.601085212,"data":"drwxr-xr-x 3 root root        4096 Oct  7 18:50 ..\n"}
+,{"stream_name":"stdout","time":491.601090777,"data":"-rw-r--r-- 1 root root 46300921856 Oct  7 18:49 pusht_expert_train.h5\n"}
+,{"stream_name":"stdout","time":491.601095597,"data":"overlay         8.0T  7.0T  1.1T  88% /\n"}
+,{"stream_name":"stdout","time":491.601101221,"data":"\n"}
+,{"stream_name":"stdout","time":491.601106429,"data":"\n"}
+,{"stream_name":"stdout","time":491.601111225,"data":"$ python /kaggle/working/cache_run.py 2\u003e\u00261 | grep -v Warning  [t=491s]\n"}
+,{"stream_name":"stdout","time":5395.990331289,"data":"dataset /kaggle/tmp/stablewm/datasets/pusht_expert_train.h5 46.3 GB; keys ['action', 'ep_len', 'ep_offset', 'episode_idx', 'pixels', 'proprio', 'state', 'step_idx']\n"}
+,{"stream_name":"stdout","time":5395.990912051,"data":"frames 2336736 pixels (2336736, 224, 224, 3) action (2336736, 2)\n"}
+,{"stream_name":"stdout","time":5395.990938614,"data":"2026-10-07 18:55:11.688 | INFO     | stable_worldmodel.wm.utils:_resolve_hf:152 - Downloading quentinll/lewm-pusht from HuggingFace...\n"}
+,{"stream_name":"stdout","time":5395.990959894,"data":"2026-10-07 18:55:11.688 | INFO     | stable_worldmodel.wm.utils:_resolve_hf:157 - Fetching https://huggingface.co/quentinll/lewm-pusht/resolve/main/config.json\n"}
+,{"stream_name":"stdout","time":5395.990962745,"data":"\n"}
+,{"stream_name":"stdout","time":5395.990965132,"data":"config.json:   0%|          | 0.00/1.31k [00:00\u003c?, ?B/s]\n"}
+,{"stream_name":"stdout","time":5395.990968083,"data":"config.json: 100%|██████████| 1.31k/1.31k [00:00\u003c00:00, 8.07MB/s]\n"}
+,{"stream_name":"stdout","time":5395.990971384,"data":"2026-10-07 18:55:11.914 | INFO     | stable_worldmodel.wm.utils:_resolve_hf:157 - Fetching https://huggingface.co/quentinll/lewm-pusht/resolve/main/weights.pt\n"}
+,{"stream_name":"stdout","time":5395.990974042,"data":"\n"}
+,{"stream_name":"stdout","time":5395.990976296,"data":"weights.pt:   0%|          | 0.00/72.3M [00:00\u003c?, ?B/s]\n"}
+,{"stream_name":"stdout","time":5395.990978718,"data":"weights.pt:   0%|          | 8.19k/72.3M [00:00\u003c1:05:53, 18.3kB/s]\n"}
+,{"stream_name":"stdout","time":5395.990981227,"data":"weights.pt:   9%|▉         | 6.63M/72.3M [00:00\u003c00:04, 15.2MB/s]  \n"}
+,{"stream_name":"stdout","time":5395.990983727,"data":"weights.pt:  21%|██▏       | 15.5M/72.3M [00:00\u003c00:01, 31.2MB/s]\n"}
+,{"stream_name":"stdout","time":5395.990986353,"data":"weights.pt:  42%|████▏     | 30.4M/72.3M [00:00\u003c00:00, 60.2MB/s]\n"}
+,{"stream_name":"stdout","time":5395.990988886,"data":"weights.pt:  65%|██████▍   | 46.9M/72.3M [00:00\u003c00:00, 87.6MB/s]\n"}
+,{"stream_name":"stdout","time":5395.990991345,"data":"weights.pt:  86%|████████▋ | 62.5M/72.3M [00:01\u003c00:00, 106MB/s] \n"}
+,{"stream_name":"stdout","time":5395.990993868,"data":"weights.pt: 100%|██████████| 72.3M/72.3M [00:01\u003c00:00, 68.3MB/s]\n"}
+,{"stream_name":"stdout","time":5395.990996413,"data":"2026-10-07 18:55:13.457 | INFO     | stable_worldmodel.wm.utils:_resolve_folder:137 - Loading checkpoint from folder /kaggle/tmp/stablewm/checkpoints/models--quentinll--lewm-pusht...\n"}
+,{"stream_name":"stdout","time":5395.990998971,"data":"18:55:42 | INFO  | __init__.py | TensorFlow version 2.20.0 available.\n"}
+,{"stream_name":"stdout","time":5395.99100137,"data":"18:55:42 | INFO  | __init__.py | JAX version 0.11.1 available.\n"}
+,{"stream_name":"stdout","time":5395.991003769,"data":"18:55:44 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)\n"}
+,{"stream_name":"stdout","time":5395.991021765,"data":"18:55:44 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}\n"}
+,{"stream_name":"stdout","time":5395.991028542,"data":"0/2336736 [39s]\n"}
+,{"stream_name":"stdout","time":5395.991032131,"data":"102400/2336736 [220s]\n"}
+,{"stream_name":"stdout","time":5395.991035857,"data":"204800/2336736 [425s]\n"}
+,{"stream_name":"stdout","time":5395.991040156,"data":"307200/2336736 [637s]\n"}
+,{"stream_name":"stdout","time":5395.991044103,"data":"409600/2336736 [851s]\n"}
+,{"stream_name":"stdout","time":5395.991047402,"data":"512000/2336736 [1067s]\n"}
+,{"stream_name":"stdout","time":5395.991050826,"data":"614400/2336736 [1281s]\n"}
+,{"stream_name":"stdout","time":5395.991054257,"data":"716800/2336736 [1496s]\n"}
+,{"stream_name":"stdout","time":5395.991057622,"data":"819200/2336736 [1710s]\n"}
+,{"stream_name":"stdout","time":5395.991065617,"data":"921600/2336736 [1924s]\n"}
+,{"stream_name":"stdout","time":5395.991069257,"data":"1024000/2336736 [2137s]\n"}
+,{"stream_name":"stdout","time":5395.991072654,"data":"1126400/2336736 [2351s]\n"}
+,{"stream_name":"stdout","time":5395.991076086,"data":"1228800/2336736 [2565s]\n"}
+,{"stream_name":"stdout","time":5395.991079575,"data":"1331200/2336736 [2778s]\n"}
+,{"stream_name":"stdout","time":5395.991082954,"data":"1433600/2336736 [2992s]\n"}
+,{"stream_name":"stdout","time":5395.991086414,"data":"1536000/2336736 [3206s]\n"}
+,{"stream_name":"stdout","time":5395.991089802,"data":"1638400/2336736 [3420s]\n"}
+,{"stream_name":"stdout","time":5395.991093197,"data":"1740800/2336736 [3634s]\n"}
+,{"stream_name":"stdout","time":5395.991096705,"data":"1843200/2336736 [3848s]\n"}
+,{"stream_name":"stdout","time":5395.991100334,"data":"1945600/2336736 [4062s]\n"}
+,{"stream_name":"stdout","time":5395.991107479,"data":"2048000/2336736 [4277s]\n"}
+,{"stream_name":"stdout","time":5395.991120845,"data":"2150400/2336736 [4491s]\n"}
+,{"stream_name":"stdout","time":5395.991124672,"data":"2252800/2336736 [4707s]\n"}
+,{"stream_name":"stdout","time":5395.991128029,"data":"parity (same function, sanity) 1.5497207641601562e-06\n"}
+,{"stream_name":"stdout","time":5395.991132023,"data":"\n"}
+,{"stream_name":"stdout","time":5395.991135967,"data":"\n"}
+,{"stream_name":"stdout","time":5395.991141959,"data":"$ rm -f /kaggle/working/cache_run.py; ls -la /kaggle/working/*.npy /kaggle/working/*.json; cat /kaggle/working/pusht_cache_meta.json  [t=5395s]\n"}
+,{"stream_name":"stdout","time":5396.037364258,"data":"-rw-r--r-- 1 root root   18694016 Oct  7 18:55 /kaggle/working/action.npy\n"}
+,{"stream_name":"stdout","time":5396.037396312,"data":"-rw-r--r-- 1 root root 1794613376 Oct  7 20:16 /kaggle/working/emb_pusht.npy\n"}
+,{"stream_name":"stdout","time":5396.037402218,"data":"-rw-r--r-- 1 root root      74868 Oct  7 18:55 /kaggle/working/ep_len.npy\n"}
+,{"stream_name":"stdout","time":5396.03741408,"data":"-rw-r--r-- 1 root root     149608 Oct  7 18:55 /kaggle/working/ep_offset.npy\n"}
+,{"stream_name":"stdout","time":5396.037418372,"data":"-rw-r--r-- 1 root root   37387904 Oct  7 18:55 /kaggle/working/proprio.npy\n"}
+,{"stream_name":"stdout","time":5396.037422601,"data":"-rw-r--r-- 1 root root        280 Oct  7 20:16 /kaggle/working/pusht_cache_meta.json\n"}
+,{"stream_name":"stdout","time":5396.037427304,"data":"-rw-r--r-- 1 root root   65428736 Oct  7 18:55 /kaggle/working/state.npy\n"}
+,{"stream_name":"stdout","time":5396.037431828,"data":"{\n"}
+,{"stream_name":"stdout","time":5396.037436461,"data":" \"dataset\": \"/kaggle/tmp/stablewm/datasets/pusht_expert_train.h5\",\n"}
+,{"stream_name":"stdout","time":5396.037440943,"data":" \"frames\": 2336736,\n"}
+,{"stream_name":"stdout","time":5396.037444797,"data":" \"pixels_shape\": [\n"}
+,{"stream_name":"stdout","time":5396.037448643,"data":"  2336736,\n"}
+,{"stream_name":"stdout","time":5396.037452421,"data":"  224,\n"}
+,{"stream_name":"stdout","time":5396.037455948,"data":"  224,\n"}
+,{"stream_name":"stdout","time":5396.037459609,"data":"  3\n"}
+,{"stream_name":"stdout","time":5396.037463544,"data":" ],\n"}
+,{"stream_name":"stdout","time":5396.037471172,"data":" \"action_shape\": [\n"}
+,{"stream_name":"stdout","time":5396.03747434,"data":"  2336736,\n"}
+,{"stream_name":"stdout","time":5396.037476781,"data":"  2\n"}
+,{"stream_name":"stdout","time":5396.03747918,"data":" ],\n"}
+,{"stream_name":"stdout","time":5396.037481531,"data":" \"episodes\": 18685,\n"}
+,{"stream_name":"stdout","time":5396.037484176,"data":" \"model_revision\": \"22b330c28c27ead4bfd1888615af1340e3fe9052\",\n"}
+,{"stream_name":"stdout","time":5396.037496894,"data":" \"seconds\": 4885\n"}
+,{"stream_name":"stdout","time":5396.037499602,"data":"}\n"}
+,{"stream_name":"stdout","time":5396.037501987,"data":"\n"}
+,{"stream_name":"stdout","time":5396.037505704,"data":"TOTAL 5395s\n"}
+,{"stream_name":"stderr","time":5398.472482032,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":5398.472510578,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":5398.795200882,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":5398.795242395,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":5399.847963722,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":5400.649500226,"data":"[NbConvertApp] Writing 284360 bytes to __results__.html\n"}
+]
