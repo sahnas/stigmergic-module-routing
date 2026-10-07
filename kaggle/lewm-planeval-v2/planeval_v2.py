@@ -1,0 +1,20 @@
+import subprocess, time, os, glob, sys, json
+t0 = time.time()
+def run(cmd, timeout=20000):
+    print(f"\n$ {cmd}  [t={time.time()-t0:.0f}s]", flush=True)
+    r = subprocess.run(["bash", "-o", "pipefail", "-c", cmd], capture_output=True, text=True, timeout=timeout)
+    out = r.stdout + r.stderr; print(out[:1500] + ('\n...\n' + out[-4000:] if len(out) > 5500 else out[1500:]), flush=True)
+    if r.returncode != 0: raise SystemExit(f"STEP FAILED (exit {r.returncode}): {cmd}")
+h5 = glob.glob("/kaggle/input/**/tworoom.h5", recursive=True); rt = glob.glob("/kaggle/input/**/tworoom_retrained_v2/weights.pt", recursive=True)
+if not h5 or not rt: raise SystemExit(f"INPUTS MISSING h5={h5} retrained={rt}")
+H = "/kaggle/working/stablewm"; os.environ.update(STABLEWM_HOME=H, WANDB_MODE="disabled", MUJOCO_GL="egl", PYOPENGL_PLATFORM="egl")
+os.makedirs(f"{H}/datasets", exist_ok=True); os.makedirs(f"{H}/checkpoints", exist_ok=True)
+os.symlink(h5[0], f"{H}/datasets/tworoom.h5"); os.symlink(os.path.dirname(rt[0]), f"{H}/checkpoints/tworoom_retrained_v2")
+run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
+run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core pygame pymunk shapely opencv-python-headless 2>&1 | tail -1")
+run("python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin, gymnasium, pygame, pymunk, shapely, cv2; print(\"imports ok\")'")
+run("git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git log -1 --format='le-wm %h %cd' --date=short; ls -la /kaggle/working/stablewm/checkpoints/tworoom_retrained_v2/")
+for sd in (42, 43, 44, 45):
+    run(f"cd /kaggle/tmp/le-wm && python eval.py --config-name=tworoom.yaml policy=tworoom_retrained_v2 seed={sd} eval.num_eval=100 output.filename=/kaggle/working/retrained_v2_seed{sd}_results.txt 2>&1 | grep -vE 'arn' | tail -3", timeout=12000)
+run("cd /kaggle/working && grep -o \"'success_rate': [0-9.]*\" *_results.txt")
+print(f"\nTOTAL {time.time()-t0:.0f}s")

@@ -1,0 +1,5 @@
+seed retrained v2  released  bilinear | v2 only / released only (McNemar p) | v2 only / bilinear only (McNemar p)
+  42           84        85        97 |  5 /  6 (p=1.000) |  2 / 15 (p=0.002)
+  43           85        83        99 |  4 /  2 (p=0.688) |  0 / 14 (p=0.000)
+  44           89        87       100 |  6 /  4 (p=0.754) |  0 / 11 (p=0.001)
+  45           81        80        96 |  7 /  6 (p=1.000) |  1 / 16 (p=0.000)

@@ -126,4 +126,12 @@ t = open(R + 'lewm_kaggle/koopman_results.txt').read(); m = re.search(r"'episode
 for tag, v in {'bilinear': 0.69, 'linear': 0.83, 'markov': 0.69, 'ridge_x10': 0.70, 'ridge_d10': 0.69}.items():
     C(f'E18 latent error {tag}', v, json.load(open(R + f'lewm_kaggle/exp18_koopman_{tag}_meta.json'))['test_rel_err'], 0.006)
 ex18 = json.load(open(R + 'lewm_kaggle/exp18_koopman_exploit.json')); C('E18 exploit operator ratio', 1.6, ex18['operator_true_over_pred']['median'], 0.06)
+
+# --- retrained with the official loss (context control) ---
+for tag, v in {'retrained_v2_seed42': 84, 'retrained_v2_seed43': 85, 'retrained_v2_seed44': 89, 'retrained_v2_seed45': 81}.items():
+    C(f'E18 {tag}', v, succ(tag), 0.5)
+cx = json.load(open(R + 'lewm_kaggle/retrain_v2_meta.json'))['context_length_errors']
+C('context retrained old ctx1', 1.18, cx['retrained_last_position_loss']['context_1'], 0.006); C('context retrained old ctx2', 1.03, cx['retrained_last_position_loss']['context_2'], 0.006)
+C('context retrained old ctx3', 0.006, cx['retrained_last_position_loss']['context_3'], 0.0006); C('context released ctx1', 0.066, cx['released']['context_1'], 0.0006)
+C('context retrained v2 ctx1', 0.005, cx['retrained_all_positions_loss']['context_1'], 0.0006); C('context retrained v2 ctx3', 0.005, cx['retrained_all_positions_loss']['context_3'], 0.0006)
 print(f'\n{sum(chk)} / {len(chk)} values match')
