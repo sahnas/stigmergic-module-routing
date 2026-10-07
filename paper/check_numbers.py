@@ -114,4 +114,16 @@ for mk_, (v, so, pr) in {'released': (0.862, 0.703, 0.606), 'retrained': (0.998,
 
 zz = json.load(open(R + 'lewm_kaggle/zigzag.json'))['summary']
 C('zigzag retrained err zig', 1.8, zz['retrained']['err_zig'], 0.06); C('zigzag released err zig', 4.4, zz['released']['err_zig'], 0.06)
+
+# --- experiment 18 ---
+import re, glob
+def succ(tag):
+    t = open(R + f'lewm_kaggle/exp18_{tag}_results.txt').read(); m = re.search(r"'episode_successes': array\(\[(.*?)\]\)", t, re.S)
+    return sum(x.strip() == 'True' for x in m.group(1).replace('\n', ' ').split(','))
+for tag, v in {'bilinear_seed43': 99, 'bilinear_seed44': 100, 'bilinear_seed45': 96, 'released_seed43': 83, 'released_seed44': 87, 'released_seed45': 80, 'linear_seed42': 57, 'markov_seed42': 96, 'ridge_x10_seed42': 96, 'ridge_d10_seed42': 97}.items():
+    C(f'E18 {tag}', v, succ(tag), 0.5)
+t = open(R + 'lewm_kaggle/koopman_results.txt').read(); m = re.search(r"'episode_successes': array\(\[(.*?)\]\)", t, re.S); C('E18 bilinear seed42', 97, sum(x.strip() == 'True' for x in m.group(1).replace('\n', ' ').split(',')), 0.5)
+for tag, v in {'bilinear': 0.69, 'linear': 0.83, 'markov': 0.69, 'ridge_x10': 0.70, 'ridge_d10': 0.69}.items():
+    C(f'E18 latent error {tag}', v, json.load(open(R + f'lewm_kaggle/exp18_koopman_{tag}_meta.json'))['test_rel_err'], 0.006)
+ex18 = json.load(open(R + 'lewm_kaggle/exp18_koopman_exploit.json')); C('E18 exploit operator ratio', 1.6, ex18['operator_true_over_pred']['median'], 0.06)
 print(f'\n{sum(chk)} / {len(chk)} values match')
