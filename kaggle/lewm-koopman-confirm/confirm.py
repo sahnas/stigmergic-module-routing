@@ -12,7 +12,7 @@ os.makedirs(f"{H}/datasets", exist_ok=True); os.symlink(h5[0], f"{H}/datasets/tw
 run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core pygame pymunk shapely opencv-python-headless 2>&1 | tail -1")
 run("python -c 'import hydra, stable_worldmodel, pygame, pymunk, shapely, cv2; print(\"imports ok\")'")
-run("git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git log -1 --format='le-wm %h %cd' --date=short")
+run("git clone https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git checkout -q 8edfeb336732b5f3ce7b8b210d0ba370a09e2cac && git log -1 --format='le-wm %h %cd' --date=short")
 # ---- 1. fit the operator predictor by ridge least squares on the frozen cache ----
 fit = r'''
 import os, json, time, numpy as np, torch

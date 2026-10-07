@@ -13,7 +13,7 @@ os.symlink(h5[0], f"{H}/datasets/tworoom.h5"); os.symlink(os.path.dirname(rt[0])
 run("nvidia-smi --query-gpu=name --format=csv,noheader; apt-get install -y -qq swig libegl1 libgl1 > /dev/null 2>&1; echo apt ok")
 run("pip install 'stable-worldmodel[train,format]==0.1.1' 'transformers<5' hydra-core pygame pymunk shapely opencv-python-headless 2>&1 | tail -1")
 run("python -c 'import hydra, stable_worldmodel, h5py, hdf5plugin, gymnasium, pygame, pymunk, shapely, cv2; print(\"imports ok\")'")
-run("git clone --depth 1 https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git log -1 --format='le-wm %h %cd' --date=short; ls -la /kaggle/working/stablewm/checkpoints/tworoom_retrained/")
+run("git clone https://github.com/lucas-maes/le-wm.git /kaggle/tmp/le-wm > /dev/null 2>&1; cd /kaggle/tmp/le-wm && git checkout -q 8edfeb336732b5f3ce7b8b210d0ba370a09e2cac && git log -1 --format='le-wm %h %cd' --date=short; ls -la /kaggle/working/stablewm/checkpoints/tworoom_retrained/")
 for pol, tag in [("tworoom_retrained", "retrained"), ("quentinll/lewm-tworooms", "released")]:
     run(f"cd /kaggle/tmp/le-wm && python eval.py --config-name=tworoom.yaml policy={pol} eval.num_eval=100 output.filename=/kaggle/working/{tag}_results.txt 2>&1 | grep -vE 'arn' | tail -12", timeout=12000)
     run(f"cat /kaggle/working/{tag}_results.txt | tail -12")

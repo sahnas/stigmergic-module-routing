@@ -1,0 +1,18 @@
+{
+ "test_windows": 72552,
+ "action_mean_train": [
+  0.003572536865249276,
+  -0.052164118736982346
+ ],
+ "action_std_train": [
+  0.8627208471298218,
+  0.8631629347801208
+ ],
+ "reference_by_convention": {
+  "zscore_train_frames, block starts at frame": 0.06701866751474879,
+  "zscore_all_frames, block starts at frame": 0.06706348020691406,
+  "raw actions, block starts at frame": 0.22959538924672543,
+  "zscore_train_frames, block precedes frame": 1.67869137106231,
+  "zscore_train_frames, block starts at frame+1": 1.0924301869378745
+ }
+}

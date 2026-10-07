@@ -1,0 +1,1 @@
+{"id": "hassanakaou/lewm-retrain-v2", "title": "lewm-retrain-v2", "code_file": "retrain_v2.py", "language": "python", "kernel_type": "script", "is_private": true, "enable_gpu": true, "enable_tpu": false, "enable_internet": true, "dataset_sources": [], "competition_sources": [], "kernel_sources": ["hassanakaou/lewm-embed", "hassanakaou/lewm-retrain"], "model_sources": []}
