@@ -134,4 +134,10 @@ cx = json.load(open(R + 'lewm_kaggle/retrain_v2_meta.json'))['context_length_err
 C('context retrained old ctx1', 1.18, cx['retrained_last_position_loss']['context_1'], 0.006); C('context retrained old ctx2', 1.03, cx['retrained_last_position_loss']['context_2'], 0.006)
 C('context retrained old ctx3', 0.006, cx['retrained_last_position_loss']['context_3'], 0.0006); C('context released ctx1', 0.066, cx['released']['context_1'], 0.0006)
 C('context retrained v2 ctx1', 0.005, cx['retrained_all_positions_loss']['context_1'], 0.0006); C('context retrained v2 ctx3', 0.005, cx['retrained_all_positions_loss']['context_3'], 0.0006)
+
+bd = json.load(open(R + 'lewm_kaggle/bounding.json'))
+C('bounding bilinear ctx1', 0.66, bd['bilinear_context_errors']['context_1'], 0.006); C('bounding bilinear ctx2', 0.68, bd['bilinear_context_errors']['context_2'], 0.006)
+C('bounding released clipped ratio', 0.8, bd['released']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding v2 clipped ratio', 1.5, bd['retrained_v2']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding v2 unclipped ratio', 18, bd['retrained_v2']['median_ratio_true_over_pred_unclipped'], 0.6)
+C('bounding bilinear clipped ratio', 1.3, bd['bilinear']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding saturation neural', 0.13, bd['released']['saturation_fraction'], 0.006); C('bounding saturation bilinear', 0.24, bd['bilinear']['saturation_fraction'], 0.006)
+C('bounding v2 true', 23.7, bd['retrained_v2']['true_cost'], 0.06)
 print(f'\n{sum(chk)} / {len(chk)} values match')
