@@ -1,0 +1,802 @@
+[
+  {
+    "episode_id": 90,
+    "start_step": 63,
+    "goal_step": 88,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 313,
+    "start_step": 29,
+    "goal_step": 54,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 433,
+    "start_step": 11,
+    "goal_step": 36,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 693,
+    "start_step": 130,
+    "goal_step": 155,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 698,
+    "start_step": 86,
+    "goal_step": 111,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 854,
+    "start_step": 142,
+    "goal_step": 167,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 888,
+    "start_step": 98,
+    "goal_step": 123,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 951,
+    "start_step": 67,
+    "goal_step": 92,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 1402,
+    "start_step": 76,
+    "goal_step": 101,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 1585,
+    "start_step": 107,
+    "goal_step": 132,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 1588,
+    "start_step": 7,
+    "goal_step": 32,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 1795,
+    "start_step": 11,
+    "goal_step": 36,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2066,
+    "start_step": 54,
+    "goal_step": 79,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2345,
+    "start_step": 7,
+    "goal_step": 32,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2366,
+    "start_step": 37,
+    "goal_step": 62,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2565,
+    "start_step": 24,
+    "goal_step": 49,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2580,
+    "start_step": 3,
+    "goal_step": 28,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2697,
+    "start_step": 26,
+    "goal_step": 51,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2858,
+    "start_step": 60,
+    "goal_step": 85,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 2955,
+    "start_step": 113,
+    "goal_step": 138,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 3644,
+    "start_step": 119,
+    "goal_step": 144,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 4219,
+    "start_step": 12,
+    "goal_step": 37,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 4690,
+    "start_step": 121,
+    "goal_step": 146,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 4961,
+    "start_step": 124,
+    "goal_step": 149,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5006,
+    "start_step": 87,
+    "goal_step": 112,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5089,
+    "start_step": 138,
+    "goal_step": 163,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5121,
+    "start_step": 86,
+    "goal_step": 111,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5144,
+    "start_step": 4,
+    "goal_step": 29,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5145,
+    "start_step": 25,
+    "goal_step": 50,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5313,
+    "start_step": 56,
+    "goal_step": 81,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5537,
+    "start_step": 73,
+    "goal_step": 98,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5680,
+    "start_step": 24,
+    "goal_step": 49,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 5787,
+    "start_step": 11,
+    "goal_step": 36,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 6076,
+    "start_step": 89,
+    "goal_step": 114,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 6122,
+    "start_step": 79,
+    "goal_step": 104,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 6387,
+    "start_step": 14,
+    "goal_step": 39,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 6402,
+    "start_step": 41,
+    "goal_step": 66,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7190,
+    "start_step": 92,
+    "goal_step": 117,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7352,
+    "start_step": 56,
+    "goal_step": 81,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7353,
+    "start_step": 59,
+    "goal_step": 84,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7536,
+    "start_step": 46,
+    "goal_step": 71,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7557,
+    "start_step": 115,
+    "goal_step": 140,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7901,
+    "start_step": 64,
+    "goal_step": 89,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 7978,
+    "start_step": 27,
+    "goal_step": 52,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8013,
+    "start_step": 83,
+    "goal_step": 108,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8047,
+    "start_step": 26,
+    "goal_step": 51,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8054,
+    "start_step": 16,
+    "goal_step": 41,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8500,
+    "start_step": 9,
+    "goal_step": 34,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8501,
+    "start_step": 21,
+    "goal_step": 46,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8632,
+    "start_step": 54,
+    "goal_step": 79,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8818,
+    "start_step": 105,
+    "goal_step": 130,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 8891,
+    "start_step": 123,
+    "goal_step": 148,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 9239,
+    "start_step": 40,
+    "goal_step": 65,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 9591,
+    "start_step": 41,
+    "goal_step": 66,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 9683,
+    "start_step": 44,
+    "goal_step": 69,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 9700,
+    "start_step": 30,
+    "goal_step": 55,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10164,
+    "start_step": 145,
+    "goal_step": 170,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10222,
+    "start_step": 41,
+    "goal_step": 66,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10280,
+    "start_step": 0,
+    "goal_step": 25,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10412,
+    "start_step": 157,
+    "goal_step": 182,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10449,
+    "start_step": 4,
+    "goal_step": 29,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10498,
+    "start_step": 95,
+    "goal_step": 120,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10679,
+    "start_step": 33,
+    "goal_step": 58,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10914,
+    "start_step": 72,
+    "goal_step": 97,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10984,
+    "start_step": 46,
+    "goal_step": 71,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 10987,
+    "start_step": 87,
+    "goal_step": 112,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11091,
+    "start_step": 21,
+    "goal_step": 46,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11104,
+    "start_step": 62,
+    "goal_step": 87,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11192,
+    "start_step": 43,
+    "goal_step": 68,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11321,
+    "start_step": 106,
+    "goal_step": 131,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11396,
+    "start_step": 142,
+    "goal_step": 167,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 11972,
+    "start_step": 56,
+    "goal_step": 81,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 12181,
+    "start_step": 5,
+    "goal_step": 30,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 12474,
+    "start_step": 11,
+    "goal_step": 36,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 12576,
+    "start_step": 159,
+    "goal_step": 184,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 12950,
+    "start_step": 8,
+    "goal_step": 33,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 13022,
+    "start_step": 9,
+    "goal_step": 34,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 13101,
+    "start_step": 79,
+    "goal_step": 104,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 13955,
+    "start_step": 36,
+    "goal_step": 61,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 13962,
+    "start_step": 95,
+    "goal_step": 120,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 14110,
+    "start_step": 0,
+    "goal_step": 25,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 14394,
+    "start_step": 4,
+    "goal_step": 29,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 14976,
+    "start_step": 8,
+    "goal_step": 33,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15327,
+    "start_step": 16,
+    "goal_step": 41,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15685,
+    "start_step": 2,
+    "goal_step": 27,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15695,
+    "start_step": 61,
+    "goal_step": 86,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15755,
+    "start_step": 113,
+    "goal_step": 138,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15806,
+    "start_step": 52,
+    "goal_step": 77,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 15908,
+    "start_step": 52,
+    "goal_step": 77,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 16079,
+    "start_step": 164,
+    "goal_step": 189,
+    "success": false,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 16499,
+    "start_step": 65,
+    "goal_step": 90,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 16574,
+    "start_step": 32,
+    "goal_step": 57,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17329,
+    "start_step": 148,
+    "goal_step": 173,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17517,
+    "start_step": 52,
+    "goal_step": 77,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17571,
+    "start_step": 5,
+    "goal_step": 30,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17674,
+    "start_step": 50,
+    "goal_step": 75,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17732,
+    "start_step": 75,
+    "goal_step": 100,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 17851,
+    "start_step": 29,
+    "goal_step": 54,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 18456,
+    "start_step": 53,
+    "goal_step": 78,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  },
+  {
+    "episode_id": 18639,
+    "start_step": 36,
+    "goal_step": 61,
+    "success": true,
+    "model": "retrained",
+    "evaluation_seed": 43
+  }
+]

@@ -1,0 +1,8 @@
+[
+  "/kaggle/tmp/exp19_eval/le-wm/eval.py",
+  "--config-name=pusht",
+  "policy=bilinear",
+  "seed=44",
+  "eval.num_eval=100",
+  "output.filename=/kaggle/working/bilinear_seed44/official_results.txt"
+]

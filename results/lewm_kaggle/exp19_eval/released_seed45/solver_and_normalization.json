@@ -1,0 +1,19 @@
+{
+  "horizon": 5,
+  "receding_horizon": 5,
+  "action_block": 5,
+  "num_samples": 300,
+  "iterations": 30,
+  "elites": 30,
+  "batch_size": 1,
+  "var_scale": 1.0,
+  "seed": 45,
+  "action_mean": [
+    -0.007812564379916172,
+    0.006860687229453032
+  ],
+  "action_scale": [
+    0.20846744284501714,
+    0.20674862637362224
+  ]
+}

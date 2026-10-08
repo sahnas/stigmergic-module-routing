@@ -1,0 +1,134 @@
+"""Validate archived PushT outcomes and regenerate the manuscript tables.
+
+Run from any directory: python tools/analyze_exp19.py [--write]
+Without --write, check that the tracked summary and tables match the raw data.
+"""
+import argparse
+import hashlib
+import json
+import math
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = ROOT / "results/lewm_kaggle/exp19_eval"
+SEEDS = (42, 43, 44, 45)
+MODELS = ("released", "retrained", "bilinear")
+
+
+def read(name):
+    return json.loads((DATA / name).read_text())
+
+
+def paired(a, b):
+    wins = sum(x["success"] and not y["success"] for x, y in zip(a, b))
+    losses = sum(y["success"] and not x["success"] for x, y in zip(a, b))
+    n = wins + losses
+    p = min(1.0, 2 * sum(math.comb(n, k) for k in range(min(wins, losses) + 1)) / 2**n) if n else 1.0
+    sa, sb = sum(x["success"] for x in a), sum(x["success"] for x in b)
+    return dict(n=len(a), bilinear_successes=sa, reference_successes=sb,
+                difference_successes=sa-sb, difference_percentage_points=100*(sa-sb)/len(a),
+                bilinear_only=wins, reference_only=losses,
+                both_success=sum(x["success"] and y["success"] for x, y in zip(a, b)),
+                both_failure=sum(not x["success"] and not y["success"] for x, y in zip(a, b)),
+                mcnemar_exact_two_sided_p=p, strictly_more_successes=sa > sb)
+
+
+def validate():
+    manifest, complete = read("evaluation_manifest.json"), read("evaluation_complete.json")
+    assert complete["complete"] and complete["runs"] == 12
+    assert not (DATA / "failure.json").exists()
+    assert manifest["seeds"] == list(SEEDS) and manifest["models"] == list(MODELS)
+    assert manifest["episodes_per_run"] == 100 and manifest["primary_seeds"] == [43, 44, 45]
+    assert manifest["upstream_revision"] == "8edfeb336732b5f3ce7b8b210d0ba370a09e2cac"
+    assert manifest["model_revision"] == "22b330c28c27ead4bfd1888615af1340e3fe9052"
+    assert manifest["dataset_revision"] == "655cd446b992"
+    source = ROOT / "kaggle/lewm-pusht-planeval/pusht_planeval.py"
+    assert hashlib.sha256(source.read_bytes()).hexdigest() == manifest["script_sha256"]
+    fit = read("fit_provenance.json")
+    assert hashlib.sha256((ROOT / "kaggle/lewm-pusht-fit/pusht_fit.py").read_bytes()).hexdigest() == fit["script_sha256"]
+    for record in read("retrieval_manifest.json")["files"]:
+        assert hashlib.sha256((DATA / record["name"]).read_bytes()).hexdigest() == record["sha256"]
+    counts, comparisons = {}, {}
+    key = lambda r: (r["episode_id"], r["start_step"], r["goal_step"])
+    for seed in SEEDS:
+        rows = {m: read(f"{m}_seed{seed}/episodes.json") for m in MODELS}
+        tasks = read(f"seed{seed}_tasks.json")
+        assert len(tasks) == 100
+        counts[str(seed)] = {}
+        for model, values in rows.items():
+            assert len(values) == 100 and [key(x) for x in values] == [key(x) for x in tasks]
+            assert read(f"{model}_seed{seed}/tasks.json") == tasks
+            assert all(x["goal_step"] == x["start_step"] + 25 for x in values)
+            assert all(x["model"] == model and x["evaluation_seed"] == seed and type(x["success"]) is bool for x in values)
+            metrics = read(f"{model}_seed{seed}/metrics.json")["metrics"]
+            assert metrics["episode_successes"] == [x["success"] for x in values]
+            count = sum(x["success"] for x in values)
+            assert abs(metrics["success_rate"] - count) < 1e-9
+            cfg = read(f"{model}_seed{seed}/solver_and_normalization.json")
+            for field, value in dict(seed=seed, horizon=5, receding_horizon=5, action_block=5,
+                                     num_samples=300, iterations=30, elites=30, batch_size=1, var_scale=1.0).items():
+                assert cfg[field] == value
+            for field in ("action_mean", "action_scale"):
+                assert all(abs(x-y) < 1e-12 for x, y in zip(cfg[field], fit[field]))
+            counts[str(seed)][model] = count
+        comparisons[str(seed)] = {ref: paired(rows["bilinear"], rows[ref]) for ref in ("released", "retrained")}
+    assert comparisons == read("paired_comparisons.json") == complete["comparisons"]
+    primary = all(comparisons[str(s)]["released"]["strictly_more_successes"] for s in (43,44,45))
+    secondary = all(comparisons[str(s)]["retrained"]["strictly_more_successes"] for s in (43,44,45))
+    assert primary == complete["verdict"]["primary_bilinear_above_released_on_each_fresh_seed"]
+    assert secondary == complete["verdict"]["secondary_bilinear_above_retrained_on_each_fresh_seed"]
+    return dict(counts=counts, descriptive_mean_percent={m:sum(counts[str(s)][m] for s in SEEDS)/4 for m in MODELS},
+                comparisons=comparisons, context_errors=read("fit_context_errors.json"),
+                primary=primary, secondary=secondary, completed_runs=12, episode_outcomes=1200)
+
+
+def tex_tables(result):
+    rows = [r"% Generated by tools/analyze_exp19.py; do not edit by hand.",
+            r"\begin{table}[htbp]\centering\small",
+            r"\begin{tabular}{lrrrrr}\toprule",
+            r"Predictor & seed 42 & seed 43 & seed 44 & seed 45 & Mean (\%) \\\midrule"]
+    labels = {"released":"Released", "retrained":"Retrained, official loss", "bilinear":"Bilinear, ridge"}
+    for m in MODELS:
+        counts = " & ".join(str(result["counts"][str(s)][m]) for s in SEEDS)
+        rows.append(f'{labels[m]} & {counts} & {result["descriptive_mean_percent"][m]:.2f} ' + r"\\")
+    rows += [r"\bottomrule\end{tabular}",
+             r"\caption{Experiment 19: PushT successes out of 100 matched tasks per evaluation seed. Seed 42 is exploratory; seeds 43--45 determine the preregistered verdict. Means are descriptive across all four evaluation seeds of one fitted predictor of each type.}",
+             r"\label{tab:exp19}\end{table}",
+             r"\begin{table}[htbp]\centering\small",
+             r"\begin{tabular}{lrrr}\toprule",
+             r"Predictor & context 1 & context 2 & context 3 \\\midrule"]
+    for m in MODELS:
+        k = "retrained_all_positions" if m == "retrained" else m
+        values = " & ".join(f'{result["context_errors"][k][f"context_{c}"]:.5f}' for c in (1,2,3))
+        rows.append(f'{labels[m]} & {values} ' + r"\\")
+    rows += [r"\bottomrule\end{tabular}",
+             r"\caption{Experiment 19: relative one-step latent errors on held-out PushT episode windows at each context length. Unlike Two-rooms, the bilinear predictor has both higher errors and lower planning success than the neural predictors.}",
+             r"\label{tab:exp19context}\end{table}",
+             r"\begin{table}[htbp]\centering\small",
+             r"\begin{tabular}{rlrrr}\toprule",
+             r"Seed & Reference & $b/c$ & $\Delta$ (points) & Exact $p$ \\\midrule"]
+    for seed in SEEDS:
+        for ref in ("released", "retrained"):
+            v = result["comparisons"][str(seed)][ref]
+            mantissa, exponent = f'{v["mcnemar_exact_two_sided_p"]:.2e}'.split("e")
+            p = rf"${mantissa}\times10^{{{int(exponent)}}}$"
+            rows.append(f'{seed} & {labels[ref]} & {v["bilinear_only"]}/{v["reference_only"]} & {v["difference_successes"]} & {p} ' + r"\\")
+    rows += [r"\bottomrule\end{tabular}",
+             r"\caption{Experiment 19: paired comparisons of the bilinear predictor to each reference. $b$ counts tasks only the bilinear predictor solves; $c$ counts tasks only the reference solves. $\Delta$ is bilinear minus reference success. The exact two-sided McNemar tests are reported per seed without pooling repeated evaluations into independent training runs.}",
+             r"\label{tab:exp19paired}\end{table}"]
+    return "\n".join(rows) + "\n"
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--write", action="store_true")
+    args = parser.parse_args()
+    result = validate()
+    outputs = {DATA / "summary.json": json.dumps(result, indent=2) + "\n",
+               ROOT / "paper/exp19_tables.tex": tex_tables(result)}
+    for path, text in outputs.items():
+        if args.write:
+            path.write_text(text)
+        else:
+            assert path.read_text() == text, f"Stale generated output: {path}"
+    print(json.dumps({k:result[k] for k in ("counts", "descriptive_mean_percent", "primary", "secondary", "completed_runs", "episode_outcomes")}, indent=2))

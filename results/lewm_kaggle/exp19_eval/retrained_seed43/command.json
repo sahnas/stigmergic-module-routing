@@ -1,0 +1,8 @@
+[
+  "/kaggle/tmp/exp19_eval/le-wm/eval.py",
+  "--config-name=pusht",
+  "policy=retrained",
+  "seed=43",
+  "eval.num_eval=100",
+  "output.filename=/kaggle/working/retrained_seed43/official_results.txt"
+]

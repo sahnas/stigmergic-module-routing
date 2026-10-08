@@ -1,4 +1,7 @@
-"""Recomputes every number reported in the manuscript from the released raw results.
+"""Recompute selected numerical claims from the released raw results.
+This is not an exhaustive parser of the manuscript. Experiments 12--16 and
+most earlier intervals/p-values are not covered; experiment 19 also has an
+separate recomputation from its individual outcomes and generated tables.
 Run from the repository root: python paper/check_numbers.py"""
 import json, numpy as np
 from scipy import stats
@@ -108,10 +111,7 @@ for mk_, (p, t) in {'released': (12.4, 43.8), 'retrained': (0.68, 37.0)}.items()
 rm = json.load(open(R + 'lewm_kaggle/rooms.json'))
 C('gap rooms released same', 0.90, rm['released']['same_room'], 0.006); C('gap rooms retrained same', 0.40, rm['retrained']['same_room'], 0.006); C('gap rooms released cross', 0.67, rm['released']['cross_room'], 0.006); C('gap rooms retrained cross', 0.19, rm['retrained']['cross_room'], 0.006)
 
-vs = json.load(open(R + 'lewm_kaggle/viscore.json'))
-for mk_, (v, so, pr) in {'released': (0.862, 0.703, 0.606), 'retrained': (0.998, 0.984, 0.982)}.items():
-    C(f'viscore {mk_} veracity', v, vs[mk_]['veracity'], 0.0006); C(f'viscore {mk_} sobriety', so, vs[mk_]['sobriety'], 0.0006); C(f'viscore {mk_} product', pr, vs[mk_]['VIScore'], 0.0006)
-
+# The invalidated VIScore diagnostic is archived, not a manuscript claim.
 zz = json.load(open(R + 'lewm_kaggle/zigzag.json'))['summary']
 C('zigzag retrained err zig', 1.8, zz['retrained']['err_zig'], 0.06); C('zigzag released err zig', 4.4, zz['released']['err_zig'], 0.06)
 
@@ -140,4 +140,28 @@ C('bounding bilinear ctx1', 0.66, bd['bilinear_context_errors']['context_1'], 0.
 C('bounding released clipped ratio', 0.8, bd['released']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding v2 clipped ratio', 1.5, bd['retrained_v2']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding v2 unclipped ratio', 18, bd['retrained_v2']['median_ratio_true_over_pred_unclipped'], 0.6)
 C('bounding bilinear clipped ratio', 1.3, bd['bilinear']['median_ratio_true_over_pred_clipped'], 0.06); C('bounding saturation neural', 0.13, bd['released']['saturation_fraction'], 0.006); C('bounding saturation bilinear', 0.24, bd['bilinear']['saturation_fraction'], 0.006)
 C('bounding v2 true', 23.7, bd['retrained_v2']['true_cost'], 0.06)
-print(f'\n{sum(chk)} / {len(chk)} values match')
+# --- experiment 19: recomputed from individual paired outcomes ---
+import runpy
+e19 = runpy.run_path('tools/analyze_exp19.py')
+summary = e19['validate']()
+assert open('paper/exp19_tables.tex').read() == e19['tex_tables'](summary)
+assert json.load(open(R + 'lewm_kaggle/exp19_eval/summary.json')) == summary
+for seed, values in {42:(89,93,35), 43:(86,94,40), 44:(89,91,39), 45:(85,89,36)}.items():
+    for model, claimed in zip(('released','retrained','bilinear'), values):
+        C(f'E19 {model} seed{seed}', claimed, summary['counts'][str(seed)][model], 0)
+for model, claimed in {'released':87.25,'retrained':91.75,'bilinear':37.50}.items():
+    C(f'E19 {model} descriptive mean', claimed, summary['descriptive_mean_percent'][model], 0.00001)
+for model, values in {'released':(0.00803,0.00792,0.00831), 'retrained_all_positions':(0.00355,0.00350,0.00365), 'bilinear':(0.08201,0.06799,0.06820)}.items():
+    for context, claimed in enumerate(values, 1):
+        C(f'E19 {model} context{context}', claimed, summary['context_errors'][model][f'context_{context}'], 0.0000051)
+for seed, pairs in {42:((2,56),(1,59)), 43:((3,49),(1,55)), 44:((3,53),(4,56)), 45:((2,51),(2,55))}.items():
+    for ref, (wins, losses) in zip(('released','retrained'), pairs):
+        v = summary['comparisons'][str(seed)][ref]
+        C(f'E19 seed{seed} vs {ref} bilinear only', wins, v['bilinear_only'], 0)
+        C(f'E19 seed{seed} vs {ref} reference only', losses, v['reference_only'], 0)
+        C(f'E19 seed{seed} vs {ref} difference', wins-losses, v['difference_successes'], 0)
+C('E18 corrected descriptive mean', 84.75, np.mean([succ(f'retrained_v2_seed{s}') for s in (42,43,44,45)]), 0.00001)
+C('E18 released descriptive mean', 83.75, np.mean([85]+[succ(f'released_seed{s}') for s in (43,44,45)]), 0.00001)
+C('E18 bilinear descriptive mean', 98.00, np.mean([97]+[succ(f'bilinear_seed{s}') for s in (43,44,45)]), 0.00001)
+print(f'\n{sum(chk)} / {len(chk)} selected numerical checks pass; experiment 19 paired tests and generated tables verified')
+raise SystemExit(0 if all(chk) else 1)

@@ -1,0 +1,36 @@
+{
+  "script_sha256": "3282ef412052a8c27fb3691f6dc10236b96c26b65787b80bff05b01c8320f90f",
+  "upstream_revision": "8edfeb336732b5f3ce7b8b210d0ba370a09e2cac",
+  "official_eval_sha256": "6584f009b40550fa0df2f8dee22b9329fbfacdfaf74464aa4fd105f464795245",
+  "model_revision": "22b330c28c27ead4bfd1888615af1340e3fe9052",
+  "dataset_revision": "655cd446b992",
+  "model_hashes": {
+    "pusht_released/weights.pt": "48938400ae3464c9680731287f583a9cb516f55a8ec64ea13a91be47fb15b607",
+    "pusht_retrained_v2/weights.pt": "9224779215c068aa4b7c68260fb0380e4e68958e347ec8d0cb08d1a6a55e5f23",
+    "pusht_bilinear.pt": "fa06ecffd4f73ccd8ffa64e851dac38e9cf5f2f042b72c5998c4dc9a7ea8283e"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "models": [
+    "released",
+    "retrained",
+    "bilinear"
+  ],
+  "episodes_per_run": 100,
+  "primary_seeds": [
+    43,
+    44,
+    45
+  ],
+  "hooks": [
+    "fixed model selection",
+    "normalization assertions",
+    "task and result capture",
+    "video output directory"
+  ],
+  "action_bounding": "unchanged official solver and environment"
+}

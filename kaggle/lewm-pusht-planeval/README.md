@@ -40,3 +40,16 @@ strong evidence by itself.
 Local checks: `python check_local.py` with CPU PyTorch. GPU execution is
 limited to 12 hours. The private kernel launch is authorized on 2026-10-08;
 publication of subsequent repository changes is separate.
+
+## Completed result, 2026-10-08
+
+All twelve runs completed in 4,558 seconds including setup and data preparation.
+Successes on evaluation seeds 42/43/44/45 (100 matched tasks per seed):
+released 89/86/89/85; corrected retrained 93/94/91/89; bilinear 35/40/39/36.
+The primary criterion fails on all three confirmatory seeds, as does the
+separate comparison with the corrected network. The recipe is unchanged.
+
+Raw JSON artifacts and the execution log are archived under
+[`results/lewm_kaggle/exp19_eval`](../../results/lewm_kaggle/exp19_eval/).
+`python tools/analyze_exp19.py` validates hashes, task identities, individual
+outcomes, totals, paired statistics and generated manuscript tables.
