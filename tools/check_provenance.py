@@ -5,20 +5,40 @@
 2. Seed ledger: which seeds appear in which result files, and every overlap between test seeds of different
    experiments (development and tuning files are listed separately).
 """
-import glob, hashlib, json, os, re, collections
+import glob, hashlib, json, os, re, collections, subprocess
 
 def sha16(path):
     return hashlib.sha256(open(path, 'rb').read()).hexdigest()[:16]
 
 print('1. Code hashes quoted in preregistrations')
 bad = 0
+historical = 0
 for pre in sorted(glob.glob('preregistrations/*.md')):
-    for name, h in re.findall(r'([\w/]+\.py) \(sha256 ([0-9a-f]{16})\)', open(pre).read()):
+    for name, h in re.findall(r'([\w/-]+\.py) \(sha256 ([0-9a-f]{16})\)', open(pre).read()):
         base = os.path.basename(name)
         found = [p for p in ['original-fr/' + base, 'src/' + base, 'src/jepa/' + base] + glob.glob('kaggle/*/' + base) if os.path.exists(p) and sha16(p) == h]
-        bad += not found
-        print(f'  {os.path.basename(pre):28s} {base:24s} {h}  ' + (f'OK ({found[0]})' if found else 'MISMATCH'))
-print(f'  -> {"all hashes match" if bad == 0 else str(bad) + " mismatch(es)"}\n')
+        recovered = None
+        # A later executable may legitimately differ from the preregistered
+        # snapshot. Recover the exact quoted bytes from this branch's history,
+        # report the difference explicitly, and never replace the current file.
+        if not found and os.path.isfile(name):
+            commits = subprocess.check_output(['git', 'log', '--format=%H', '--', name], text=True).splitlines()
+            for commit in commits:
+                blob = subprocess.run(['git', 'show', f'{commit}:{name}'], capture_output=True)
+                if blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest()[:16] == h:
+                    recovered = f'{commit[:12]}:{name}'
+                    break
+        if found:
+            state = f'OK current ({found[0]})'
+        elif recovered:
+            historical += 1
+            state = f'OK historical ({recovered}); current differs ({sha16(name)})'
+        else:
+            bad += 1
+            state = 'MISMATCH: quoted version not recovered'
+        print(f'  {os.path.basename(pre):28s} {base:24s} {h}  {state}')
+print(f'  -> {bad} unrecovered quoted hash(es); {historical} recovered only in Git history\n')
+print('  Recovery verifies source availability, not which version an unlogged run executed.\n')
 
 print('2. Seed ledger')
 ledger = collections.defaultdict(set)
@@ -43,3 +63,4 @@ for a in tests:
             print(f'    {exp(a)} / {exp(b)}: {len(ov)} seeds ({ov[0]}..{ov[-1]})')
 if not found:
     print('    none')
+raise SystemExit(1 if bad else 0)
