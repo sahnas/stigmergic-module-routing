@@ -34,7 +34,9 @@ private under the account hassanakaou. Logs kept in `results/lewm_kaggle/`.
 
 
 | lewm-pusht-cache | Experiment 19: frozen PushT encoder cache; the executed retry uses temporary storage for the 46.3 GB raw dataset | COMPLETE on 2026-10-07: 2,336,736 frames, 18,685 episodes, 192-d fp32 cache (1.79 GB), 5,395 s total; repeated-encode sanity max error 1.55e-6. This sanity check is not an independent preprocessing comparison (`exp19_cache.log`) |
-| lewm-pusht-fit | Experiment 19: independent cache parity with the pinned official preprocessing, then fixed bilinear ridge and 8-epoch all-position neural retraining | Prepared 2026-10-07; local episode-boundary, feature-parity and short-context checks pass. Completion and scientific results require the kernel outputs; no planning result is available yet. |
+| lewm-pusht-fit | Experiment 19: independent cache parity with the pinned official preprocessing, then fixed bilinear ridge and 8-epoch all-position neural retraining | COMPLETE 2026-10-07 21:37 UTC; independent cache parity max error 3.20e-6; 8 epochs completed. Context-3 relative errors: released 0.00831, corrected 0.00365, bilinear 0.06820. No planning conclusion (`results/lewm_kaggle/exp19_fit/`). |
+
+| lewm-pusht-planeval | Experiment 19: pinned official PushT evaluator, three predictors x seeds 42–45 x 100 episodes; paired successes and exact McNemar tests | Prepared 2026-10-08; fixed recipe, per-run recordings and provenance; verdict pending the twelve completed runs. |
 
 Install note for Kaggle: the `env` extra of stable-worldmodel does not build there (labmaze, box2d); the Two-rooms environment runs with `stable-worldmodel[train,format]` plus pygame, pymunk, shapely and opencv-python-headless.
 

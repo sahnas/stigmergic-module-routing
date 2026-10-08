@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "required_epochs": 8,
+  "completed_epochs": 8,
+  "neural_seconds": 2983.8969490670006,
+  "total_seconds": 3638.9629779909997,
+  "reload_max_abs": 0.0,
+  "context_errors": {
+    "bilinear": {
+      "context_1": 0.08201082204612808,
+      "context_2": 0.06798700804725956,
+      "context_3": 0.06819780023931367
+    },
+    "released": {
+      "context_1": 0.008033113334790105,
+      "context_2": 0.007916430737443931,
+      "context_3": 0.008310828332295737
+    },
+    "retrained_all_positions": {
+      "context_1": 0.0035480131528591507,
+      "context_2": 0.0034975896595642237,
+      "context_3": 0.003652588233962431
+    }
+  }
+}
