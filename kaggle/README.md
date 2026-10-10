@@ -41,3 +41,5 @@ Install note for Kaggle: the `env` extra of stable-worldmodel does not build the
 The README corrections were submitted upstream: https://github.com/lucas-maes/le-wm/pull/106 and
 https://github.com/galilai-group/stable-worldmodel/issues/339. Independent reproductions of LeWM already exist
 (arXiv 2608.10145 on Two-rooms, and the Qantara suite), which is why no replication report is planned here.
+
+| lewm-taskstate | Experiment 20: linear probe from the frozen embedding to the task state, then five-block open-loop rollout error in task-state coordinates for the three predictors, both tasks | H1 fails (Two-rooms ordering by state error: corrected network, bilinear, released; planning: bilinear first); H2 holds (block coordinates 3.2x worse than agent coordinates for the bilinear predictor on PushT) (`results/lewm_kaggle/taskstate.json`) |
