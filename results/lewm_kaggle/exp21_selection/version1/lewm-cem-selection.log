@@ -1,0 +1,145 @@
+[{"stream_name":"stdout","time":0.663917467,"data":"$ nvidia-smi --query-gpu=name,memory.total --format=csv,noheader\n"}
+,{"stream_name":"stdout","time":0.697696698,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":0.697723793,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":0.704583914,"data":"$ apt-get install -y -qq zstd libegl1 libgl1 ffmpeg\n"}
+,{"stream_name":"stdout","time":5.066781852,"data":"Selecting previously unselected package zstd.\r\n"}
+,{"stream_name":"stdout","time":5.607281595,"data":"(Reading database ... \r(Reading database ... 5%\r(Reading database ... 10%\r(Reading database ... 15%\r(Reading database ... 20%\r(Reading database ... 25%\r(Reading database ... 30%\r(Reading database ... 35%\r(Reading database ... 40%\r(Reading database ... 45%\r(Reading database ... 50%\r(Reading database ... 55%\r(Reading database ... 60%\r(Reading database ... 65%\r(Reading database ... 70%\r(Reading database ... 75%\r(Reading database ... 80%\r(Reading database ... 85%\r(Reading database ... 90%\r(Reading database ... 95%\r(Reading database ... 100%\r(Reading database ... 129802 files and directories currently installed.)\r\n"}
+,{"stream_name":"stdout","time":5.61175392,"data":"Preparing to unpack .../zstd_1.5.5+dfsg2-2build1.1_amd64.deb ...\r\n"}
+,{"stream_name":"stdout","time":5.621680896,"data":"Unpacking zstd (1.5.5+dfsg2-2build1.1) ...\r\n"}
+,{"stream_name":"stdout","time":5.761709728,"data":"Setting up zstd (1.5.5+dfsg2-2build1.1) ...\r\n"}
+,{"stream_name":"stdout","time":5.790613515,"data":"Processing triggers for man-db (2.12.0-4build2) ...\r\n"}
+,{"stream_name":"stdout","time":7.802009569,"data":"$ /usr/bin/python3 -m pip install -q stable-worldmodel[train,format]==0.1.1 stable-pretraining==0.1.8 transformers==4.57.6 hydra-core==1.3.2 pygame==2.6.1 pymunk==7.2.0 shapely==2.1.2 opencv-python-headless==4.13.0.92\n"}
+,{"stream_name":"stdout","time":10.385362771,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.2/59.2 kB 1.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":10.583610086,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.0/44.0 kB 2.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":11.97317782,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.0/45.0 kB 2.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.114054019,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 305.8/305.8 kB 7.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.184650401,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 23.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.356601297,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 108.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.397048544,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.5/154.5 kB 8.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.478060434,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 37.8 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.091140853,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.4/60.4 MB 32.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.136883093,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 23.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.878099026,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.2/75.2 MB 27.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.922308398,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 849.3/849.3 kB 39.8 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.960004042,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.7/56.7 kB 3.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.835049785,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.2/83.2 MB 23.8 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.936227475,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.1/9.1 MB 117.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.99291527,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 94.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.125889078,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.6/13.6 MB 108.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.637674383,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 MB 34.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.704638285,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.0/76.0 kB 4.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.744477682,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 2.9 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.779713727,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.8/70.8 kB 4.4 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.846520993,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.8/74.8 kB 4.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.923165675,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 406.3/406.3 kB 18.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stderr","time":49.232163417,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":49.232202143,"data":"gradio 6.26.0 requires huggingface-hub\u003c2.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":49.232206904,"data":"diffusers 0.40.0 requires huggingface-hub\u003c2.0,\u003e=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stdout","time":51.326480418,"data":"$ git clone --quiet --no-checkout https://github.com/lucas-maes/le-wm.git /kaggle/tmp/exp21/le-wm\n"}
+,{"stream_name":"stdout","time":51.847330811,"data":"$ git -C /kaggle/tmp/exp21/le-wm checkout --quiet --detach 8edfeb336732b5f3ce7b8b210d0ba370a09e2cac\n"}
+,{"stream_name":"stdout","time":66.427183754,"data":"CEM solve time: 0.0655 seconds\n"}
+,{"stream_name":"stdout","time":66.431482404,"data":"CEM solve time: 0.0044 seconds\n"}
+,{"stream_name":"stdout","time":66.436002542,"data":"CEM solve time: 0.0025 seconds\n"}
+,{"stream_name":"stdout","time":137.900746324,"data":"$ zstd -d -q /kaggle/tmp/exp21/download/pusht_expert_train.h5.zst -o /kaggle/tmp/exp21/stablewm/datasets/pusht_expert_train.h5\n"}
+,{"stream_name":"stdout","time":759.19050291,"data":"$ /usr/bin/python3 /kaggle/src/script.py --worker tworoom released mean 42 gate\n"}
+,{"stream_name":"stdout","time":774.880685707,"data":"[2026-10-11 18:39:14,678][datasets][INFO] - TensorFlow version 2.20.0 available.\n"}
+,{"stream_name":"stdout","time":774.882552022,"data":"[2026-10-11 18:39:14,680][datasets][INFO] - JAX version 0.11.1 available.\n"}
+,{"stream_name":"stdout","time":796.748094845,"data":"18:39:36 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)\n"}
+,{"stream_name":"stdout","time":798.83209236,"data":"[2026-10-11 18:39:38,630][root][INFO] - Cached 'action' from '/kaggle/tmp/exp21/stablewm/datasets/tworoom.h5'\n"}
+,{"stream_name":"stdout","time":800.787833247,"data":"[2026-10-11 18:39:40,585][root][INFO] - Cached 'proprio' from '/kaggle/tmp/exp21/stablewm/datasets/tworoom.h5'\n"}
+,{"stream_name":"stdout","time":802.726512313,"data":"18:39:42 | INFO  | utils.py    | Loading checkpoint from folder /kaggle/input/notebooks/hassanakaou/lewm-koopman-confirm/stablewm/checkpoints/models--quentinll--lewm-tworooms...\n"}
+,{"stream_name":"stdout","time":802.965799864,"data":"18:39:42 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}\n"}
+,{"stream_name":"stdout","time":808.681455824,"data":"670809 valid starting points found for evaluation.\n"}
+,{"stream_name":"stdout","time":808.685629102,"data":"[ 40456  58905  62732  70534  79445  82486  85124  86991  89844 118104\n"}
+,{"stream_name":"stdout","time":808.685652983,"data":" 119774 128897 142267 148163 152352 168241 174643 179380 185604 209132\n"}
+,{"stream_name":"stdout","time":808.685658966,"data":" 209418 220846 254935 265586 287709 300205 304240 326749 335368 337908\n"}
+,{"stream_name":"stdout","time":808.685663925,"data":" 341395 341680 357021 370688 378512 398878 400992 402787 404311 408514\n"}
+,{"stream_name":"stdout","time":808.685668319,"data":" 410622 414936 415015 426556 429958 432542 438270 458625 460950 472733\n"}
+,{"stream_name":"stdout","time":808.685672694,"data":" 484919 502314 503369 510783 519959 579941 581662 586419 592987 602828\n"}
+,{"stream_name":"stdout","time":808.685677249,"data":" 617003 624493 628772 629267 632427 642435 645208 645401 660928 677709\n"}
+,{"stream_name":"stdout","time":808.685682118,"data":" 684807 686114 698412 700084 701188 707342 712850 717006 719873 724032\n"}
+,{"stream_name":"stdout","time":808.685686543,"data":" 732875 741360 757855 762330 766653 767053 773491 775332 790619 790873\n"}
+,{"stream_name":"stdout","time":808.685691197,"data":" 817895 822791 827364 834135 849678 853535 865971 890953 893849 898294]\n"}
+,{"stream_name":"stdout","time":819.587054932,"data":"{\"event\": \"evaluation_started\", \"utc\": \"2026-10-11T18:39:59Z\", \"task\": \"tworoom\", \"model\": \"released\", \"selection\": \"mean\", \"seed\": 42, \"phase\": \"gate\", \"episodes\": 8}\n"}
+,{"stream_name":"stderr","time":819.808008462,"data":"/usr/local/lib/python3.13/dist-packages/gymnasium/utils/passive_env_checker.py:130: UserWarning: \u001b[33mWARN: The obs returned by the `reset()` method was expecting a numpy array, actual type: \u003cclass 'torch.Tensor'\u003e\u001b[0m\n"}
+,{"stream_name":"stderr","time":819.808064225,"data":"  logger.warn(\n"}
+,{"stream_name":"stderr","time":819.811560974,"data":"/usr/local/lib/python3.13/dist-packages/gymnasium/spaces/box.py:424: UserWarning: \u001b[33mWARN: Casting input x to numpy array.\u001b[0m\n"}
+,{"stream_name":"stderr","time":819.811593602,"data":"  gym.logger.warn(\"Casting input x to numpy array.\")\n"}
+,{"stream_name":"stdout","time":836.207050984,"data":"CEM solve time: 16.2860 seconds\n"}
+,{"stream_name":"stderr","time":836.306695854,"data":"Error executing job with overrides: ['policy=released', 'seed=42', 'eval.num_eval=100', 'output.filename=/kaggle/working/gate/tworoom/released_mean_seed42/official_results.txt', 'world.num_envs=8']\n"}
+,{"stream_name":"stderr","time":836.399475715,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":836.401555701,"data":"  File \"/kaggle/tmp/exp21/le-wm/eval.py\", line 144, in run\n"}
+,{"stream_name":"stderr","time":836.401578057,"data":"    metrics = world.evaluate(\n"}
+,{"stream_name":"stderr","time":836.401583748,"data":"        dataset=dataset,\n"}
+,{"stream_name":"stderr","time":836.40158858,"data":"    ...\u003c5 lines\u003e...\n"}
+,{"stream_name":"stderr","time":836.401593982,"data":"        video=results_path,\n"}
+,{"stream_name":"stderr","time":836.401598705,"data":"    )\n"}
+,{"stream_name":"stderr","time":836.401603816,"data":"  File \"/kaggle/src/script.py\", line 341, in evaluate\n"}
+,{"stream_name":"stderr","time":836.401608744,"data":"    result = original_evaluate(world, **kwargs)\n"}
+,{"stream_name":"stderr","time":836.40259616,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/world/world.py\", line 244, in evaluate\n"}
+,{"stream_name":"stderr","time":836.402617879,"data":"    return self._evaluate_from_dataset(\n"}
+,{"stream_name":"stderr","time":836.402628838,"data":"           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stderr","time":836.402632588,"data":"        dataset,\n"}
+,{"stream_name":"stderr","time":836.402635572,"data":"        ^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402638508,"data":"    ...\u003c6 lines\u003e...\n"}
+,{"stream_name":"stderr","time":836.402642343,"data":"        mode,\n"}
+,{"stream_name":"stderr","time":836.402661434,"data":"        ^^^^^\n"}
+,{"stream_name":"stderr","time":836.402672658,"data":"    )\n"}
+,{"stream_name":"stderr","time":836.402677906,"data":"    ^\n"}
+,{"stream_name":"stderr","time":836.402682902,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/world/world.py\", line 550, in _evaluate_from_dataset\n"}
+,{"stream_name":"stderr","time":836.402687778,"data":"    self._run(max_steps=eval_budget, mode=mode, on_step=on_step)\n"}
+,{"stream_name":"stderr","time":836.402692236,"data":"    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402696663,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/world/world.py\", line 365, in _run\n"}
+,{"stream_name":"stderr","time":836.402701336,"data":"    for env_idx, ep_count in self._run_iter(\n"}
+,{"stream_name":"stderr","time":836.402705602,"data":"                             ~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stderr","time":836.402709874,"data":"        episodes=episodes,\n"}
+,{"stream_name":"stderr","time":836.402714114,"data":"        ^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402718413,"data":"    ...\u003c4 lines\u003e...\n"}
+,{"stream_name":"stderr","time":836.402722857,"data":"        on_step=on_step,\n"}
+,{"stream_name":"stderr","time":836.402740286,"data":"        ^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402743977,"data":"    ):\n"}
+,{"stream_name":"stderr","time":836.402760149,"data":"    ^\n"}
+,{"stream_name":"stderr","time":836.402764552,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/world/world.py\", line 404, in _run_iter\n"}
+,{"stream_name":"stderr","time":836.402768954,"data":"    actions = self._get_actions()\n"}
+,{"stream_name":"stderr","time":836.402773316,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/world/world.py\", line 449, in _get_actions\n"}
+,{"stream_name":"stderr","time":836.402777692,"data":"    return self.policy.get_action(self.infos)\n"}
+,{"stream_name":"stderr","time":836.402781294,"data":"           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402784812,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/policy.py\", line 404, in get_action\n"}
+,{"stream_name":"stderr","time":836.402788622,"data":"    outputs = self.solver(sliced, init_action=sliced_init)\n"}
+,{"stream_name":"stderr","time":836.402792248,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/solver/cem.py\", line 93, in __call__\n"}
+,{"stream_name":"stderr","time":836.402796017,"data":"    return self.solve(*args, **kwargs)\n"}
+,{"stream_name":"stderr","time":836.402799566,"data":"           ~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402803015,"data":"  File \"/kaggle/src/script.py\", line 165, in solve\n"}
+,{"stream_name":"stderr","time":836.402806679,"data":"    inspect(info_dict, mean, best, torch.cat(recorder.elites), torch.cat(recorder.costs))\n"}
+,{"stream_name":"stderr","time":836.402810377,"data":"    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.40281399,"data":"  File \"/kaggle/src/script.py\", line 282, in inspect\n"}
+,{"stream_name":"stderr","time":836.402817625,"data":"    cost = solver.model.get_cost(local_info, torch.as_tensor(candidates, device=solver.device, dtype=solver.dtype)).detach().cpu().numpy()\n"}
+,{"stream_name":"stderr","time":836.402822274,"data":"           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":836.402826156,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/wm/lewm/lewm.py\", line 149, in get_cost\n"}
+,{"stream_name":"stderr","time":836.402830028,"data":"    cost = self.criterion(info_dict)\n"}
+,{"stream_name":"stderr","time":836.402839044,"data":"  File \"/usr/local/lib/python3.13/dist-packages/stable_worldmodel/wm/lewm/lewm.py\", line 115, in criterion\n"}
+,{"stream_name":"stderr","time":836.402842568,"data":"    goal_emb = goal_emb[..., -1:, :].expand_as(pred_emb)\n"}
+,{"stream_name":"stderr","time":836.402858616,"data":"RuntimeError: The expanded size of the tensor (4) must match the existing size (8) at non-singleton dimension 1.  Target sizes: [8, 4, 6, 192].  Tensor sizes: [8, 1, 192]\n"}
+,{"stream_name":"stderr","time":836.402863324,"data":"\n"}
+,{"stream_name":"stderr","time":836.402867387,"data":"Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\n"}
+,{"stream_name":"stderr","time":841.787056878,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":841.787087888,"data":"  File \"/kaggle/src/script.py\", line 531, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":841.787093935,"data":"    main()\n"}
+,{"stream_name":"stderr","time":841.787097662,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":841.787101222,"data":"  File \"/kaggle/src/script.py\", line 494, in main\n"}
+,{"stream_name":"stderr","time":841.787116214,"data":"    command([sys.executable, __file__, \"--worker\", task, model, \"mean\", \"42\", \"gate\"])\n"}
+,{"stream_name":"stderr","time":841.787120375,"data":"    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":841.787124358,"data":"  File \"/kaggle/src/script.py\", line 79, in command\n"}
+,{"stream_name":"stderr","time":841.787128248,"data":"    subprocess.run(list(map(str, args)), check=True)\n"}
+,{"stream_name":"stderr","time":841.787131748,"data":"    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":841.787135565,"data":"  File \"/usr/lib/python3.13/subprocess.py\", line 577, in run\n"}
+,{"stream_name":"stderr","time":841.787139348,"data":"    raise CalledProcessError(retcode, process.args,\n"}
+,{"stream_name":"stderr","time":841.787142556,"data":"                             output=stdout, stderr=stderr)\n"}
+,{"stream_name":"stderr","time":841.787146932,"data":"subprocess.CalledProcessError: Command '['/usr/bin/python3', '/kaggle/src/script.py', '--worker', 'tworoom', 'released', 'mean', '42', 'gate']' returned non-zero exit status 1.\n"}
+,{"stream_name":"stderr","time":844.576610643,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":844.576637252,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":844.808092861,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":844.808120895,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":845.599246669,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":846.23267411,"data":"[NbConvertApp] Writing 414298 bytes to __results__.html\n"}
+]

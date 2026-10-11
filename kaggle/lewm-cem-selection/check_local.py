@@ -15,7 +15,8 @@ from types import SimpleNamespace
 import torch
 import numpy as np
 from selection import (SOURCE_HASHES, FinalElites, attach_selection, effective_plan,
-                       expanded_info, make_bilinear_predictor, analyze, MODELS, SEEDS, TASKS)
+                       expanded_info, make_bilinear_predictor, analyze, MODELS, SEEDS, TASKS,
+                       check_diagnostic_scoring)
 
 
 def load_solver(package):
@@ -39,6 +40,8 @@ def load_solver(package):
 def main(package):
     from gymnasium.spaces import Box
     CEMSolver = load_solver(package)
+    LeWM = runpy.run_path(str(package / "wm/lewm/lewm.py"))["LeWM"]
+    diagnostic_check = check_diagnostic_scoring(LeWM)
 
     class ToyCost(torch.nn.Module):
         def __init__(self):
@@ -153,7 +156,7 @@ def main(package):
             pass
         else:
             raise AssertionError("Mismatched episode identities accepted")
-    print(json.dumps(dict(pass_=True, torch=torch.__version__, tests=[
+    print(json.dumps(dict(pass_=True, torch=torch.__version__, diagnostic_cost_path=diagnostic_check, tests=[
         "mean hook equals original returned actions bit for bit",
         "same candidate tensors, reported costs, variance and solver RNG in both selection modes",
         "best action comes from the final scored elite set, reset works across decisions and batches",

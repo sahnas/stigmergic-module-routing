@@ -1,0 +1,9 @@
+[
+  "/kaggle/tmp/exp21/le-wm/eval.py",
+  "--config-name=tworoom",
+  "policy=released",
+  "seed=42",
+  "eval.num_eval=100",
+  "output.filename=/kaggle/working/gate/tworoom/released_mean_seed42/official_results.txt",
+  "world.num_envs=8"
+]

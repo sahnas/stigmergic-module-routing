@@ -1,0 +1,48 @@
+{
+  "script_sha256": "945da2c68d5e5566e0175c40c578d7a72987423e4969a1d1b6e481d3ec83d619",
+  "upstream_revision": "8edfeb336732b5f3ce7b8b210d0ba370a09e2cac",
+  "official_eval_sha256": "6584f009b40550fa0df2f8dee22b9329fbfacdfaf74464aa4fd105f464795245",
+  "library_source_hashes": {
+    "solver/cem.py": "a6662e7f1f2c6ecaf0a8527255d531aa05ed583339aabdf2798d0206382ef51b",
+    "policy.py": "4967e7e3d5b20eb7a1d0b00e5d60fd701cce1c750ae7ec4a9b02529b9366db22",
+    "envs/two_room/env.py": "5e1d392de5b02472062dbe872aded67fd465fcc8f7eaa1c02a753b2fc31c61f0",
+    "envs/pusht/env.py": "3c4df51ed01ed034386c24961caa638f02b5c0e31c88fec727a9f1cd5808e203"
+  },
+  "input_hashes": {
+    "tworoom": {
+      "released": "566f223624ea4bfb39dbfe6ae731198dd6ea73b7b8919fed6b1ecafca810f7dd",
+      "retrained": "df94cb98551b9ed0b5ca54fb7477b9fd305faf277261fac04f8ba321f440a132",
+      "bilinear": "611f430358576046c1b6cbdbd52e94b9e6577e28872b9c02812f64c5d857d23f"
+    },
+    "pusht": {
+      "released": "48938400ae3464c9680731287f583a9cb516f55a8ec64ea13a91be47fb15b607",
+      "retrained": "9224779215c068aa4b7c68260fb0380e4e68958e347ec8d0cb08d1a6a55e5f23",
+      "bilinear": "fa06ecffd4f73ccd8ffa64e851dac38e9cf5f2f042b72c5998c4dc9a7ea8283e"
+    }
+  },
+  "gate_seed": 42,
+  "gate_episodes": 8,
+  "gate_threshold_normalized": 0.001,
+  "evaluation_seeds": [
+    43,
+    44,
+    45
+  ],
+  "episodes_per_condition": 100,
+  "planned_evaluations": 36,
+  "solver_budget_per_decision": 9000,
+  "diagnostic_candidates_per_decision": 4,
+  "selection_intervention": "Only output['actions'] after the last original CEM iteration",
+  "dataset_bytes": {
+    "pusht_expert_train.h5": 46300921856,
+    "tworoom.h5": 12775849984
+  },
+  "dataset_sha256": {
+    "pusht_expert_train.h5": "b6ebd9ac94bbe9e383f6e7a9cd92d74e9aa665ea57b758ed3717b0ee7df8d4fb",
+    "tworoom.h5": "129a36aa93ea0de488d2bcc876e396de9e3907bf66c6aae6394e542ef6a6d623"
+  },
+  "execution_mapping": {
+    "tworoom": "internal clamp [-1,1]",
+    "pusht": "identity, no added clamp"
+  }
+}

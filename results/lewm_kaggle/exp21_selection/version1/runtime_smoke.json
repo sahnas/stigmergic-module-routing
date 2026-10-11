@@ -1,0 +1,6 @@
+{
+  "pass_": true,
+  "torch": "2.11.0+cu128",
+  "mean_matches_original_exactly": true,
+  "candidates_and_solver_rng_identical": true
+}

@@ -25,3 +25,14 @@ it must never be presented as a scientific failure of the hypothesis.
 
 Registration and code are pushed before kernel submission. Results are
 pending until retrieval and verification, even if a job has been submitted.
+
+Kaggle version 1 stopped after its first search, in our extra diagnostic:
+the pinned LeWM criterion cannot broadcast eight different goal embeddings
+against four candidate plans in a single batch. The official solver uses
+batch size one. The diagnostic now also scores one row at a time, still
+four extra candidates per row after search in both conditions. The original
+search, selector, data, models, gate and analysis are unchanged. Local and
+Kaggle runtime checks now exercise the actual LeWM cost path with distinct
+synthetic goals and short contexts. The failed run is archived under
+[`version1`](../../results/lewm_kaggle/exp21_selection/version1/); it completed
+no episode evaluation and produced no scientific verdict.

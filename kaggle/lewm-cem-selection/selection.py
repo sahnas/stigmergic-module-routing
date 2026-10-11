@@ -193,6 +193,73 @@ def expanded_info(info, n, device):
     return result
 
 
+def score_diagnostic_plans(solver, info, candidates):
+    """Score four plans per row using the official solver's batch size of one.
+
+    LeWM 0.1.1 caches goal embeddings without an explicit candidate axis.
+    Its unchanged criterion broadcasts them correctly at batch size one,
+    as used by the official CEM configuration, but not across eight rows.
+    Each row gets a fresh info dict, just as in the original search.
+    """
+    import torch
+    assert candidates.shape[1] == 4
+    costs = []
+    with torch.inference_mode():
+        for row in range(len(candidates)):
+            row_info = {key: value[row:row + 1] for key, value in info.items()}
+            local_info = expanded_info(row_info, 4, solver.device)
+            plans = torch.as_tensor(candidates[row:row + 1], device=solver.device, dtype=solver.dtype)
+            cost = solver.model.get_cost(local_info, plans)
+            assert cost.shape == (1, 4)
+            costs.append(cost.detach().cpu())
+    return torch.cat(costs).numpy()
+
+
+def check_diagnostic_scoring(model_class):
+    """Exercise the pinned LeWM cost path on eight synthetic observations."""
+    import numpy as np
+    import torch
+    from types import SimpleNamespace
+
+    class Encoder(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.anchor = torch.nn.Parameter(torch.ones(1))
+
+        def forward(self, pixels, **unused):
+            return SimpleNamespace(last_hidden_state=pixels.unsqueeze(1) * self.anchor)
+
+    class Predictor(torch.nn.Module):
+        num_frames = 3
+
+        def forward(self, emb, act):
+            return emb + .1 * act.sum(-1, keepdim=True)
+
+    model = model_class(Encoder(), Predictor(), torch.nn.Identity()).eval()
+    solver = SimpleNamespace(model=model, device="cpu", dtype=torch.float32)
+    plans = torch.arange(8 * 4 * 5 * 10, dtype=torch.float32).reshape(8, 4, 5, 10) / 1000
+    for history in (1, 3):
+        info = dict(pixels=torch.arange(8 * history * 3, dtype=torch.float32).reshape(8, history, 3) / 100,
+                    goal=torch.arange(24, dtype=torch.float32).reshape(8, 1, 3) / 10,
+                    action=torch.zeros(8, history, 10))
+        saved = {key: value.clone() for key, value in info.items()}
+        before = torch.random.get_rng_state().clone()
+        actual = score_diagnostic_plans(solver, info, plans)
+        # Independent one-plan calls avoid both the original eight-row
+        # broadcast failure and any accidental mixing of different goals.
+        expected = np.zeros((8, 4), dtype=np.float32)
+        with torch.inference_mode():
+            for row in range(8):
+                for candidate in range(4):
+                    single_info = {key: value[row:row + 1].unsqueeze(1).clone() for key, value in saved.items()}
+                    expected[row, candidate] = model.get_cost(single_info, plans[row:row + 1, candidate:candidate + 1]).item()
+        np.testing.assert_allclose(actual, expected, rtol=1e-6, atol=1e-6)
+        assert set(info) == set(saved) and all(torch.equal(info[key], value) for key, value in saved.items())
+        assert torch.equal(before, torch.random.get_rng_state())
+    return dict(eight_rows_with_distinct_goals=True, contexts_one_and_three=True,
+                matches_independent_single_plan_scores=True, original_info_and_rng_unchanged=True)
+
+
 def runtime_smoke():
     """Check the hook against the actually installed solver, before research data."""
     import numpy as np
@@ -226,8 +293,11 @@ def runtime_smoke():
                for x, y, z in zip(*(c.candidates for c in costs)))
     assert len({len(c.candidates) for c in costs}) == 1
     assert all(torch.equal(solvers[0].torch_gen.get_state(), s.torch_gen.get_state()) for s in solvers[1:])
+    from stable_worldmodel.wm.lewm.lewm import LeWM
+    diagnostic_check = check_diagnostic_scoring(LeWM)
     save_json(OUT / "runtime_smoke.json", dict(pass_=True, torch=torch.__version__,
-              mean_matches_original_exactly=True, candidates_and_solver_rng_identical=True))
+              mean_matches_original_exactly=True, candidates_and_solver_rng_identical=True,
+              diagnostic_cost_path=diagnostic_check))
 
 
 def worker(task, model_name, selection, seed, phase):
@@ -274,12 +344,10 @@ def worker(task, model_name, selection, seed, phase):
             physical_mean, effective_mean, norm_effective_mean = effective_plan(task, mean_np, scaler)
             physical_best, effective_best, norm_effective_best = effective_plan(task, best_np, scaler)
             candidates = np.stack([mean_np, best_np, norm_effective_mean, norm_effective_best], 1)
-            local_info = expanded_info(info, 4, solver.device)
             # This is logging only: four extra predictions shared by both modes,
             # after the complete 9,000-candidate search and with a fresh info dict.
             generator_state = solver.torch_gen.get_state().clone()
-            with torch.inference_mode():
-                cost = solver.model.get_cost(local_info, torch.as_tensor(candidates, device=solver.device, dtype=solver.dtype)).detach().cpu().numpy()
+            cost = score_diagnostic_plans(solver, info, candidates)
             assert torch.equal(generator_state, solver.torch_gen.get_state())
             index = len(calls)
             calls.append(dict(index=index, rows=len(mean), real_context=int(info["pixels"].shape[1]),

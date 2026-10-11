@@ -1,0 +1,1 @@
+{"event": "evaluation_started", "utc": "2026-10-11T18:39:59Z", "task": "tworoom", "model": "released", "selection": "mean", "seed": 42, "phase": "gate", "episodes": 8}
