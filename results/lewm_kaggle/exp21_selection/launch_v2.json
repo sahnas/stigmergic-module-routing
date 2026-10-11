@@ -1,0 +1,19 @@
+{
+  "experiment": 21,
+  "kernel": "hassanakaou/lewm-cem-selection",
+  "kernel_version": 2,
+  "url": "https://www.kaggle.com/code/hassanakaou/lewm-cem-selection",
+  "protocol_commit": "053cc8297117bc66b6a77ed0b391892b50c3f7bb",
+  "submitted_from_commit": "baea7e5c0672602bec24e9df2f0de7dc8070122d",
+  "submission_accepted": true,
+  "status": "RUNNING",
+  "status_verified_utc": "2026-10-11T18:57:46Z",
+  "committed_script_sha256": "c68e26ed084d1467c8b448a6fdeebe59190fddb756ac552dffea5b15701997ed",
+  "pulled_submitted_script_sha256": "c68e26ed084d1467c8b448a6fdeebe59190fddb756ac552dffea5b15701997ed",
+  "submitted_source_matches_commit": true,
+  "change_from_version1": "Batch supplemental cost diagnostic one row at a time, as in official solver; add actual LeWM cost-path plumbing checks",
+  "protocol_unchanged": true,
+  "prior_incomplete_run": "version1/",
+  "research_results_retrieved": false,
+  "note": "Dated launch/status observation only. Await runtime_smoke, gate.json and complete.json, or failure.json; no scientific verdict."
+}

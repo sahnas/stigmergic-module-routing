@@ -16,6 +16,12 @@ There is no completed episode evaluation, gate verdict or full comparison.
 The correction only batches the extra diagnostic by individual row; the
 preregistered intervention and criteria are unchanged.
 
+Kaggle version 2 was accepted from the pushed correction commit. Its source
+was pulled back and matches the committed bytes exactly. Status was
+`RUNNING` when checked on 2026-10-11 at 18:57 UTC, recorded in
+[`launch_v2.json`](launch_v2.json). This is a dated observation; no version-2
+gate or evaluation output has been retrieved yet.
+
 When outputs are available, verify the source and frozen-input manifests,
 runtime smoke, task pairing, effective controls and completion status before
 reporting the feasibility gate or the conditional full comparison.
