@@ -1,6 +1,6 @@
 {
   "id": "hassanakaou/lewm-cem-selection",
-  "title": "LeWM final CEM selection - preregistered experiment 21",
+  "title": "lewm-cem-selection",
   "code_file": "selection.py",
   "language": "python",
   "kernel_type": "script",
