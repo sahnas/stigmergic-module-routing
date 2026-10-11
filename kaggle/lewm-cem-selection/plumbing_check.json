@@ -1,0 +1,22 @@
+{
+  "pass_": true,
+  "runtime": "CPU Torch 2.6.0+cpu",
+  "command": "python check_local.py --package /tmp/pusht-release/source/stable_worldmodel",
+  "scope": "Synthetic costs and outcomes only; no research episode",
+  "checks": [
+    "mean hook bit-for-bit equality with the original solver",
+    "identical candidate tensors, costs, variance and solver RNG for both modes",
+    "best output belongs to final elites; multiple batches and callback reset",
+    "four post-search diagnostic plans preserve solver RNG, original info and returned plan",
+    "native TwoRoom clamp distinguished from PushT identity",
+    "bilinear features and all short contexts",
+    "paired interaction analysis and mismatch rejection"
+  ],
+  "source_sha256": {
+    "selection.py": "945da2c68d5e5566e0175c40c578d7a72987423e4969a1d1b6e481d3ec83d619",
+    "check_local.py": "81d88d40d20eec54c63b9d1dc6b184aff1425c79b5466620c290cfe3ee64d4b8"
+  },
+  "tworoom_encoder_projector_exact_equal": true,
+  "shared_parameter_keys": 207,
+  "kaggle_runtime_check": "pending"
+}

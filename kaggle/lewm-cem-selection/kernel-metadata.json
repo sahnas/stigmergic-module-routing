@@ -1,0 +1,21 @@
+{
+  "id": "hassanakaou/lewm-cem-selection",
+  "title": "LeWM final CEM selection - preregistered experiment 21",
+  "code_file": "selection.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "hassanakaou/lewm-retrain-v2",
+    "hassanakaou/lewm-koopman-confirm",
+    "hassanakaou/lewm-data-tworoom",
+    "hassanakaou/lewm-pusht-fit"
+  ],
+  "model_sources": []
+}

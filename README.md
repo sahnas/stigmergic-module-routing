@@ -4,6 +4,8 @@ Gradient-free coordination of learning modules through evaporating trails, anoma
 
 A manuscript draft covering the whole study is in [`paper/`](paper/) (LaTeX source, bibliography and compiled PDF): the toy experiments, the preservation and modular JEPA experiments, the continual pilot on LeWorldModel's frozen representation, the diagnosed training defect, and the bilinear planning comparison on Two-rooms and PushT. It is a working draft, kept in step with the results below; selected numerical claims are checked against the raw results by `paper/check_numbers.py` (experiments 12 to 16 and most earlier intervals and p-values are not covered). `tools/analyze_exp19.py` additionally checks all PushT episode outcomes, paired tests and provenance and generates its manuscript tables. Earlier draft states are tagged `v1-draft` and `v2-draft`.
 
+A bounded follow-up is registered in [experiment 21](preregistrations/21_cem_final_selection.md): retain the existing three predictors and CEM search, but compare returning the final elite mean with returning its best scored candidate. A fixed feasibility gate precedes the paired TwoRoom/PushT evaluations. This tests a predictor/planner interaction; results are pending and no model is retrained.
+
 ## Summary
 
 Nineteen numbered preregistered experiments, from a synthetic compositional world to the released LeWorldModel, on the idea that small learning modules could coordinate through stigmergic traces (reinforced by use, evaporated when solicited) and recruit the least committed module when one fails. What held, what did not, and what was found on the way:
