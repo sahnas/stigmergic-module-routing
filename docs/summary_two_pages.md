@@ -8,7 +8,7 @@ On LeWorldModel's frozen encoder, when does a predictor fitted by ridge least sq
 
 ## Protocol
 
-Released LeWorldModel encoder and projector, frozen (Two-rooms revision 77adaae0, PushT revision 22b330c2); fp32 caches of the embeddings of both datasets, parity with `model.encode` checked. Three predictors per task on the same encoder: the released predictor; a network with the released architecture retrained with the official loss (8 epochs on the cache, one training per task); a bilinear predictor fitted once by ridge least squares (lambda 1e-2 N, 2,507 coefficients per output dimension, one minute). Evaluation: the authors' `eval.py` unchanged (commit 8edfeb3), horizon 5 blocks of 5 actions, 100 episodes per evaluation seed, seeds 42 to 45, per-episode successes archived, exact McNemar tests on paired episodes. Seed 42 was exploratory on Two-rooms; seeds 43 to 45 were preregistered before any run, as was the PushT protocol and its primary criterion.
+Released LeWorldModel encoder and projector, frozen (Two-rooms revision 77adaae0, PushT revision 22b330c2); fp32 caches of the embeddings of both datasets, parity with `model.encode` checked. Three predictor types per task, with task-specific weights, on that task's released encoder: the released predictor; a network with the released architecture retrained with the official loss (8 epochs on the cache, one training per task); a bilinear predictor fitted once by ridge least squares (lambda 1e-2 N, 2,507 coefficients per output dimension; the PushT fit took 131.5 seconds). Evaluation: the authors' `eval.py` unchanged (commit 8edfeb3), horizon 5 blocks of 5 actions, 100 episodes per evaluation seed, seeds 42 to 45, per-episode successes archived, exact McNemar tests on paired episodes. Seed 42 was exploratory on Two-rooms; seeds 43 to 45 were preregistered before any run, as was the PushT protocol and its primary criterion.
 
 ## Results
 
@@ -20,15 +20,15 @@ Released LeWorldModel encoder and projector, frozen (Two-rooms revision 77adaae0
 | retrained, official loss | 0.005 | 84 | 85 | 89 | 81 |
 | bilinear | 0.69 | 97 | 99 | 100 | 96 |
 
-The bilinear predictor is above both networks on all four evaluation seeds, with one training per predictor; discordant episodes against the retrained network 15/2, 14/0, 11/0, 16/1 (p <= 0.002 per seed). Removing the bilinear state-action terms gives 57 % on seed 42; removing the history changes little (96 %); ridge x10 or /10 changes nothing. This is a repetition across evaluation seeds of one fit, not a measure of variability across trainings.
+The bilinear predictor is above both networks on all four evaluation seeds, with one training per predictor; discordant episodes against the retrained network 15/2, 14/0, 11/0, 16/1 (exact two-sided McNemar p < 0.003 on each seed). Removing the bilinear state-action terms gives 57 % on seed 42; removing the history changes little (96 %); ridge x10 or /10 changes success by at most one percentage point on that seed (96 and 97 against 97). This is a repetition across evaluation seeds of one fit, not a measure of variability across trainings.
 
-**PushT (experiment 19, preregistered).** The same recipe fails: bilinear 35, 40, 39, 36 against released 89, 86, 89, 85 and retrained 93, 94, 91, 89. The primary criterion (strictly more successes than the released predictor on each of seeds 43 to 45) fails on every seed; this is a collapse, not a tie at the ceiling. Descriptively, the retrained network scores above the released one on all four PushT seeds (87.25 vs 91.75 on average); on Two-rooms the two are indistinguishable.
+**PushT (experiment 19, preregistered).** The same recipe fails: bilinear 35, 40, 39, 36 against released 89, 86, 89, 85 and retrained 93, 94, 91, 89. The primary criterion (strictly more successes than the released predictor on each of seeds 43 to 45) fails on every seed; this is a collapse, not a tie at the ceiling. Descriptively, the retrained network scores above the released one on all four PushT seeds (91.75 % vs 87.25 % on average); on Two-rooms the two have similar observed success rates.
 
-**What does not explain the Two-rooms advantage.**
-- Average latent error does not rank the three predictors on both tasks (reversed on Two-rooms, aligned on PushT).
-- Error restricted to the task state, through a linear probe with held-out R2 above 0.9 on every coordinate (experiment 20, preregistered), ranks them on PushT but not on Two-rooms, where the retrained network predicts the agent's position best (0.012 vs 0.048 for the bilinear predictor) and plans worst. This tested a measure, not a mechanism.
-- The final selection of the cross-entropy solver (elite mean vs best final candidate; experiment 21, preregistered, 36 paired evaluations, 3,600 episodes) changes the bilinear-minus-retrained gap by -1, 0 and +1 points on the three seeds, against a 5-point criterion. This weakens one precise explanation; it does not rule out other model-planner interactions.
-- An earlier "exploitation" reading (27-fold optimism of the solver's chosen plan) was mostly an artefact of comparing the predicted cost of unclipped actions with the executed clipped plan; after clipping, ratios are 0.8 to 1.5 for all three predictors.
+**Diagnostics completed and their scope.**
+- Average latent error does not match the planning ranking on Two-rooms (it does on PushT).
+- Error restricted to the task state, through a linear probe with held-out R2 above 0.9 on every coordinate (experiment 20, preregistered), matches the planning ranking on PushT but not on Two-rooms, where the retrained network has the lowest measured task-state prediction error (0.012 vs 0.048 for the bilinear predictor) but lower planning success than the bilinear predictor. This tested a measure, not a mechanism.
+- The final selection of the cross-entropy solver (elite mean vs best final candidate; experiment 21, preregistered, 36 paired evaluations, 3,600 episodes) reduces the bilinear-minus-retrained gap by -1, 0 and +1 points on the three seeds, against a preregistered criterion of a reduction of at least 5 points on each seed. This weakens one precise explanation; it does not rule out other model-planner interactions.
+- An earlier "exploitation" reading (a 27.5-fold optimism of the solver's chosen plan, measured on the defective retrained checkpoint) is no longer relied on. A later action-bounding control on the released, corrected and bilinear predictors showed that comparing predictions for unclipped actions with clipped executions substantially inflated apparent optimism (the corrected network's ratio fell from about 18.1 to 1.45 after clipping). This control did not re-evaluate the defective checkpoint behind the earlier 27.5-fold ratio.
 
 ## Corrections made along the way
 
@@ -36,10 +36,10 @@ The retraining recipe (last-position loss) and the sentence "the obvious causes 
 
 ## Limits
 
-Two tasks, one encoder, one fit per predictor, four evaluation seeds. The mechanism behind the Two-rooms advantage is unknown. Nothing is claimed about bilinear dynamics in general, about other encoders, or about what makes PushT different.
+Two tasks, one released encoder per task (shared by that task's three predictors), one fit per predictor, four evaluation seeds. Planning starts and goals are sampled from the full datasets, following the official evaluator, rather than restricted to episodes held out from predictor fitting; the prediction errors are measured on held-out episodes. The mechanism behind the Two-rooms advantage is unknown. Nothing is claimed about bilinear dynamics in general, about other encoders, or about what makes PushT different.
 
 ## The question we would ask
 
-Which diagnostic would you run to understand a ranking that reverses between Two-rooms and PushT for the same three predictors on the same encoder family, given that neither average latent error, task-state error nor the solver's final selection accounts for it?
+Which controlled diagnostic would you run next to distinguish explanations for why the bilinear predictor outperforms both neural baselines on Two-rooms but underperforms them on PushT, under these fixed recipes and task-specific released encoders?
 
 Repository: https://github.com/sahnas/stigmergic-module-routing (preregistrations in `preregistrations/18` to `21`, results in `results/lewm_kaggle/`, kernels in `kaggle/`).
