@@ -1,0 +1,50 @@
+[
+  {
+    "episode_id": 855,
+    "start_step": 38,
+    "goal_step": 63,
+    "success": true
+  },
+  {
+    "episode_id": 1235,
+    "start_step": 33,
+    "goal_step": 58,
+    "success": true
+  },
+  {
+    "episode_id": 1316,
+    "start_step": 126,
+    "goal_step": 151,
+    "success": true
+  },
+  {
+    "episode_id": 1454,
+    "start_step": 63,
+    "goal_step": 88,
+    "success": true
+  },
+  {
+    "episode_id": 1639,
+    "start_step": 35,
+    "goal_step": 60,
+    "success": true
+  },
+  {
+    "episode_id": 1694,
+    "start_step": 54,
+    "goal_step": 79,
+    "success": true
+  },
+  {
+    "episode_id": 1761,
+    "start_step": 15,
+    "goal_step": 40,
+    "success": true
+  },
+  {
+    "episode_id": 1820,
+    "start_step": 8,
+    "goal_step": 33,
+    "success": false
+  }
+]

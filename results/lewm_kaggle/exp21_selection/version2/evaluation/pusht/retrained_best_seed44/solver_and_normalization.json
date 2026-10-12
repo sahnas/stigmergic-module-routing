@@ -1,0 +1,24 @@
+{
+  "action_mean": [
+    -0.007812564379916172,
+    0.006860687229453032
+  ],
+  "action_scale": [
+    0.20846744284501714,
+    0.20674862637362224
+  ],
+  "task": "pusht",
+  "model": "retrained",
+  "selection": "best",
+  "seed": 44,
+  "horizon": 5,
+  "receding_horizon": 5,
+  "action_block": 5,
+  "num_samples": 300,
+  "iterations": 30,
+  "elites": 30,
+  "batch_size": 1,
+  "search_candidates_per_decision": 9000,
+  "diagnostic_candidates_per_decision": 4,
+  "execution_mapping": "identity"
+}

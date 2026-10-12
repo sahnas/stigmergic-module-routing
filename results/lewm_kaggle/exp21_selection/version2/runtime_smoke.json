@@ -1,0 +1,12 @@
+{
+  "pass_": true,
+  "torch": "2.11.0+cu128",
+  "mean_matches_original_exactly": true,
+  "candidates_and_solver_rng_identical": true,
+  "diagnostic_cost_path": {
+    "eight_rows_with_distinct_goals": true,
+    "contexts_one_and_three": true,
+    "matches_independent_single_plan_scores": true,
+    "original_info_and_rng_unchanged": true
+  }
+}

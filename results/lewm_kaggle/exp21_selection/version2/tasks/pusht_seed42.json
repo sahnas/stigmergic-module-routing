@@ -1,0 +1,502 @@
+[
+  {
+    "episode_id": 855,
+    "start_step": 38,
+    "goal_step": 63
+  },
+  {
+    "episode_id": 1235,
+    "start_step": 33,
+    "goal_step": 58
+  },
+  {
+    "episode_id": 1316,
+    "start_step": 126,
+    "goal_step": 151
+  },
+  {
+    "episode_id": 1454,
+    "start_step": 63,
+    "goal_step": 88
+  },
+  {
+    "episode_id": 1639,
+    "start_step": 35,
+    "goal_step": 60
+  },
+  {
+    "episode_id": 1694,
+    "start_step": 54,
+    "goal_step": 79
+  },
+  {
+    "episode_id": 1761,
+    "start_step": 15,
+    "goal_step": 40
+  },
+  {
+    "episode_id": 1820,
+    "start_step": 8,
+    "goal_step": 33
+  },
+  {
+    "episode_id": 1918,
+    "start_step": 32,
+    "goal_step": 57
+  },
+  {
+    "episode_id": 2635,
+    "start_step": 108,
+    "goal_step": 133
+  },
+  {
+    "episode_id": 2665,
+    "start_step": 15,
+    "goal_step": 40
+  },
+  {
+    "episode_id": 2860,
+    "start_step": 57,
+    "goal_step": 82
+  },
+  {
+    "episode_id": 3015,
+    "start_step": 81,
+    "goal_step": 106
+  },
+  {
+    "episode_id": 3110,
+    "start_step": 93,
+    "goal_step": 118
+  },
+  {
+    "episode_id": 3184,
+    "start_step": 107,
+    "goal_step": 132
+  },
+  {
+    "episode_id": 3516,
+    "start_step": 71,
+    "goal_step": 96
+  },
+  {
+    "episode_id": 3646,
+    "start_step": 27,
+    "goal_step": 52
+  },
+  {
+    "episode_id": 3726,
+    "start_step": 4,
+    "goal_step": 29
+  },
+  {
+    "episode_id": 3838,
+    "start_step": 123,
+    "goal_step": 148
+  },
+  {
+    "episode_id": 4288,
+    "start_step": 30,
+    "goal_step": 55
+  },
+  {
+    "episode_id": 4299,
+    "start_step": 9,
+    "goal_step": 34
+  },
+  {
+    "episode_id": 4541,
+    "start_step": 75,
+    "goal_step": 100
+  },
+  {
+    "episode_id": 5123,
+    "start_step": 112,
+    "goal_step": 137
+  },
+  {
+    "episode_id": 5303,
+    "start_step": 30,
+    "goal_step": 55
+  },
+  {
+    "episode_id": 5865,
+    "start_step": 66,
+    "goal_step": 91
+  },
+  {
+    "episode_id": 6097,
+    "start_step": 12,
+    "goal_step": 37
+  },
+  {
+    "episode_id": 6153,
+    "start_step": 67,
+    "goal_step": 92
+  },
+  {
+    "episode_id": 6651,
+    "start_step": 31,
+    "goal_step": 56
+  },
+  {
+    "episode_id": 6874,
+    "start_step": 73,
+    "goal_step": 98
+  },
+  {
+    "episode_id": 6915,
+    "start_step": 109,
+    "goal_step": 134
+  },
+  {
+    "episode_id": 6975,
+    "start_step": 71,
+    "goal_step": 96
+  },
+  {
+    "episode_id": 6983,
+    "start_step": 46,
+    "goal_step": 71
+  },
+  {
+    "episode_id": 7326,
+    "start_step": 85,
+    "goal_step": 110
+  },
+  {
+    "episode_id": 7572,
+    "start_step": 96,
+    "goal_step": 121
+  },
+  {
+    "episode_id": 7763,
+    "start_step": 19,
+    "goal_step": 44
+  },
+  {
+    "episode_id": 8234,
+    "start_step": 125,
+    "goal_step": 150
+  },
+  {
+    "episode_id": 8265,
+    "start_step": 31,
+    "goal_step": 56
+  },
+  {
+    "episode_id": 8291,
+    "start_step": 38,
+    "goal_step": 63
+  },
+  {
+    "episode_id": 8313,
+    "start_step": 108,
+    "goal_step": 133
+  },
+  {
+    "episode_id": 8373,
+    "start_step": 79,
+    "goal_step": 104
+  },
+  {
+    "episode_id": 8408,
+    "start_step": 67,
+    "goal_step": 92
+  },
+  {
+    "episode_id": 8486,
+    "start_step": 15,
+    "goal_step": 40
+  },
+  {
+    "episode_id": 8487,
+    "start_step": 77,
+    "goal_step": 102
+  },
+  {
+    "episode_id": 8798,
+    "start_step": 90,
+    "goal_step": 115
+  },
+  {
+    "episode_id": 8848,
+    "start_step": 49,
+    "goal_step": 74
+  },
+  {
+    "episode_id": 8885,
+    "start_step": 103,
+    "goal_step": 128
+  },
+  {
+    "episode_id": 8977,
+    "start_step": 51,
+    "goal_step": 76
+  },
+  {
+    "episode_id": 9548,
+    "start_step": 4,
+    "goal_step": 29
+  },
+  {
+    "episode_id": 9591,
+    "start_step": 1,
+    "goal_step": 26
+  },
+  {
+    "episode_id": 9864,
+    "start_step": 24,
+    "goal_step": 49
+  },
+  {
+    "episode_id": 10117,
+    "start_step": 109,
+    "goal_step": 134
+  },
+  {
+    "episode_id": 10378,
+    "start_step": 1,
+    "goal_step": 26
+  },
+  {
+    "episode_id": 10396,
+    "start_step": 42,
+    "goal_step": 67
+  },
+  {
+    "episode_id": 10489,
+    "start_step": 5,
+    "goal_step": 30
+  },
+  {
+    "episode_id": 10698,
+    "start_step": 124,
+    "goal_step": 149
+  },
+  {
+    "episode_id": 11739,
+    "start_step": 70,
+    "goal_step": 95
+  },
+  {
+    "episode_id": 11774,
+    "start_step": 94,
+    "goal_step": 119
+  },
+  {
+    "episode_id": 11928,
+    "start_step": 59,
+    "goal_step": 84
+  },
+  {
+    "episode_id": 12047,
+    "start_step": 63,
+    "goal_step": 88
+  },
+  {
+    "episode_id": 12221,
+    "start_step": 13,
+    "goal_step": 38
+  },
+  {
+    "episode_id": 12473,
+    "start_step": 7,
+    "goal_step": 32
+  },
+  {
+    "episode_id": 12591,
+    "start_step": 121,
+    "goal_step": 146
+  },
+  {
+    "episode_id": 12708,
+    "start_step": 18,
+    "goal_step": 43
+  },
+  {
+    "episode_id": 12729,
+    "start_step": 87,
+    "goal_step": 112
+  },
+  {
+    "episode_id": 12780,
+    "start_step": 32,
+    "goal_step": 57
+  },
+  {
+    "episode_id": 12960,
+    "start_step": 78,
+    "goal_step": 103
+  },
+  {
+    "episode_id": 13023,
+    "start_step": 67,
+    "goal_step": 92
+  },
+  {
+    "episode_id": 13028,
+    "start_step": 84,
+    "goal_step": 109
+  },
+  {
+    "episode_id": 13303,
+    "start_step": 36,
+    "goal_step": 61
+  },
+  {
+    "episode_id": 13585,
+    "start_step": 91,
+    "goal_step": 116
+  },
+  {
+    "episode_id": 13734,
+    "start_step": 26,
+    "goal_step": 51
+  },
+  {
+    "episode_id": 13796,
+    "start_step": 24,
+    "goal_step": 49
+  },
+  {
+    "episode_id": 14033,
+    "start_step": 49,
+    "goal_step": 74
+  },
+  {
+    "episode_id": 14075,
+    "start_step": 17,
+    "goal_step": 42
+  },
+  {
+    "episode_id": 14107,
+    "start_step": 67,
+    "goal_step": 92
+  },
+  {
+    "episode_id": 14205,
+    "start_step": 79,
+    "goal_step": 104
+  },
+  {
+    "episode_id": 14326,
+    "start_step": 56,
+    "goal_step": 81
+  },
+  {
+    "episode_id": 14432,
+    "start_step": 8,
+    "goal_step": 33
+  },
+  {
+    "episode_id": 14474,
+    "start_step": 59,
+    "goal_step": 84
+  },
+  {
+    "episode_id": 14526,
+    "start_step": 87,
+    "goal_step": 112
+  },
+  {
+    "episode_id": 14686,
+    "start_step": 42,
+    "goal_step": 67
+  },
+  {
+    "episode_id": 14929,
+    "start_step": 20,
+    "goal_step": 45
+  },
+  {
+    "episode_id": 15277,
+    "start_step": 1,
+    "goal_step": 26
+  },
+  {
+    "episode_id": 15434,
+    "start_step": 23,
+    "goal_step": 48
+  },
+  {
+    "episode_id": 15589,
+    "start_step": 6,
+    "goal_step": 31
+  },
+  {
+    "episode_id": 15598,
+    "start_step": 10,
+    "goal_step": 35
+  },
+  {
+    "episode_id": 15700,
+    "start_step": 171,
+    "goal_step": 196
+  },
+  {
+    "episode_id": 15721,
+    "start_step": 87,
+    "goal_step": 112
+  },
+  {
+    "episode_id": 16015,
+    "start_step": 94,
+    "goal_step": 119
+  },
+  {
+    "episode_id": 16019,
+    "start_step": 29,
+    "goal_step": 54
+  },
+  {
+    "episode_id": 16399,
+    "start_step": 31,
+    "goal_step": 56
+  },
+  {
+    "episode_id": 16531,
+    "start_step": 62,
+    "goal_step": 87
+  },
+  {
+    "episode_id": 16637,
+    "start_step": 6,
+    "goal_step": 31
+  },
+  {
+    "episode_id": 16756,
+    "start_step": 24,
+    "goal_step": 49
+  },
+  {
+    "episode_id": 17185,
+    "start_step": 55,
+    "goal_step": 80
+  },
+  {
+    "episode_id": 17263,
+    "start_step": 64,
+    "goal_step": 89
+  },
+  {
+    "episode_id": 17457,
+    "start_step": 1,
+    "goal_step": 26
+  },
+  {
+    "episode_id": 17885,
+    "start_step": 43,
+    "goal_step": 68
+  },
+  {
+    "episode_id": 17938,
+    "start_step": 103,
+    "goal_step": 128
+  },
+  {
+    "episode_id": 18053,
+    "start_step": 36,
+    "goal_step": 61
+  }
+]

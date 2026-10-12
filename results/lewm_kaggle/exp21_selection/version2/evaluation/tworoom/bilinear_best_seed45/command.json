@@ -1,0 +1,8 @@
+[
+  "/kaggle/tmp/exp21/le-wm/eval.py",
+  "--config-name=tworoom",
+  "policy=bilinear",
+  "seed=45",
+  "eval.num_eval=100",
+  "output.filename=/kaggle/working/evaluation/tworoom/bilinear_best_seed45/official_results.txt"
+]

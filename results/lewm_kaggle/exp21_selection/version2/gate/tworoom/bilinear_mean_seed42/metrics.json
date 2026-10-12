@@ -1,0 +1,19 @@
+{
+  "successes": 8,
+  "episodes": 8,
+  "elapsed_seconds": 4.081042852999417,
+  "metrics": {
+    "success_rate": 100.0,
+    "episode_successes": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "seeds": null
+  }
+}

@@ -19,7 +19,7 @@
   },
   "tworoom_encoder_projector_exact_equal": true,
   "shared_parameter_keys": 207,
-  "kaggle_runtime_check": "Version 1 passed original solver smoke but diagnostic failed; corrected runtime check pending version 2",
+  "kaggle_runtime_check": "Passed on Kaggle version 2, Torch 2.11.0+cu128; archived in results/lewm_kaggle/exp21_selection/version2/runtime_smoke.json. Version 1 failure is retained separately.",
   "diagnostic_cost_path": {
     "eight_rows_with_distinct_goals": true,
     "contexts_one_and_three": true,

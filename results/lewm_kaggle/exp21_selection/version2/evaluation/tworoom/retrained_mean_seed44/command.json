@@ -1,0 +1,8 @@
+[
+  "/kaggle/tmp/exp21/le-wm/eval.py",
+  "--config-name=tworoom",
+  "policy=retrained",
+  "seed=44",
+  "eval.num_eval=100",
+  "output.filename=/kaggle/working/evaluation/tworoom/retrained_mean_seed44/official_results.txt"
+]

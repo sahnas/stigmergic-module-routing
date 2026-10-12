@@ -1,0 +1,24 @@
+{
+  "action_mean": [
+    0.0030934159554243212,
+    -0.05298253984909538
+  ],
+  "action_scale": [
+    0.867547357428919,
+    0.8686383074906906
+  ],
+  "task": "tworoom",
+  "model": "retrained",
+  "selection": "best",
+  "seed": 43,
+  "horizon": 5,
+  "receding_horizon": 5,
+  "action_block": 5,
+  "num_samples": 300,
+  "iterations": 30,
+  "elites": 30,
+  "batch_size": 1,
+  "search_candidates_per_decision": 9000,
+  "diagnostic_candidates_per_decision": 4,
+  "execution_mapping": "clamp [-1,1]"
+}
