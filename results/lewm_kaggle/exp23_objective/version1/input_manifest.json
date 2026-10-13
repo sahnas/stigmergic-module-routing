@@ -1,0 +1,32 @@
+{
+  "released": "/kaggle/input/notebooks/hassanakaou/lewm-embed/stablewm/checkpoints/models--quentinll--lewm-tworooms",
+  "retrained": "/kaggle/input/notebooks/hassanakaou/lewm-retrain-v2/stablewm/checkpoints/tworoom_retrained_v2",
+  "bilinear": "/kaggle/input/notebooks/hassanakaou/lewm-koopman-confirm/koopman_bilinear.pt",
+  "dataset": "/kaggle/input/notebooks/hassanakaou/lewm-data-tworoom/stablewm/tworoom.h5",
+  "cache": "/kaggle/input/notebooks/hassanakaou/lewm-embed",
+  "cache_hashes": {
+    "emb_tworoom.npy": "45677610192a59872d66f382eae6cccf4015adbc1fdfd36f60731a4dc9198aa5",
+    "pos_agent.npy": "9a459c63cebfd1f49a9bad6650b98438049521f218325b410f70b11e27d715dc",
+    "ep_len.npy": "3edd47b8bc68cce5cfbfe6e00461badb93dd18ba649c6a72fe12b5effabab529",
+    "ep_offset.npy": "7591604f140c6bf8536c6d3708859950dd7c7dbf0b5df3ab1fdf8e0c9f395111",
+    "ep_idx.npy": "4ac2f68710ad8f35ded750b5c31858ddbd7ea19c7026750fe98ed55b0e613079"
+  },
+  "dataset_sha256": "129a36aa93ea0de488d2bcc876e396de9e3907bf66c6aae6394e542ef6a6d623",
+  "checkpoint_sha256": {
+    "released": "566f223624ea4bfb39dbfe6ae731198dd6ea73b7b8919fed6b1ecafca810f7dd",
+    "retrained": "df94cb98551b9ed0b5ca54fb7477b9fd305faf277261fac04f8ba321f440a132",
+    "bilinear": "611f430358576046c1b6cbdbd52e94b9e6577e28872b9c02812f64c5d857d23f"
+  },
+  "source_sha256": {
+    "solver/cem.py": "a6662e7f1f2c6ecaf0a8527255d531aa05ed583339aabdf2798d0206382ef51b",
+    "policy.py": "4967e7e3d5b20eb7a1d0b00e5d60fd701cce1c750ae7ec4a9b02529b9366db22",
+    "envs/two_room/env.py": "5e1d392de5b02472062dbe872aded67fd465fcc8f7eaa1c02a753b2fc31c61f0",
+    "wm/lewm/lewm.py": "eb259214252af0b01d309044e632cd95ada06e0bb5ef0383102f03699b64a5cb",
+    "world/world.py": "39318b81ed151d8556d8540f460a63eedaed0ce4b2211ce0af9f8200e7d83bde",
+    "world/env_pool.py": "b6e73253199e1a39f0fcadfad7dbea09270cbd559e366d1bc9bf09c9e7da0606",
+    "data/formats/hdf5.py": "afe836ec706acc6c55450f3c936a5898b57ed65a999695af25b4b59cd14d10f3",
+    "spaces.py": "73079b2a66dace087abc7c417691e3cc339887866915553e21d0936a362229eb"
+  },
+  "code_sha256": "15588a9a6c0558fac13e9e5e32756cdd1ba089e7ec68110a364b4d2be171cbc0",
+  "helper_sha256": "c68e26ed084d1467c8b448a6fdeebe59190fddb756ac552dffea5b15701997ed"
+}

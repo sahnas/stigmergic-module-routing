@@ -1,0 +1,27 @@
+{
+  "sha256": "aeb3cd4c91df3de9a612d929d6d2494830aaea45afcc5085026244847d4b0442",
+  "metrics": {
+    "r2": [
+      0.9952263832092285,
+      0.9858234524726868
+    ],
+    "median": 3.3389511108398438,
+    "p95": 8.976610136032102,
+    "frames": 89618,
+    "pass_": false
+  },
+  "split_sha256": "939f3cfefa210f5e552f4ba37d389fdc16865d2052fa22bb4c0846b7fb21acfa",
+  "input_cache_hashes": {
+    "emb_tworoom.npy": "45677610192a59872d66f382eae6cccf4015adbc1fdfd36f60731a4dc9198aa5",
+    "pos_agent.npy": "9a459c63cebfd1f49a9bad6650b98438049521f218325b410f70b11e27d715dc",
+    "ep_len.npy": "3edd47b8bc68cce5cfbfe6e00461badb93dd18ba649c6a72fe12b5effabab529",
+    "ep_offset.npy": "7591604f140c6bf8536c6d3708859950dd7c7dbf0b5df3ab1fdf8e0c9f395111",
+    "ep_idx.npy": "4ac2f68710ad8f35ded750b5c31858ddbd7ea19c7026750fe98ed55b0e613079"
+  },
+  "cache_parity_frames": 64,
+  "cache_parity_max_absolute": 2.7686357498168945e-05,
+  "train_frames": 300000,
+  "validation_frames": 89618,
+  "excluded_episodes": 388,
+  "fit": "float64 batched ridge, lambda=1e-3*N; float32 decoder; bias penalized"
+}

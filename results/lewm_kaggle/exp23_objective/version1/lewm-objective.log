@@ -1,0 +1,45 @@
+[{"stream_name":"stdout","time":1.157162051,"data":"$ nvidia-smi --query-gpu=name,memory.total --format=csv,noheader\n"}
+,{"stream_name":"stdout","time":1.189695755,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.189716799,"data":"Tesla T4, 15360 MiB\n"}
+,{"stream_name":"stdout","time":1.196009829,"data":"$ apt-get install -y -qq libegl1 libgl1 ffmpeg\n"}
+,{"stream_name":"stdout","time":3.682043552,"data":"$ /usr/bin/python3 -m pip install -q stable-worldmodel[train,format]==0.1.1 stable-pretraining==0.1.8 transformers==4.57.6 hydra-core==1.3.2 pygame==2.6.1 pymunk==7.2.0 shapely==2.1.2 opencv-python-headless==4.13.0.92\n"}
+,{"stream_name":"stdout","time":6.9372111499999995,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.2/59.2 kB 740.6 kB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":7.248946612,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.0/44.0 kB 1.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":9.287924456,"data":"     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.0/45.0 kB 1.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":14.083126341,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 305.8/305.8 kB 2.9 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":14.23490976,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 11.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":14.53400064,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 66.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":14.606944605,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.5/154.5 kB 9.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":14.686533264,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 43.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.313259105,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.4/60.4 MB 34.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":15.388311283,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 29.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.135467363,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.2/75.2 MB 27.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.215610017,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 849.3/849.3 kB 39.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":16.287912126,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.7/56.7 kB 3.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.088175844,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.2/83.2 MB 24.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.222193589,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.1/9.1 MB 117.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.317705244,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 84.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.492415252,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.6/13.6 MB 98.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":17.951310517,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 MB 46.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.089745057,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.0/76.0 kB 4.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.159689242,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 3.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.235499015,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 70.8/70.8 kB 3.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.377088576,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.8/74.8 kB 4.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":18.52226691,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 406.3/406.3 kB 22.6 MB/s eta 0:00:00\n"}
+,{"stream_name":"stderr","time":48.424328472,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":48.424364268,"data":"gradio 6.26.0 requires huggingface-hub\u003c2.0,\u003e=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":48.424370845,"data":"diffusers 0.40.0 requires huggingface-hub\u003c2.0,\u003e=1.23.0, but you have huggingface-hub 0.36.2 which is incompatible.\n"}
+,{"stream_name":"stdout","time":65.433898381,"data":"$ git clone --quiet --no-checkout https://github.com/lucas-maes/le-wm.git /kaggle/tmp/exp23/le-wm\n"}
+,{"stream_name":"stdout","time":67.860878246,"data":"$ git -C /kaggle/tmp/exp23/le-wm checkout --quiet --detach 8edfeb336732b5f3ce7b8b210d0ba370a09e2cac\n"}
+,{"stream_name":"stderr","time":180.880661241,"data":"2026-10-13 10:51:44.470 | INFO     | stable_worldmodel.wm.utils:_resolve_folder:137 - Loading checkpoint from folder /kaggle/input/notebooks/hassanakaou/lewm-embed/stablewm/checkpoints/models--quentinll--lewm-tworooms...\n"}
+,{"stream_name":"stdout","time":205.776488559,"data":"10:52:09 | INFO  | __init__.py | TensorFlow version 2.20.0 available.\n"}
+,{"stream_name":"stdout","time":205.777430898,"data":"10:52:09 | INFO  | __init__.py | JAX version 0.11.1 available.\n"}
+,{"stream_name":"stdout","time":208.180201062,"data":"10:52:11 | INFO  | atomic_chec~| [atomic_save] installed crash-safe checkpoint plugin (write to sibling .tmp + fsync + atomic rename)\n"}
+,{"stream_name":"stdout","time":208.300489356,"data":"10:52:11 | INFO  | utils.py    | Created ViT-tiny from scratch with config: {'hidden_size': 192, 'num_hidden_layers': 12, 'num_attention_heads': 3, 'intermediate_size': 768, 'image_size': 224, 'patch_size': 14}\n"}
+,{"stream_name":"stderr","time":220.196534136,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":220.196565886,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":220.410110587,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":220.410133555,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":221.174357568,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":221.810808576,"data":"[NbConvertApp] Writing 452867 bytes to __results__.html\n"}
+]

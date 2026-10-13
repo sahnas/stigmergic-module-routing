@@ -1,0 +1,12 @@
+{
+  "pass_": true,
+  "torch": "2.11.0+cu128",
+  "synthetic_calls": 24,
+  "tests": [
+    "official latent cost untouched",
+    "same official rollouts under either objective",
+    "independent affine decoding with bias cancellation",
+    "one/two/three-frame contexts and eight goals",
+    "one-frame rollout equals independent five-action recurrence"
+  ]
+}

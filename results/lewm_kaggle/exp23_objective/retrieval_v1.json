@@ -1,0 +1,74 @@
+{
+  "retrieved_utc": "2026-10-13T11:11:01.521458+00:00",
+  "kernel": "hassanakaou/lewm-objective",
+  "version": 1,
+  "kaggle_status": "COMPLETE",
+  "experiment_status": "stopped_decoder_gate",
+  "evaluations": 0,
+  "metrics": {
+    "r2": [
+      0.9952263832092285,
+      0.9858234524726868
+    ],
+    "median": 3.3389511108398438,
+    "p95": 8.976610136032102,
+    "frames": 89618,
+    "pass_": false
+  },
+  "failed_requirement": {
+    "metric": "p95",
+    "observed": 8.976610136032102,
+    "required_max": 8
+  },
+  "verified": [
+    "frozen submitted script hash",
+    "frozen helper hash",
+    "all archived official library source hashes",
+    "decoder and split hashes",
+    "finite 193x2 decoder",
+    "disjoint train/validation/excluded episode sets",
+    "unique training rows and disjoint validation rows",
+    "all four archived task hashes and exact planning-episode exclusion",
+    "runtime synthetic checks passed",
+    "cache parity check passed",
+    "sole failed numerical criterion is p95",
+    "no failure, gate, or evaluation outputs"
+  ],
+  "limitations": [
+    "Reported decoder error metrics not independently recomputed from the full private cache locally.",
+    "64-frame cache parity is a sample check.",
+    "No predictor/objective effect measured."
+  ],
+  "files": {
+    "complete.json": "c6c91a326984331515f8c79b47513d6c6d7d9576354cbe6cddf014bf38cfa4a1",
+    "decoder.npy": "aeb3cd4c91df3de9a612d929d6d2494830aaea45afcc5085026244847d4b0442",
+    "decoder_manifest.json": "be317ef62e719fdf2ac812a018083e5e896a6f1ecb2377df3c079132c597e86c",
+    "environment.txt": "4220b3f66d64f6c67cd883a6b6c388c567d333e74cf3644185c1d728b33919c4",
+    "frozen_selection.py": "c68e26ed084d1467c8b448a6fdeebe59190fddb756ac552dffea5b15701997ed",
+    "input_manifest.json": "567855e306e4b707895a58fa5b63a5b2d038a6efdf25bcfdab16dfd9d7020329",
+    "lewm-objective.log": "70d8cadc4d4b07d4a1a422bb1b9c6991da3a5a71999c14eed287b66859bfa2f6",
+    "official_eval.py": "6584f009b40550fa0df2f8dee22b9329fbfacdfaf74464aa4fd105f464795245",
+    "official_eval_config/cube.yaml": "9d75b9740a13d4e80538010cbd20cb3bf3fa6185bef48814412e1cb3189308e0",
+    "official_eval_config/launcher/local.yaml": "1dda4add0a1632ba41458377e11897cd80ba2508483a82fb6a41f0f88a06b900",
+    "official_eval_config/pusht.yaml": "a98551ac20a7fdf336a9c2178bb96e26e769995dc5266b09cc82e2246377c7a8",
+    "official_eval_config/reacher.yaml": "fcc0ea2f41c1ec078740f428575c68c3d73388ddb700897229590604d3e81647",
+    "official_eval_config/solver/adam.yaml": "362755cca34d6221d1bd9a9b2d221f603ab22b7208038c0425c8e389b5fa2c1b",
+    "official_eval_config/solver/cem.yaml": "797629f829c0d3ad3b9c4e42d46a87f08da0b3845bc433e353fd6274cb0574df",
+    "official_eval_config/tworoom.yaml": "26caaf95bd99b0caaca198dab19c910566f99b52516c12381fd8e78e0040d9ad",
+    "official_library/data/formats/hdf5.py": "afe836ec706acc6c55450f3c936a5898b57ed65a999695af25b4b59cd14d10f3",
+    "official_library/envs/two_room/env.py": "5e1d392de5b02472062dbe872aded67fd465fcc8f7eaa1c02a753b2fc31c61f0",
+    "official_library/policy.py": "4967e7e3d5b20eb7a1d0b00e5d60fd701cce1c750ae7ec4a9b02529b9366db22",
+    "official_library/solver/cem.py": "a6662e7f1f2c6ecaf0a8527255d531aa05ed583339aabdf2798d0206382ef51b",
+    "official_library/spaces.py": "73079b2a66dace087abc7c417691e3cc339887866915553e21d0936a362229eb",
+    "official_library/wm/lewm/lewm.py": "eb259214252af0b01d309044e632cd95ada06e0bb5ef0383102f03699b64a5cb",
+    "official_library/world/env_pool.py": "b6e73253199e1a39f0fcadfad7dbea09270cbd559e366d1bc9bf09c9e7da0606",
+    "official_library/world/world.py": "39318b81ed151d8556d8540f460a63eedaed0ce4b2211ce0af9f8200e7d83bde",
+    "probe_split.npz": "939f3cfefa210f5e552f4ba37d389fdc16865d2052fa22bb4c0846b7fb21acfa",
+    "runtime_checks.json": "f3fc82400fddede7cebf89e275eff24a4e96fb3449cb528fca09608e5d60d3e6",
+    "submitted_objective.py": "15588a9a6c0558fac13e9e5e32756cdd1ba089e7ec68110a364b4d2be171cbc0",
+    "tasks/tworoom_seed42.json": "acd63f952c7fba3cd893bd5db376dac1f6a7136ea6f2077b73a6eb2f030d7ad5",
+    "tasks/tworoom_seed43.json": "6b14b80bd54aedf0c729d5bc01a52d316bbf0d4eb5a752daee9f1e258dde3ec6",
+    "tasks/tworoom_seed44.json": "712dc643852fcf6f9111ec07c47e3c31e17e2c06f252d6f7f639dfb51b12fece",
+    "tasks/tworoom_seed45.json": "b46f363c77b6acdde7004132b427722ecbb506870ae2d31df97d9fe76d0bf5ce"
+  }
+}
