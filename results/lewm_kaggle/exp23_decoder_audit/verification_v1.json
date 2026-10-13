@@ -1,0 +1,41 @@
+{
+  "verified": true,
+  "validation_frames": 89618,
+  "episodes": 969,
+  "sample_images": 60,
+  "p95_recomputed_float64": 8.976610189838059,
+  "episodes_with_error_over8": 889,
+  "posthoc_after_image_inspection": {
+    "temporal_groups": {
+      "step_0": {
+        "n": 969,
+        "p95": 30.971492073858737,
+        "over8": 335,
+        "rate_over8": 0.3457172342621259,
+        "over16": 152
+      },
+      "after_step_0": {
+        "n": 88649,
+        "p95": 8.823098323147745,
+        "over8": 6126,
+        "rate_over8": 0.06910399440490023,
+        "over16": 772
+      },
+      "steps_0_to_9": {
+        "n": 9690,
+        "p95": 18.55901583790556,
+        "over8": 2284,
+        "rate_over8": 0.23570691434468524,
+        "over16": 631
+      },
+      "steps_10_plus": {
+        "n": 79928,
+        "p95": 8.081811162003996,
+        "over8": 4177,
+        "rate_over8": 0.0522595335802222,
+        "over16": 293
+      }
+    }
+  },
+  "scope": "Saved predictions, source and input provenance, split, summary, selected pixels; private embeddings not re-decoded locally"
+}

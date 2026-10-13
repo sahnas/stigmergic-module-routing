@@ -1,0 +1,20 @@
+{
+  "source_sha256": "3ffd1846476ab5149140b41d637c183fe7fdb3108b4c32d2b41eb264d6b40a82",
+  "frozen_inputs": {
+    "decoder.npy": "aeb3cd4c91df3de9a612d929d6d2494830aaea45afcc5085026244847d4b0442",
+    "probe_split.npz": "939f3cfefa210f5e552f4ba37d389fdc16865d2052fa22bb4c0846b7fb21acfa",
+    "decoder_manifest.json": "be317ef62e719fdf2ac812a018083e5e896a6f1ecb2377df3c079132c597e86c",
+    "input_manifest.json": "567855e306e4b707895a58fa5b63a5b2d038a6efdf25bcfdab16dfd9d7020329",
+    "complete.json": "c6c91a326984331515f8c79b47513d6c6d7d9576354cbe6cddf014bf38cfa4a1"
+  },
+  "cache_sha256": {
+    "emb_tworoom.npy": "45677610192a59872d66f382eae6cccf4015adbc1fdfd36f60731a4dc9198aa5",
+    "pos_agent.npy": "9a459c63cebfd1f49a9bad6650b98438049521f218325b410f70b11e27d715dc",
+    "ep_len.npy": "3edd47b8bc68cce5cfbfe6e00461badb93dd18ba649c6a72fe12b5effabab529",
+    "ep_offset.npy": "7591604f140c6bf8536c6d3708859950dd7c7dbf0b5df3ab1fdf8e0c9f395111",
+    "ep_idx.npy": "4ac2f68710ad8f35ded750b5c31858ddbd7ea19c7026750fe98ed55b0e613079"
+  },
+  "dataset_sha256": "129a36aa93ea0de488d2bcc876e396de9e3907bf66c6aae6394e542ef6a6d623",
+  "numpy": "2.1.3",
+  "h5py": "3.16.0"
+}

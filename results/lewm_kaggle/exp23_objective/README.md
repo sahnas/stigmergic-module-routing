@@ -44,3 +44,9 @@ from the frozen job; they were not recomputed from the full private cache locall
 `submission_v1/submission.json` retains the historical RUNNING observation and
 the independently fetched source parity at submission time. GitHub publication
 remains pending; see the pre-execution submission note in `preregistrations/`.
+
+The subsequent [frozen-decoder error audit](../exp23_decoder_audit/README.md)
+reproduced these metrics on the same inputs. It found spatially uneven errors,
+especially near outer edges, while the interior still exceeds the p95 limit.
+That exploratory audit leaves this failed gate and the untested intervention
+unchanged.

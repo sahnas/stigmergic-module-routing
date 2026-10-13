@@ -1,0 +1,687 @@
+[{"stream_name":"stdout","time":6.836658587,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 MB 40.7 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":119.846320579,"data":"Input hashes verified\n"}
+,{"stream_name":"stdout","time":138.137489707,"data":"Frozen validation metrics reproduced {\"n\": 89618, \"mean\": 4.0062150955200195, \"rmse\": 5.212508678436279, \"median\": 3.3389511108398438, \"p90\": 7.193288326263428, \"p95\": 8.976609230041504, \"p99\": 16.264617919921875, \"maximum\": 86.42389678955078, \"over4\": 34967, \"over8\": 6461, \"over16\": 924, \"rate_over8\": 0.07209489165123079, \"bias_xy\": [-0.11813221126794815, -0.04273802414536476], \"mae_xy\": [1.7436379194259644, 3.261894941329956], \"rmse_xy\": [2.531550645828247, 4.55642557144165], \"r2_xy\": [0.9952263832092285, 0.9858234524726868]}\n"}
+,{"stream_name":"stdout","time":159.509461159,"data":"{\n"}
+,{"stream_name":"stdout","time":159.509509268,"data":"  \"status\": \"audit_complete\",\n"}
+,{"stream_name":"stdout","time":159.509516588,"data":"  \"purpose\": \"Post-gate exploratory audit, not confirmatory evaluation\",\n"}
+,{"stream_name":"stdout","time":159.509521921,"data":"  \"original_decoder_unchanged\": true,\n"}
+,{"stream_name":"stdout","time":159.509526901,"data":"  \"decoder_sha256\": \"aeb3cd4c91df3de9a612d929d6d2494830aaea45afcc5085026244847d4b0442\",\n"}
+,{"stream_name":"stdout","time":159.509532646,"data":"  \"split_sha256\": \"939f3cfefa210f5e552f4ba37d389fdc16865d2052fa22bb4c0846b7fb21acfa\",\n"}
+,{"stream_name":"stdout","time":159.509537919,"data":"  \"training\": {\n"}
+,{"stream_name":"stdout","time":159.509543189,"data":"    \"n\": 300000,\n"}
+,{"stream_name":"stdout","time":159.509548025,"data":"    \"mean\": 3.995082139968872,\n"}
+,{"stream_name":"stdout","time":159.509552899,"data":"    \"rmse\": 5.149101734161377,\n"}
+,{"stream_name":"stdout","time":159.509557144,"data":"    \"median\": 3.3425374031066895,\n"}
+,{"stream_name":"stdout","time":159.509561992,"data":"    \"p90\": 7.212878227233887,\n"}
+,{"stream_name":"stdout","time":159.509566753,"data":"    \"p95\": 9.013998985290527,\n"}
+,{"stream_name":"stdout","time":159.509572079,"data":"    \"p99\": 15.303922653198242,\n"}
+,{"stream_name":"stdout","time":159.509577485,"data":"    \"maximum\": 96.2214584350586,\n"}
+,{"stream_name":"stdout","time":159.509582489,"data":"    \"over4\": 117530,\n"}
+,{"stream_name":"stdout","time":159.50958716,"data":"    \"over8\": 21912,\n"}
+,{"stream_name":"stdout","time":159.509592081,"data":"    \"over16\": 2694,\n"}
+,{"stream_name":"stdout","time":159.509596746,"data":"    \"rate_over8\": 0.07304,\n"}
+,{"stream_name":"stdout","time":159.509601652,"data":"    \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509606245,"data":"      -0.10660547763109207,\n"}
+,{"stream_name":"stdout","time":159.509610821,"data":"      -0.07216201722621918\n"}
+,{"stream_name":"stdout","time":159.509615531,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509620271,"data":"    \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509625337,"data":"      1.7445545196533203,\n"}
+,{"stream_name":"stdout","time":159.509630226,"data":"      3.247131824493408\n"}
+,{"stream_name":"stdout","time":159.509635261,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509640371,"data":"    \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509644841,"data":"      2.484708786010742,\n"}
+,{"stream_name":"stdout","time":159.509649655,"data":"      4.509633541107178\n"}
+,{"stream_name":"stdout","time":159.509654477,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509659171,"data":"    \"r2_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509679785,"data":"      0.9954516291618347,\n"}
+,{"stream_name":"stdout","time":159.509684463,"data":"      0.9860875606536865\n"}
+,{"stream_name":"stdout","time":159.509688291,"data":"    ]\n"}
+,{"stream_name":"stdout","time":159.509691929,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.509695551,"data":"  \"validation\": {\n"}
+,{"stream_name":"stdout","time":159.509699133,"data":"    \"n\": 89618,\n"}
+,{"stream_name":"stdout","time":159.50970315,"data":"    \"mean\": 4.0062150955200195,\n"}
+,{"stream_name":"stdout","time":159.509707179,"data":"    \"rmse\": 5.212508678436279,\n"}
+,{"stream_name":"stdout","time":159.509710796,"data":"    \"median\": 3.3389511108398438,\n"}
+,{"stream_name":"stdout","time":159.509714449,"data":"    \"p90\": 7.193288326263428,\n"}
+,{"stream_name":"stdout","time":159.509718341,"data":"    \"p95\": 8.976609230041504,\n"}
+,{"stream_name":"stdout","time":159.509733429,"data":"    \"p99\": 16.264617919921875,\n"}
+,{"stream_name":"stdout","time":159.509737674,"data":"    \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.509741999,"data":"    \"over4\": 34967,\n"}
+,{"stream_name":"stdout","time":159.509745469,"data":"    \"over8\": 6461,\n"}
+,{"stream_name":"stdout","time":159.509748959,"data":"    \"over16\": 924,\n"}
+,{"stream_name":"stdout","time":159.509757161,"data":"    \"rate_over8\": 0.07209489165123079,\n"}
+,{"stream_name":"stdout","time":159.509762433,"data":"    \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509766097,"data":"      -0.11813221126794815,\n"}
+,{"stream_name":"stdout","time":159.509769458,"data":"      -0.04273802414536476\n"}
+,{"stream_name":"stdout","time":159.509773331,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509776865,"data":"    \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.50978089,"data":"      1.7436379194259644,\n"}
+,{"stream_name":"stdout","time":159.5097847,"data":"      3.261894941329956\n"}
+,{"stream_name":"stdout","time":159.509788451,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509792203,"data":"    \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509795693,"data":"      2.531550645828247,\n"}
+,{"stream_name":"stdout","time":159.509799958,"data":"      4.55642557144165\n"}
+,{"stream_name":"stdout","time":159.509803312,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.509806615,"data":"    \"r2_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509809913,"data":"      0.9952263832092285,\n"}
+,{"stream_name":"stdout","time":159.509813119,"data":"      0.9858234524726868\n"}
+,{"stream_name":"stdout","time":159.509816412,"data":"    ]\n"}
+,{"stream_name":"stdout","time":159.509819467,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.509822655,"data":"  \"validation_episode_count\": 969,\n"}
+,{"stream_name":"stdout","time":159.509826175,"data":"  \"episode_equal_weight_rate_over8\": 0.07107537230253018,\n"}
+,{"stream_name":"stdout","time":159.509829947,"data":"  \"tail_concentration\": {\n"}
+,{"stream_name":"stdout","time":159.509833201,"data":"    \"1\": {\n"}
+,{"stream_name":"stdout","time":159.509836586,"data":"      \"episodes\": 1,\n"}
+,{"stream_name":"stdout","time":159.509839947,"data":"      \"tail_share\": 0.007119640922457824,\n"}
+,{"stream_name":"stdout","time":159.509843338,"data":"      \"frame_share\": 0.0011270057354549308\n"}
+,{"stream_name":"stdout","time":159.509846989,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.509850299,"data":"    \"5\": {\n"}
+,{"stream_name":"stdout","time":159.509854017,"data":"      \"episodes\": 5,\n"}
+,{"stream_name":"stdout","time":159.509879446,"data":"      \"tail_share\": 0.030335861321776816,\n"}
+,{"stream_name":"stdout","time":159.509887,"data":"      \"frame_share\": 0.005568077841505055\n"}
+,{"stream_name":"stdout","time":159.509890805,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.509894874,"data":"    \"10\": {\n"}
+,{"stream_name":"stdout","time":159.509898845,"data":"      \"episodes\": 10,\n"}
+,{"stream_name":"stdout","time":159.509905203,"data":"      \"tail_share\": 0.05463550533973069,\n"}
+,{"stream_name":"stdout","time":159.509909229,"data":"      \"frame_share\": 0.01120310651877971\n"}
+,{"stream_name":"stdout","time":159.509913478,"data":"    }\n"}
+,{"stream_name":"stdout","time":159.509917436,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.509920921,"data":"  \"regions\": {\n"}
+,{"stream_name":"stdout","time":159.509924949,"data":"    \"outer_band_28\": {\n"}
+,{"stream_name":"stdout","time":159.509928761,"data":"      \"n\": 3119,\n"}
+,{"stream_name":"stdout","time":159.50993267,"data":"      \"mean\": 11.082966804504395,\n"}
+,{"stream_name":"stdout","time":159.509936616,"data":"      \"rmse\": 14.489264488220215,\n"}
+,{"stream_name":"stdout","time":159.509940347,"data":"      \"median\": 8.508484840393066,\n"}
+,{"stream_name":"stdout","time":159.509944387,"data":"      \"p90\": 22.80352783203125,\n"}
+,{"stream_name":"stdout","time":159.509948394,"data":"      \"p95\": 28.140195846557617,\n"}
+,{"stream_name":"stdout","time":159.509952656,"data":"      \"p99\": 41.77790069580078,\n"}
+,{"stream_name":"stdout","time":159.509956693,"data":"      \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.50996018,"data":"      \"over4\": 2489,\n"}
+,{"stream_name":"stdout","time":159.509964418,"data":"      \"over8\": 1651,\n"}
+,{"stream_name":"stdout","time":159.509967918,"data":"      \"over16\": 682,\n"}
+,{"stream_name":"stdout","time":159.509971843,"data":"      \"rate_over8\": 0.5293363257454312,\n"}
+,{"stream_name":"stdout","time":159.509975708,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509979891,"data":"        0.7702037692070007,\n"}
+,{"stream_name":"stdout","time":159.509983639,"data":"        -4.671619892120361\n"}
+,{"stream_name":"stdout","time":159.50998734,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.509991312,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.509994975,"data":"        5.472024917602539,\n"}
+,{"stream_name":"stdout","time":159.50999897,"data":"        8.709961891174316\n"}
+,{"stream_name":"stdout","time":159.510002911,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510006853,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510010598,"data":"        7.6398420333862305,\n"}
+,{"stream_name":"stdout","time":159.510014603,"data":"        12.311439514160156\n"}
+,{"stream_name":"stdout","time":159.510018681,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510022187,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510025825,"data":"    \"inner_region_28\": {\n"}
+,{"stream_name":"stdout","time":159.510029887,"data":"      \"n\": 86499,\n"}
+,{"stream_name":"stdout","time":159.510033842,"data":"      \"mean\": 3.75104022026062,\n"}
+,{"stream_name":"stdout","time":159.510038238,"data":"      \"rmse\": 4.536511421203613,\n"}
+,{"stream_name":"stdout","time":159.510042166,"data":"      \"median\": 3.2738125324249268,\n"}
+,{"stream_name":"stdout","time":159.510046162,"data":"      \"p90\": 6.823206424713135,\n"}
+,{"stream_name":"stdout","time":159.510056286,"data":"      \"p95\": 8.207374572753906,\n"}
+,{"stream_name":"stdout","time":159.510060357,"data":"      \"p99\": 11.634635925292969,\n"}
+,{"stream_name":"stdout","time":159.51006416,"data":"      \"maximum\": 39.51830291748047,\n"}
+,{"stream_name":"stdout","time":159.510068034,"data":"      \"over4\": 32478,\n"}
+,{"stream_name":"stdout","time":159.510072,"data":"      \"over8\": 4810,\n"}
+,{"stream_name":"stdout","time":159.51007622,"data":"      \"over16\": 242,\n"}
+,{"stream_name":"stdout","time":159.510080273,"data":"      \"rate_over8\": 0.05560757927837316,\n"}
+,{"stream_name":"stdout","time":159.510084416,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510088422,"data":"        -0.1501637101173401,\n"}
+,{"stream_name":"stdout","time":159.510092138,"data":"        0.1241711676120758\n"}
+,{"stream_name":"stdout","time":159.510095603,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510099441,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510103316,"data":"        1.6091910600662231,\n"}
+,{"stream_name":"stdout","time":159.51010715,"data":"        3.0654704570770264\n"}
+,{"stream_name":"stdout","time":159.51011099,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510115032,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510119082,"data":"        2.1296093463897705,\n"}
+,{"stream_name":"stdout","time":159.510123062,"data":"        4.005547046661377\n"}
+,{"stream_name":"stdout","time":159.510126933,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510130338,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510134316,"data":"    \"left_half\": {\n"}
+,{"stream_name":"stdout","time":159.51013895,"data":"      \"n\": 44165,\n"}
+,{"stream_name":"stdout","time":159.510142811,"data":"      \"mean\": 4.088547706604004,\n"}
+,{"stream_name":"stdout","time":159.510146474,"data":"      \"rmse\": 5.33687686920166,\n"}
+,{"stream_name":"stdout","time":159.510150225,"data":"      \"median\": 3.37113356590271,\n"}
+,{"stream_name":"stdout","time":159.510154264,"data":"      \"p90\": 7.350866794586182,\n"}
+,{"stream_name":"stdout","time":159.510158341,"data":"      \"p95\": 9.377896308898926,\n"}
+,{"stream_name":"stdout","time":159.5101625,"data":"      \"p99\": 17.632518768310547,\n"}
+,{"stream_name":"stdout","time":159.510166613,"data":"      \"maximum\": 77.20714569091797,\n"}
+,{"stream_name":"stdout","time":159.510170737,"data":"      \"over4\": 17352,\n"}
+,{"stream_name":"stdout","time":159.510174899,"data":"      \"over8\": 3464,\n"}
+,{"stream_name":"stdout","time":159.510179021,"data":"      \"over16\": 517,\n"}
+,{"stream_name":"stdout","time":159.510182881,"data":"      \"rate_over8\": 0.07843314842069513,\n"}
+,{"stream_name":"stdout","time":159.510186929,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510190681,"data":"        0.06329333037137985,\n"}
+,{"stream_name":"stdout","time":159.51019448,"data":"        -0.12174427509307861\n"}
+,{"stream_name":"stdout","time":159.510198335,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510202378,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510205813,"data":"        1.6901105642318726,\n"}
+,{"stream_name":"stdout","time":159.510209656,"data":"        3.4092328548431396\n"}
+,{"stream_name":"stdout","time":159.510213261,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510217004,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510220501,"data":"        2.5321104526519775,\n"}
+,{"stream_name":"stdout","time":159.510228902,"data":"        4.6979265213012695\n"}
+,{"stream_name":"stdout","time":159.510232893,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510237122,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.51024069,"data":"    \"right_half\": {\n"}
+,{"stream_name":"stdout","time":159.51024451,"data":"      \"n\": 45453,\n"}
+,{"stream_name":"stdout","time":159.510248448,"data":"      \"mean\": 3.9262161254882812,\n"}
+,{"stream_name":"stdout","time":159.510275983,"data":"      \"rmse\": 5.088753700256348,\n"}
+,{"stream_name":"stdout","time":159.510280289,"data":"      \"median\": 3.308246374130249,\n"}
+,{"stream_name":"stdout","time":159.51028458,"data":"      \"p90\": 7.063206672668457,\n"}
+,{"stream_name":"stdout","time":159.510288785,"data":"      \"p95\": 8.64958667755127,\n"}
+,{"stream_name":"stdout","time":159.510292573,"data":"      \"p99\": 15.04970932006836,\n"}
+,{"stream_name":"stdout","time":159.510296669,"data":"      \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.510300523,"data":"      \"over4\": 17615,\n"}
+,{"stream_name":"stdout","time":159.510304463,"data":"      \"over8\": 2997,\n"}
+,{"stream_name":"stdout","time":159.510308318,"data":"      \"over16\": 407,\n"}
+,{"stream_name":"stdout","time":159.510312099,"data":"      \"rate_over8\": 0.0659362418322223,\n"}
+,{"stream_name":"stdout","time":159.510316558,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510320559,"data":"        -0.29441526532173157,\n"}
+,{"stream_name":"stdout","time":159.510324656,"data":"        0.034029521048069\n"}
+,{"stream_name":"stdout","time":159.510328242,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510331918,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510335977,"data":"        1.7956348657608032,\n"}
+,{"stream_name":"stdout","time":159.510339721,"data":"        3.118750810623169\n"}
+,{"stream_name":"stdout","time":159.510343447,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.51034759,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510351748,"data":"        2.531022548675537,\n"}
+,{"stream_name":"stdout","time":159.510355537,"data":"        4.414644718170166\n"}
+,{"stream_name":"stdout","time":159.51035942,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510362725,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510366453,"data":"    \"top_half\": {\n"}
+,{"stream_name":"stdout","time":159.510370645,"data":"      \"n\": 68695,\n"}
+,{"stream_name":"stdout","time":159.51037442,"data":"      \"mean\": 3.5367624759674072,\n"}
+,{"stream_name":"stdout","time":159.510378705,"data":"      \"rmse\": 4.242060661315918,\n"}
+,{"stream_name":"stdout","time":159.510382851,"data":"      \"median\": 3.1137897968292236,\n"}
+,{"stream_name":"stdout","time":159.510386678,"data":"      \"p90\": 6.38253116607666,\n"}
+,{"stream_name":"stdout","time":159.510390729,"data":"      \"p95\": 7.668595314025879,\n"}
+,{"stream_name":"stdout","time":159.510394524,"data":"      \"p99\": 10.804468154907227,\n"}
+,{"stream_name":"stdout","time":159.510398911,"data":"      \"maximum\": 58.322296142578125,\n"}
+,{"stream_name":"stdout","time":159.510403181,"data":"      \"over4\": 23573,\n"}
+,{"stream_name":"stdout","time":159.510406849,"data":"      \"over8\": 2858,\n"}
+,{"stream_name":"stdout","time":159.510411036,"data":"      \"over16\": 108,\n"}
+,{"stream_name":"stdout","time":159.510415031,"data":"      \"rate_over8\": 0.04160419244486498,\n"}
+,{"stream_name":"stdout","time":159.51041943,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510428292,"data":"        -0.1573365032672882,\n"}
+,{"stream_name":"stdout","time":159.510432426,"data":"        0.3233727812767029\n"}
+,{"stream_name":"stdout","time":159.510436341,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.51044,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510444179,"data":"        1.5528572797775269,\n"}
+,{"stream_name":"stdout","time":159.510448469,"data":"        2.8596017360687256\n"}
+,{"stream_name":"stdout","time":159.510452172,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510467294,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510471451,"data":"        2.111323833465576,\n"}
+,{"stream_name":"stdout","time":159.51047526,"data":"        3.679288625717163\n"}
+,{"stream_name":"stdout","time":159.510479164,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.51048292,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510486844,"data":"    \"bottom_half\": {\n"}
+,{"stream_name":"stdout","time":159.510498684,"data":"      \"n\": 20923,\n"}
+,{"stream_name":"stdout","time":159.510503201,"data":"      \"mean\": 5.547537326812744,\n"}
+,{"stream_name":"stdout","time":159.510507507,"data":"      \"rmse\": 7.569308280944824,\n"}
+,{"stream_name":"stdout","time":159.51051119,"data":"      \"median\": 4.324687957763672,\n"}
+,{"stream_name":"stdout","time":159.510515308,"data":"      \"p90\": 10.100318908691406,\n"}
+,{"stream_name":"stdout","time":159.510519511,"data":"      \"p95\": 14.090025901794434,\n"}
+,{"stream_name":"stdout","time":159.510523674,"data":"      \"p99\": 27.048803329467773,\n"}
+,{"stream_name":"stdout","time":159.510527878,"data":"      \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.510531943,"data":"      \"over4\": 11394,\n"}
+,{"stream_name":"stdout","time":159.510536697,"data":"      \"over8\": 3603,\n"}
+,{"stream_name":"stdout","time":159.510540401,"data":"      \"over16\": 816,\n"}
+,{"stream_name":"stdout","time":159.510543874,"data":"      \"rate_over8\": 0.17220283898102567,\n"}
+,{"stream_name":"stdout","time":159.510547754,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510551678,"data":"        0.010583683848381042,\n"}
+,{"stream_name":"stdout","time":159.510555574,"data":"        -1.2447763681411743\n"}
+,{"stream_name":"stdout","time":159.51055945,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510563129,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510567029,"data":"        2.3700029850006104,\n"}
+,{"stream_name":"stdout","time":159.510570719,"data":"        4.582752227783203\n"}
+,{"stream_name":"stdout","time":159.510574325,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510578258,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510582247,"data":"        3.5797622203826904,\n"}
+,{"stream_name":"stdout","time":159.510586148,"data":"        6.669301509857178\n"}
+,{"stream_name":"stdout","time":159.510590079,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510593951,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510597524,"data":"    \"central_x_band_16\": {\n"}
+,{"stream_name":"stdout","time":159.51060161,"data":"      \"n\": 26491,\n"}
+,{"stream_name":"stdout","time":159.510605685,"data":"      \"mean\": 3.38423490524292,\n"}
+,{"stream_name":"stdout","time":159.510609521,"data":"      \"rmse\": 4.238170146942139,\n"}
+,{"stream_name":"stdout","time":159.510613297,"data":"      \"median\": 2.987171173095703,\n"}
+,{"stream_name":"stdout","time":159.510622148,"data":"      \"p90\": 6.07833194732666,\n"}
+,{"stream_name":"stdout","time":159.510626115,"data":"      \"p95\": 7.097370147705078,\n"}
+,{"stream_name":"stdout","time":159.510631098,"data":"      \"p99\": 9.826367378234863,\n"}
+,{"stream_name":"stdout","time":159.510635708,"data":"      \"maximum\": 46.61639404296875,\n"}
+,{"stream_name":"stdout","time":159.510639491,"data":"      \"over4\": 8619,\n"}
+,{"stream_name":"stdout","time":159.510643391,"data":"      \"over8\": 744,\n"}
+,{"stream_name":"stdout","time":159.510647369,"data":"      \"over16\": 126,\n"}
+,{"stream_name":"stdout","time":159.510651141,"data":"      \"rate_over8\": 0.02808501000339738,\n"}
+,{"stream_name":"stdout","time":159.510655325,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510659605,"data":"        -0.26664313673973083,\n"}
+,{"stream_name":"stdout","time":159.510662712,"data":"        0.7923868298530579\n"}
+,{"stream_name":"stdout","time":159.510666143,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510669383,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510672689,"data":"        1.4403207302093506,\n"}
+,{"stream_name":"stdout","time":159.510676164,"data":"        2.776543617248535\n"}
+,{"stream_name":"stdout","time":159.510679975,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510683573,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510687433,"data":"        2.030468225479126,\n"}
+,{"stream_name":"stdout","time":159.510691261,"data":"        3.7201180458068848\n"}
+,{"stream_name":"stdout","time":159.510695275,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510698836,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510702461,"data":"    \"outside_central_x_band_16\": {\n"}
+,{"stream_name":"stdout","time":159.510706711,"data":"      \"n\": 63127,\n"}
+,{"stream_name":"stdout","time":159.510710801,"data":"      \"mean\": 4.2672271728515625,\n"}
+,{"stream_name":"stdout","time":159.510715233,"data":"      \"rmse\": 5.570854187011719,\n"}
+,{"stream_name":"stdout","time":159.510719228,"data":"      \"median\": 3.49884033203125,\n"}
+,{"stream_name":"stdout","time":159.510722958,"data":"      \"p90\": 7.745569229125977,\n"}
+,{"stream_name":"stdout","time":159.510726564,"data":"      \"p95\": 9.757678985595703,\n"}
+,{"stream_name":"stdout","time":159.510730461,"data":"      \"p99\": 17.932756423950195,\n"}
+,{"stream_name":"stdout","time":159.510734105,"data":"      \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.510738346,"data":"      \"over4\": 26348,\n"}
+,{"stream_name":"stdout","time":159.510742335,"data":"      \"over8\": 5717,\n"}
+,{"stream_name":"stdout","time":159.510746386,"data":"      \"over16\": 798,\n"}
+,{"stream_name":"stdout","time":159.510750464,"data":"      \"rate_over8\": 0.09056346729608566,\n"}
+,{"stream_name":"stdout","time":159.510766772,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510770458,"data":"        -0.05580999329686165,\n"}
+,{"stream_name":"stdout","time":159.510774537,"data":"        -0.3931977152824402\n"}
+,{"stream_name":"stdout","time":159.510778309,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510782194,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510786583,"data":"        1.8709206581115723,\n"}
+,{"stream_name":"stdout","time":159.510790731,"data":"        3.4655845165252686\n"}
+,{"stream_name":"stdout","time":159.510794729,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510798937,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510808191,"data":"        2.7144291400909424,\n"}
+,{"stream_name":"stdout","time":159.510812412,"data":"        4.864767074584961\n"}
+,{"stream_name":"stdout","time":159.5108164,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510820323,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510824409,"data":"    \"near_door_center_32\": {\n"}
+,{"stream_name":"stdout","time":159.510828587,"data":"      \"n\": 31751,\n"}
+,{"stream_name":"stdout","time":159.510832469,"data":"      \"mean\": 3.304705858230591,\n"}
+,{"stream_name":"stdout","time":159.510836565,"data":"      \"rmse\": 3.86228609085083,\n"}
+,{"stream_name":"stdout","time":159.510840798,"data":"      \"median\": 2.9854533672332764,\n"}
+,{"stream_name":"stdout","time":159.510844902,"data":"      \"p90\": 6.044292449951172,\n"}
+,{"stream_name":"stdout","time":159.510848706,"data":"      \"p95\": 7.077877521514893,\n"}
+,{"stream_name":"stdout","time":159.510852825,"data":"      \"p99\": 9.247445106506348,\n"}
+,{"stream_name":"stdout","time":159.510856822,"data":"      \"maximum\": 13.648579597473145,\n"}
+,{"stream_name":"stdout","time":159.510872411,"data":"      \"over4\": 10175,\n"}
+,{"stream_name":"stdout","time":159.510882516,"data":"      \"over8\": 794,\n"}
+,{"stream_name":"stdout","time":159.51088714,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.510891143,"data":"      \"rate_over8\": 0.025007086390979812,\n"}
+,{"stream_name":"stdout","time":159.510895057,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510899352,"data":"        -0.2680782377719879,\n"}
+,{"stream_name":"stdout","time":159.510903598,"data":"        0.7410972714424133\n"}
+,{"stream_name":"stdout","time":159.510907232,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510911115,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510914821,"data":"        1.369971752166748,\n"}
+,{"stream_name":"stdout","time":159.51091887,"data":"        2.749126434326172\n"}
+,{"stream_name":"stdout","time":159.510922922,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.510926842,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.510931169,"data":"        1.7388691902160645,\n"}
+,{"stream_name":"stdout","time":159.510935005,"data":"        3.4487111568450928\n"}
+,{"stream_name":"stdout","time":159.51093906,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.510943122,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.510946845,"data":"    \"away_from_door_center_32\": {\n"}
+,{"stream_name":"stdout","time":159.51095089,"data":"      \"n\": 57867,\n"}
+,{"stream_name":"stdout","time":159.510954685,"data":"      \"mean\": 4.391125679016113,\n"}
+,{"stream_name":"stdout","time":159.510958716,"data":"      \"rmse\": 5.821797847747803,\n"}
+,{"stream_name":"stdout","time":159.510962872,"data":"      \"median\": 3.5513970851898193,\n"}
+,{"stream_name":"stdout","time":159.510966781,"data":"      \"p90\": 7.936602592468262,\n"}
+,{"stream_name":"stdout","time":159.51097102,"data":"      \"p95\": 10.151756286621094,\n"}
+,{"stream_name":"stdout","time":159.51097519,"data":"      \"p99\": 19.976879119873047,\n"}
+,{"stream_name":"stdout","time":159.510979345,"data":"      \"maximum\": 86.42389678955078,\n"}
+,{"stream_name":"stdout","time":159.510983548,"data":"      \"over4\": 24792,\n"}
+,{"stream_name":"stdout","time":159.510987557,"data":"      \"over8\": 5667,\n"}
+,{"stream_name":"stdout","time":159.510991389,"data":"      \"over16\": 924,\n"}
+,{"stream_name":"stdout","time":159.511002395,"data":"      \"rate_over8\": 0.0979314635284359,\n"}
+,{"stream_name":"stdout","time":159.511006884,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511010667,"data":"        -0.03585817664861679,\n"}
+,{"stream_name":"stdout","time":159.511014446,"data":"        -0.47282376885414124\n"}
+,{"stream_name":"stdout","time":159.511017938,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511021674,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511025469,"data":"        1.9486621618270874,\n"}
+,{"stream_name":"stdout","time":159.51102924,"data":"        3.5432581901550293\n"}
+,{"stream_name":"stdout","time":159.511033418,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511037371,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511041252,"data":"        2.875098943710327,\n"}
+,{"stream_name":"stdout","time":159.511045203,"data":"        5.062290191650391\n"}
+,{"stream_name":"stdout","time":159.511049284,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511054152,"data":"    }\n"}
+,{"stream_name":"stdout","time":159.511058134,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.511061888,"data":"  \"geometry\": {\n"}
+,{"stream_name":"stdout","time":159.511066228,"data":"    \"observation_shape\": [\n"}
+,{"stream_name":"stdout","time":159.511070832,"data":"      89618,\n"}
+,{"stream_name":"stdout","time":159.511074922,"data":"      10\n"}
+,{"stream_name":"stdout","time":159.511078449,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.511082071,"data":"    \"h5_keys\": [\n"}
+,{"stream_name":"stdout","time":159.511086179,"data":"      \"action\",\n"}
+,{"stream_name":"stdout","time":159.51109015,"data":"      \"distance_to_target\",\n"}
+,{"stream_name":"stdout","time":159.511094316,"data":"      \"ep_idx\",\n"}
+,{"stream_name":"stdout","time":159.511098446,"data":"      \"ep_len\",\n"}
+,{"stream_name":"stdout","time":159.511102455,"data":"      \"ep_offset\",\n"}
+,{"stream_name":"stdout","time":159.511106842,"data":"      \"id\",\n"}
+,{"stream_name":"stdout","time":159.511110932,"data":"      \"observation\",\n"}
+,{"stream_name":"stdout","time":159.511114933,"data":"      \"pixels\",\n"}
+,{"stream_name":"stdout","time":159.511118578,"data":"      \"pos_agent\",\n"}
+,{"stream_name":"stdout","time":159.511122377,"data":"      \"pos_target\",\n"}
+,{"stream_name":"stdout","time":159.511126416,"data":"      \"proprio\",\n"}
+,{"stream_name":"stdout","time":159.511130468,"data":"      \"render_time\",\n"}
+,{"stream_name":"stdout","time":159.511134376,"data":"      \"reward\",\n"}
+,{"stream_name":"stdout","time":159.511138509,"data":"      \"step_idx\",\n"}
+,{"stream_name":"stdout","time":159.511142067,"data":"      \"terminated\",\n"}
+,{"stream_name":"stdout","time":159.511146263,"data":"      \"truncated\"\n"}
+,{"stream_name":"stdout","time":159.511150344,"data":"    ],\n"}
+,{"stream_name":"stdout","time":159.511154062,"data":"    \"unique_door_layouts\": [\n"}
+,{"stream_name":"stdout","time":159.511158161,"data":"      [\n"}
+,{"stream_name":"stdout","time":159.511162243,"data":"        112.0,\n"}
+,{"stream_name":"stdout","time":159.511166303,"data":"        49.0,\n"}
+,{"stream_name":"stdout","time":159.511170217,"data":"        0.0,\n"}
+,{"stream_name":"stdout","time":159.511173751,"data":"        0.0,\n"}
+,{"stream_name":"stdout","time":159.51117765,"data":"        0.0,\n"}
+,{"stream_name":"stdout","time":159.511181073,"data":"        0.0\n"}
+,{"stream_name":"stdout","time":159.511184945,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511193603,"data":"    ]\n"}
+,{"stream_name":"stdout","time":159.511198462,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.51120231,"data":"  \"top_10_cells_by_tail_count\": [\n"}
+,{"stream_name":"stdout","time":159.511206447,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511210133,"data":"      \"group\": 149,\n"}
+,{"stream_name":"stdout","time":159.511213983,"data":"      \"n\": 581,\n"}
+,{"stream_name":"stdout","time":159.511218092,"data":"      \"mean\": 5.311818599700928,\n"}
+,{"stream_name":"stdout","time":159.511222138,"data":"      \"rmse\": 6.378800392150879,\n"}
+,{"stream_name":"stdout","time":159.511226291,"data":"      \"median\": 4.091692924499512,\n"}
+,{"stream_name":"stdout","time":159.511230611,"data":"      \"p90\": 10.81031608581543,\n"}
+,{"stream_name":"stdout","time":159.511234695,"data":"      \"p95\": 11.437790870666504,\n"}
+,{"stream_name":"stdout","time":159.511238895,"data":"      \"p99\": 12.113306999206543,\n"}
+,{"stream_name":"stdout","time":159.511243141,"data":"      \"maximum\": 12.303763389587402,\n"}
+,{"stream_name":"stdout","time":159.511247301,"data":"      \"over4\": 295,\n"}
+,{"stream_name":"stdout","time":159.511251184,"data":"      \"over8\": 165,\n"}
+,{"stream_name":"stdout","time":159.511263165,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.511267981,"data":"      \"rate_over8\": 0.28399311531841653,\n"}
+,{"stream_name":"stdout","time":159.511271463,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511275118,"data":"        0.4013715386390686,\n"}
+,{"stream_name":"stdout","time":159.511278753,"data":"        -4.270813941955566\n"}
+,{"stream_name":"stdout","time":159.511282558,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511286052,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511290171,"data":"        1.390796422958374,\n"}
+,{"stream_name":"stdout","time":159.511294104,"data":"        4.864634037017822\n"}
+,{"stream_name":"stdout","time":159.511306783,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511311114,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.51131536,"data":"        1.6672186851501465,\n"}
+,{"stream_name":"stdout","time":159.511319232,"data":"        6.157067775726318\n"}
+,{"stream_name":"stdout","time":159.511323296,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511327198,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.511331222,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511335354,"data":"      \"group\": 196,\n"}
+,{"stream_name":"stdout","time":159.511339472,"data":"      \"n\": 242,\n"}
+,{"stream_name":"stdout","time":159.511343619,"data":"      \"mean\": 8.471996307373047,\n"}
+,{"stream_name":"stdout","time":159.511347589,"data":"      \"rmse\": 8.89169979095459,\n"}
+,{"stream_name":"stdout","time":159.511351717,"data":"      \"median\": 9.219930648803711,\n"}
+,{"stream_name":"stdout","time":159.511355884,"data":"      \"p90\": 11.29299259185791,\n"}
+,{"stream_name":"stdout","time":159.511360045,"data":"      \"p95\": 11.805486679077148,\n"}
+,{"stream_name":"stdout","time":159.511363903,"data":"      \"p99\": 12.033875465393066,\n"}
+,{"stream_name":"stdout","time":159.511368253,"data":"      \"maximum\": 12.161866188049316,\n"}
+,{"stream_name":"stdout","time":159.511372401,"data":"      \"over4\": 217,\n"}
+,{"stream_name":"stdout","time":159.51137659,"data":"      \"over8\": 163,\n"}
+,{"stream_name":"stdout","time":159.511380547,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.511388645,"data":"      \"rate_over8\": 0.6735537190082644,\n"}
+,{"stream_name":"stdout","time":159.51139319,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511396889,"data":"        -3.3836753368377686,\n"}
+,{"stream_name":"stdout","time":159.511401045,"data":"        7.514153957366943\n"}
+,{"stream_name":"stdout","time":159.511405263,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511409187,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511413128,"data":"        3.5783870220184326,\n"}
+,{"stream_name":"stdout","time":159.511417153,"data":"        7.514952182769775\n"}
+,{"stream_name":"stdout","time":159.511421058,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511424702,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511429232,"data":"        4.0508551597595215,\n"}
+,{"stream_name":"stdout","time":159.511433192,"data":"        7.915358066558838\n"}
+,{"stream_name":"stdout","time":159.511437533,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511441478,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.511445333,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511449133,"data":"      \"group\": 182,\n"}
+,{"stream_name":"stdout","time":159.511453276,"data":"      \"n\": 315,\n"}
+,{"stream_name":"stdout","time":159.511458136,"data":"      \"mean\": 7.45738410949707,\n"}
+,{"stream_name":"stdout","time":159.51146188,"data":"      \"rmse\": 8.335729598999023,\n"}
+,{"stream_name":"stdout","time":159.511465732,"data":"      \"median\": 7.332892417907715,\n"}
+,{"stream_name":"stdout","time":159.511469829,"data":"      \"p90\": 12.643210411071777,\n"}
+,{"stream_name":"stdout","time":159.511473836,"data":"      \"p95\": 13.724428176879883,\n"}
+,{"stream_name":"stdout","time":159.511477779,"data":"      \"p99\": 14.778108596801758,\n"}
+,{"stream_name":"stdout","time":159.511481516,"data":"      \"maximum\": 15.506538391113281,\n"}
+,{"stream_name":"stdout","time":159.511485615,"data":"      \"over4\": 232,\n"}
+,{"stream_name":"stdout","time":159.511489673,"data":"      \"over8\": 142,\n"}
+,{"stream_name":"stdout","time":159.511493802,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.511498106,"data":"      \"rate_over8\": 0.4507936507936508,\n"}
+,{"stream_name":"stdout","time":159.51150226,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511505934,"data":"        -0.18907169997692108,\n"}
+,{"stream_name":"stdout","time":159.511509862,"data":"        6.448509216308594\n"}
+,{"stream_name":"stdout","time":159.511513684,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511517563,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511521715,"data":"        2.271303415298462,\n"}
+,{"stream_name":"stdout","time":159.511525502,"data":"        6.87933874130249\n"}
+,{"stream_name":"stdout","time":159.511529333,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511533238,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511537594,"data":"        2.5632996559143066,\n"}
+,{"stream_name":"stdout","time":159.511541605,"data":"        7.931824684143066\n"}
+,{"stream_name":"stdout","time":159.511545473,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511549245,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.51155293,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511557051,"data":"      \"group\": 73,\n"}
+,{"stream_name":"stdout","time":159.511561232,"data":"      \"n\": 3115,\n"}
+,{"stream_name":"stdout","time":159.511569841,"data":"      \"mean\": 3.6206159591674805,\n"}
+,{"stream_name":"stdout","time":159.511574321,"data":"      \"rmse\": 4.135929107666016,\n"}
+,{"stream_name":"stdout","time":159.511578432,"data":"      \"median\": 3.3777027130126953,\n"}
+,{"stream_name":"stdout","time":159.511582564,"data":"      \"p90\": 6.799368858337402,\n"}
+,{"stream_name":"stdout","time":159.511586475,"data":"      \"p95\": 7.835263252258301,\n"}
+,{"stream_name":"stdout","time":159.511590483,"data":"      \"p99\": 8.742505073547363,\n"}
+,{"stream_name":"stdout","time":159.511594287,"data":"      \"maximum\": 9.872001647949219,\n"}
+,{"stream_name":"stdout","time":159.511598374,"data":"      \"over4\": 1098,\n"}
+,{"stream_name":"stdout","time":159.511601994,"data":"      \"over8\": 123,\n"}
+,{"stream_name":"stdout","time":159.511606243,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.511609971,"data":"      \"rate_over8\": 0.03948635634028892,\n"}
+,{"stream_name":"stdout","time":159.511613845,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511617124,"data":"        -0.005692980717867613,\n"}
+,{"stream_name":"stdout","time":159.511620599,"data":"        0.489678293466568\n"}
+,{"stream_name":"stdout","time":159.511624193,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511627568,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511631593,"data":"        1.4416054487228394,\n"}
+,{"stream_name":"stdout","time":159.511635817,"data":"        3.089869976043701\n"}
+,{"stream_name":"stdout","time":159.511639056,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511642485,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511646161,"data":"        1.7770841121673584,\n"}
+,{"stream_name":"stdout","time":159.511649992,"data":"        3.7346861362457275\n"}
+,{"stream_name":"stdout","time":159.511653414,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.51165693,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.511660957,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511664379,"data":"      \"group\": 38,\n"}
+,{"stream_name":"stdout","time":159.511668337,"data":"      \"n\": 760,\n"}
+,{"stream_name":"stdout","time":159.511672057,"data":"      \"mean\": 4.656189441680908,\n"}
+,{"stream_name":"stdout","time":159.511675807,"data":"      \"rmse\": 5.42933988571167,\n"}
+,{"stream_name":"stdout","time":159.511679672,"data":"      \"median\": 3.6448445320129395,\n"}
+,{"stream_name":"stdout","time":159.511683466,"data":"      \"p90\": 9.283951759338379,\n"}
+,{"stream_name":"stdout","time":159.511687195,"data":"      \"p95\": 10.494486808776855,\n"}
+,{"stream_name":"stdout","time":159.511691444,"data":"      \"p99\": 12.691922187805176,\n"}
+,{"stream_name":"stdout","time":159.511695093,"data":"      \"maximum\": 13.648579597473145,\n"}
+,{"stream_name":"stdout","time":159.511699363,"data":"      \"over4\": 336,\n"}
+,{"stream_name":"stdout","time":159.511702981,"data":"      \"over8\": 113,\n"}
+,{"stream_name":"stdout","time":159.511706862,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.51171085,"data":"      \"rate_over8\": 0.14868421052631578,\n"}
+,{"stream_name":"stdout","time":159.511714926,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.51171882,"data":"        -0.21868422627449036,\n"}
+,{"stream_name":"stdout","time":159.511722884,"data":"        1.1081479787826538\n"}
+,{"stream_name":"stdout","time":159.511726793,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511730714,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511740481,"data":"        1.941847801208496,\n"}
+,{"stream_name":"stdout","time":159.511744797,"data":"        3.88470721244812\n"}
+,{"stream_name":"stdout","time":159.511748731,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511752602,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511756385,"data":"        2.182941436767578,\n"}
+,{"stream_name":"stdout","time":159.511760143,"data":"        4.971165657043457\n"}
+,{"stream_name":"stdout","time":159.511763905,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511767678,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.511771434,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511775158,"data":"      \"group\": 164,\n"}
+,{"stream_name":"stdout","time":159.511779145,"data":"      \"n\": 327,\n"}
+,{"stream_name":"stdout","time":159.511783029,"data":"      \"mean\": 6.845752239227295,\n"}
+,{"stream_name":"stdout","time":159.511787908,"data":"      \"rmse\": 7.316238880157471,\n"}
+,{"stream_name":"stdout","time":159.511792175,"data":"      \"median\": 7.128450393676758,\n"}
+,{"stream_name":"stdout","time":159.511796365,"data":"      \"p90\": 10.230303764343262,\n"}
+,{"stream_name":"stdout","time":159.511800227,"data":"      \"p95\": 10.821617126464844,\n"}
+,{"stream_name":"stdout","time":159.51181686,"data":"      \"p99\": 11.34894847869873,\n"}
+,{"stream_name":"stdout","time":159.511821384,"data":"      \"maximum\": 11.64781379699707,\n"}
+,{"stream_name":"stdout","time":159.511825277,"data":"      \"over4\": 277,\n"}
+,{"stream_name":"stdout","time":159.511829386,"data":"      \"over8\": 112,\n"}
+,{"stream_name":"stdout","time":159.511833618,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.511837263,"data":"      \"rate_over8\": 0.3425076452599388,\n"}
+,{"stream_name":"stdout","time":159.511840794,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511844533,"data":"        -0.20120680332183838,\n"}
+,{"stream_name":"stdout","time":159.511848368,"data":"        -6.529811382293701\n"}
+,{"stream_name":"stdout","time":159.511852613,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511856386,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511860081,"data":"        1.3026537895202637,\n"}
+,{"stream_name":"stdout","time":159.511883258,"data":"        6.599477767944336\n"}
+,{"stream_name":"stdout","time":159.511887309,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511891394,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511895517,"data":"        1.5553255081176758,\n"}
+,{"stream_name":"stdout","time":159.511899143,"data":"        7.149007797241211\n"}
+,{"stream_name":"stdout","time":159.511902534,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.511906538,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.511910434,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.511914202,"data":"      \"group\": 210,\n"}
+,{"stream_name":"stdout","time":159.511918653,"data":"      \"n\": 152,\n"}
+,{"stream_name":"stdout","time":159.511922402,"data":"      \"mean\": 10.546346664428711,\n"}
+,{"stream_name":"stdout","time":159.511926435,"data":"      \"rmse\": 11.257796287536621,\n"}
+,{"stream_name":"stdout","time":159.511930229,"data":"      \"median\": 10.355206489562988,\n"}
+,{"stream_name":"stdout","time":159.511934372,"data":"      \"p90\": 15.90839958190918,\n"}
+,{"stream_name":"stdout","time":159.511938462,"data":"      \"p95\": 17.439664840698242,\n"}
+,{"stream_name":"stdout","time":159.511947485,"data":"      \"p99\": 20.313737869262695,\n"}
+,{"stream_name":"stdout","time":159.511951434,"data":"      \"maximum\": 20.64191436767578,\n"}
+,{"stream_name":"stdout","time":159.511955381,"data":"      \"over4\": 151,\n"}
+,{"stream_name":"stdout","time":159.511959514,"data":"      \"over8\": 107,\n"}
+,{"stream_name":"stdout","time":159.511963314,"data":"      \"over16\": 13,\n"}
+,{"stream_name":"stdout","time":159.511967457,"data":"      \"rate_over8\": 0.7039473684210527,\n"}
+,{"stream_name":"stdout","time":159.511971896,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511976097,"data":"        0.9760762453079224,\n"}
+,{"stream_name":"stdout","time":159.511979805,"data":"        -10.207049369812012\n"}
+,{"stream_name":"stdout","time":159.511983698,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.511987314,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.511991262,"data":"        2.158714771270752,\n"}
+,{"stream_name":"stdout","time":159.511995089,"data":"        10.207049369812012\n"}
+,{"stream_name":"stdout","time":159.511999019,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512002865,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512007069,"data":"        2.9025256633758545,\n"}
+,{"stream_name":"stdout","time":159.512010902,"data":"        10.877192497253418\n"}
+,{"stream_name":"stdout","time":159.512014845,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.512018402,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.512022211,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.512025911,"data":"      \"group\": 34,\n"}
+,{"stream_name":"stdout","time":159.512029652,"data":"      \"n\": 108,\n"}
+,{"stream_name":"stdout","time":159.512033565,"data":"      \"mean\": 10.486851692199707,\n"}
+,{"stream_name":"stdout","time":159.512037765,"data":"      \"rmse\": 10.594781875610352,\n"}
+,{"stream_name":"stdout","time":159.512041609,"data":"      \"median\": 10.816247940063477,\n"}
+,{"stream_name":"stdout","time":159.51204582,"data":"      \"p90\": 12.218389511108398,\n"}
+,{"stream_name":"stdout","time":159.512049928,"data":"      \"p95\": 12.467751502990723,\n"}
+,{"stream_name":"stdout","time":159.512053585,"data":"      \"p99\": 12.821450233459473,\n"}
+,{"stream_name":"stdout","time":159.512057918,"data":"      \"maximum\": 13.167862892150879,\n"}
+,{"stream_name":"stdout","time":159.512062041,"data":"      \"over4\": 108,\n"}
+,{"stream_name":"stdout","time":159.512065775,"data":"      \"over8\": 102,\n"}
+,{"stream_name":"stdout","time":159.512070136,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.512074089,"data":"      \"rate_over8\": 0.9444444444444444,\n"}
+,{"stream_name":"stdout","time":159.512078978,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512083322,"data":"        0.5931721329689026,\n"}
+,{"stream_name":"stdout","time":159.512087318,"data":"        -10.101733207702637\n"}
+,{"stream_name":"stdout","time":159.512091282,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512095239,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512099215,"data":"        2.1691603660583496,\n"}
+,{"stream_name":"stdout","time":159.512103216,"data":"        10.101733207702637\n"}
+,{"stream_name":"stdout","time":159.512107185,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512110883,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512114585,"data":"        2.8919739723205566,\n"}
+,{"stream_name":"stdout","time":159.512118545,"data":"        10.192441940307617\n"}
+,{"stream_name":"stdout","time":159.512126565,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.512130828,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.512134535,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.512138949,"data":"      \"group\": 203,\n"}
+,{"stream_name":"stdout","time":159.512142665,"data":"      \"n\": 126,\n"}
+,{"stream_name":"stdout","time":159.512146692,"data":"      \"mean\": 10.097127914428711,\n"}
+,{"stream_name":"stdout","time":159.512151238,"data":"      \"rmse\": 10.363438606262207,\n"}
+,{"stream_name":"stdout","time":159.512155045,"data":"      \"median\": 10.049295425415039,\n"}
+,{"stream_name":"stdout","time":159.512158899,"data":"      \"p90\": 13.34996223449707,\n"}
+,{"stream_name":"stdout","time":159.512163422,"data":"      \"p95\": 14.124884605407715,\n"}
+,{"stream_name":"stdout","time":159.512167573,"data":"      \"p99\": 15.736647605895996,\n"}
+,{"stream_name":"stdout","time":159.512173425,"data":"      \"maximum\": 15.94066047668457,\n"}
+,{"stream_name":"stdout","time":159.512177869,"data":"      \"over4\": 126,\n"}
+,{"stream_name":"stdout","time":159.512181916,"data":"      \"over8\": 102,\n"}
+,{"stream_name":"stdout","time":159.512185665,"data":"      \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.512189845,"data":"      \"rate_over8\": 0.8095238095238095,\n"}
+,{"stream_name":"stdout","time":159.512193945,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512198104,"data":"        3.65385365486145,\n"}
+,{"stream_name":"stdout","time":159.512201922,"data":"        -9.285812377929688\n"}
+,{"stream_name":"stdout","time":159.512206175,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512209654,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.51221372,"data":"        3.65385365486145,\n"}
+,{"stream_name":"stdout","time":159.512217596,"data":"        9.285812377929688\n"}
+,{"stream_name":"stdout","time":159.512221409,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512225145,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512228918,"data":"        3.9966657161712646,\n"}
+,{"stream_name":"stdout","time":159.512232724,"data":"        9.561773300170898\n"}
+,{"stream_name":"stdout","time":159.51223711,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.512240854,"data":"    },\n"}
+,{"stream_name":"stdout","time":159.512244669,"data":"    {\n"}
+,{"stream_name":"stdout","time":159.512249105,"data":"      \"group\": 214,\n"}
+,{"stream_name":"stdout","time":159.512252338,"data":"      \"n\": 104,\n"}
+,{"stream_name":"stdout","time":159.5122879,"data":"      \"mean\": 22.559406280517578,\n"}
+,{"stream_name":"stdout","time":159.512294437,"data":"      \"rmse\": 24.189651489257812,\n"}
+,{"stream_name":"stdout","time":159.512299045,"data":"      \"median\": 22.58843231201172,\n"}
+,{"stream_name":"stdout","time":159.512302629,"data":"      \"p90\": 33.80588912963867,\n"}
+,{"stream_name":"stdout","time":159.512306481,"data":"      \"p95\": 36.485774993896484,\n"}
+,{"stream_name":"stdout","time":159.512309987,"data":"      \"p99\": 38.66712951660156,\n"}
+,{"stream_name":"stdout","time":159.512313965,"data":"      \"maximum\": 39.51830291748047,\n"}
+,{"stream_name":"stdout","time":159.512317958,"data":"      \"over4\": 102,\n"}
+,{"stream_name":"stdout","time":159.512321626,"data":"      \"over8\": 98,\n"}
+,{"stream_name":"stdout","time":159.512325525,"data":"      \"over16\": 76,\n"}
+,{"stream_name":"stdout","time":159.512330206,"data":"      \"rate_over8\": 0.9423076923076923,\n"}
+,{"stream_name":"stdout","time":159.512339958,"data":"      \"bias_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512344466,"data":"        8.577198028564453,\n"}
+,{"stream_name":"stdout","time":159.51234848,"data":"        -20.83576774597168\n"}
+,{"stream_name":"stdout","time":159.512352977,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512356526,"data":"      \"mae_xy\": [\n"}
+,{"stream_name":"stdout","time":159.512366595,"data":"        8.577198028564453,\n"}
+,{"stream_name":"stdout","time":159.512370841,"data":"        20.83576774597168\n"}
+,{"stream_name":"stdout","time":159.512374298,"data":"      ],\n"}
+,{"stream_name":"stdout","time":159.512377802,"data":"      \"rmse_xy\": [\n"}
+,{"stream_name":"stdout","time":159.51238164,"data":"        9.130476951599121,\n"}
+,{"stream_name":"stdout","time":159.512384716,"data":"        22.40030288696289\n"}
+,{"stream_name":"stdout","time":159.512388226,"data":"      ]\n"}
+,{"stream_name":"stdout","time":159.512392021,"data":"    }\n"}
+,{"stream_name":"stdout","time":159.512395409,"data":"  ],\n"}
+,{"stream_name":"stdout","time":159.512409615,"data":"  \"sample_red_centroid_label_error\": {\n"}
+,{"stream_name":"stdout","time":159.51241361,"data":"    \"n\": 60,\n"}
+,{"stream_name":"stdout","time":159.512417643,"data":"    \"mean\": 0.31509223026414585,\n"}
+,{"stream_name":"stdout","time":159.51242152,"data":"    \"rmse\": 0.39246386190998267,\n"}
+,{"stream_name":"stdout","time":159.51242564,"data":"    \"median\": 0.2379082670420313,\n"}
+,{"stream_name":"stdout","time":159.512429574,"data":"    \"p90\": 0.6312884572465614,\n"}
+,{"stream_name":"stdout","time":159.512433912,"data":"    \"p95\": 0.685451882828393,\n"}
+,{"stream_name":"stdout","time":159.512437789,"data":"    \"p99\": 0.7300460552350583,\n"}
+,{"stream_name":"stdout","time":159.512441067,"data":"    \"maximum\": 0.7704386276049264,\n"}
+,{"stream_name":"stdout","time":159.512444659,"data":"    \"over4\": 0,\n"}
+,{"stream_name":"stdout","time":159.512448375,"data":"    \"over8\": 0,\n"}
+,{"stream_name":"stdout","time":159.512451995,"data":"    \"over16\": 0,\n"}
+,{"stream_name":"stdout","time":159.512456063,"data":"    \"rate_over8\": 0.0\n"}
+,{"stream_name":"stdout","time":159.512460046,"data":"  },\n"}
+,{"stream_name":"stdout","time":159.512463841,"data":"  \"image_selection_count\": 60,\n"}
+,{"stream_name":"stdout","time":159.512467909,"data":"  \"seconds\": 157.75313156900006,\n"}
+,{"stream_name":"stdout","time":159.512471633,"data":"  \"caveats\": [\n"}
+,{"stream_name":"stdout","time":159.51247556,"data":"    \"Frame errors are serially dependent; no frame-independent significance tests.\",\n"}
+,{"stream_name":"stdout","time":159.512479942,"data":"    \"Spatial and phase associations are descriptive, not causal mechanisms.\",\n"}
+,{"stream_name":"stdout","time":159.512483921,"data":"    \"Image examples include deliberately selected extremes; separate random panels are included.\",\n"}
+,{"stream_name":"stdout","time":159.512488089,"data":"    \"Red-excess centroid is a sampled rendering/label sanity check, assuming a red agent.\",\n"}
+,{"stream_name":"stdout","time":159.512492469,"data":"    \"No fit, alternative decoder, threshold change, planner or predictor evaluation.\"\n"}
+,{"stream_name":"stdout","time":159.512496651,"data":"  ]\n"}
+,{"stream_name":"stdout","time":159.512500883,"data":"}\n"}
+,{"stream_name":"stderr","time":162.839633214,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":162.839668788,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":163.305077502,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":163.305107044,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":164.561023421,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":166.141989618,"data":"[NbConvertApp] Writing 393485 bytes to __results__.html\n"}
+]
