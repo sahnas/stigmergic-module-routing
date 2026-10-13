@@ -1,0 +1,19 @@
+{
+  "id": "hassanakaou/lewm-decoder-audit",
+  "title": "lewm-decoder-audit",
+  "code_file": "audit.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "hassanakaou/lewm-objective",
+    "hassanakaou/lewm-embed",
+    "hassanakaou/lewm-data-tworoom"
+  ],
+  "model_sources": []
+}

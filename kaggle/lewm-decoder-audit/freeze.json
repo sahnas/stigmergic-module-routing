@@ -1,0 +1,9 @@
+{
+  "recorded_utc": "2026-10-13T11:25:13.682388+00:00",
+  "scope": "Post-gate exploratory audit; fixed existing decoder, no fitting or planning",
+  "files": {
+    "audit.py": "3ffd1846476ab5149140b41d637c183fe7fdb3108b4c32d2b41eb264d6b40a82",
+    "kernel-metadata.json": "920b868794370735f34da129f7b5c43cae3a224c063156599b61a20c02932fd4",
+    "README.md": "ff2734577b6dee8d1d1bcf00405544ca0f8d8dec7f0764422232d184621f749e"
+  }
+}
