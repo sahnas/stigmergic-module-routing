@@ -1,0 +1,33 @@
+{
+  "recorded_utc": "2026-10-13T11:27:36.407349+00:00",
+  "kernel": "hassanakaou/lewm-decoder-audit",
+  "version": 1,
+  "status_observed": "RUNNING",
+  "code_commit": "ef5523f7c9e8421f244d3f6958769b1d8f6cb8bf",
+  "source_sha256": "3ffd1846476ab5149140b41d637c183fe7fdb3108b4c32d2b41eb264d6b40a82",
+  "retrieved_source_exact_match": true,
+  "metadata": {
+    "id": "hassanakaou/lewm-decoder-audit",
+    "id_no": 138484990,
+    "title": "lewm-decoder-audit",
+    "code_file": "lewm-decoder-audit.py",
+    "language": "python",
+    "kernel_type": "script",
+    "is_private": true,
+    "enable_gpu": false,
+    "enable_tpu": false,
+    "enable_internet": true,
+    "keywords": [],
+    "dataset_sources": [],
+    "kernel_sources": [
+      "hassanakaou/lewm-data-tworoom",
+      "hassanakaou/lewm-embed",
+      "hassanakaou/lewm-objective"
+    ],
+    "competition_sources": [],
+    "model_sources": [],
+    "docker_image": "",
+    "machine_shape": "None"
+  },
+  "scope": "Exploratory frozen-decoder audit; no fitting or planning"
+}
