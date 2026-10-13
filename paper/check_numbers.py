@@ -163,5 +163,57 @@ for seed, pairs in {42:((2,56),(1,59)), 43:((3,49),(1,55)), 44:((3,53),(4,56)), 
 C('E18 corrected descriptive mean', 84.75, np.mean([succ(f'retrained_v2_seed{s}') for s in (42,43,44,45)]), 0.00001)
 C('E18 released descriptive mean', 83.75, np.mean([85]+[succ(f'released_seed{s}') for s in (43,44,45)]), 0.00001)
 C('E18 bilinear descriptive mean', 98.00, np.mean([97]+[succ(f'bilinear_seed{s}') for s in (43,44,45)]), 0.00001)
-print(f'\n{sum(chk)} / {len(chk)} selected numerical checks pass; experiment 19 paired tests and generated tables verified')
+# --- follow-up diagnostics: bind the new manuscript numbers to archived data ---
+from pathlib import Path
+e20 = json.load(open(R + 'lewm_kaggle/taskstate.json'))
+for task, claims in {'tworoom':(0.012,0.048,0.076), 'pusht':(0.049,0.117,0.064)}.items():
+    assert min(e20[task]['probe_r2'].values()) > .9
+    C(f'E20 {task} held-out windows', 20000, e20[task]['n_windows'], 0)
+    for model, claim in zip(('retrained_v2','bilinear','released'), claims):
+        C(f'E20 {task} {model} h5 state error', claim, e20[task]['predictors'][model]['h5']['state_nmse_mean'], .00051)
+s = e20['pusht']['predictors']['bilinear']['h5']['state_nmse']
+ratio = np.mean([v for k,v in s.items() if k.startswith('block_')]) / np.mean([v for k,v in s.items() if k.startswith('agent_')])
+C('E20 block/agent error ratio', 3.2, ratio, .06)
+e21 = Path(R + 'lewm_kaggle/exp21_selection/version2')
+complete21 = json.loads((e21/'complete.json').read_text())
+assert complete21['status'] == 'evaluated'
+C('E21 completed evaluations', 36, complete21['evaluations'], 0)
+for seed, claimed in zip((43,44,45),(-1,0,1)):
+    scores = {}
+    for model in ('bilinear','retrained'):
+        for selector in ('mean','best'):
+            episodes = json.loads((e21/'evaluation'/'tworoom'/f'{model}_{selector}_seed{seed}'/'episodes.json').read_text())
+            assert len(episodes) == 100
+            scores[model,selector] = sum(e['success'] for e in episodes)
+    reduction = (scores['bilinear','mean']-scores['retrained','mean'])-(scores['bilinear','best']-scores['retrained','best'])
+    C(f'E21 seed{seed} gap reduction', claimed, reduction, 0)
+e23 = Path(R + 'lewm_kaggle/exp23_objective/version1')
+complete23 = json.loads((e23/'complete.json').read_text())
+assert complete23['status'] == 'stopped_decoder_gate'
+C('E23 planning evaluations', 0, complete23['evaluations'], 0)
+m23 = json.loads((e23/'decoder_manifest.json').read_text())
+for key, claimed in {'train_frames':300000,'validation_frames':89618,'excluded_episodes':388}.items():
+    C('E23 ' + key, claimed, m23[key], 0)
+for key, claimed in {'median':3.339,'p95':8.977}.items():
+    C('E23 ' + key, claimed, m23['metrics'][key], .00051)
+for coord, claimed in enumerate((.9952,.9858)):
+    C(f'E23 coordinate {coord} R2', claimed, m23['metrics']['r2'][coord], .000051)
+audit = Path(R + 'lewm_kaggle/exp23_decoder_audit/version1')
+a = np.load(audit/'validation_residuals.npz', allow_pickle=False)
+d = np.linalg.norm(a['predicted'].astype(float)-a['actual'].astype(float),axis=1)
+edge = np.minimum(a['actual'],224-a['actual']).min(axis=1)<28
+C('E23 audit episodes',969,len(np.unique(a['episode'])),0)
+C('E23 audit episodes with error >8',889,len(np.unique(a['episode'][d>8])),0)
+C('E23 audit frames with error >8',6461,int((d>8).sum()),0)
+C('E23 audit overall rate >8, percent',7.21,100*(d>8).mean(),.0051)
+C('E23 audit outer rate >8, percent',52.93,100*(d[edge]>8).mean(),.0051)
+C('E23 audit inner rate >8, percent',5.56,100*(d[~edge]>8).mean(),.0051)
+C('E23 audit interior p95',8.207,np.quantile(d[~edge],.95),.00051)
+C('E23 audit outer occupancy, percent',3.48,100*edge.mean(),.0051)
+C('E23 audit outer share of >16, percent',73.81,100*(edge & (d>16)).sum()/(d>16).sum(),.0051)
+images = json.loads((audit/'image_selection.json').read_text())
+C('E23 sampled images',60,len(images),0)
+C('E23 sampled label discrepancy maximum',.770,max(i['red_centroid_label_error'] for i in images),.00051)
+C('E23 training p95',9.014,json.loads((audit/'audit_summary.json').read_text())['training']['p95'],.00051)
+print(f'\n{sum(chk)} / {len(chk)} selected numerical checks pass; experiments 20, 21 and 23 included; experiment 19 paired tests and generated tables verified')
 raise SystemExit(0 if all(chk) else 1)

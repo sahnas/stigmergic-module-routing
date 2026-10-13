@@ -102,5 +102,6 @@ indices. Full private-cache decoding and dataset byte checks were done in the
 Kaggle job; the local check does not repeat them. Frames within episodes are
 dependent; no independent-frame significance test is reported.
 
-GitHub publication remains pending because integration writes were denied.
-The results and local commits are retained in the updated delivery archive.
+The results and Git history were published on 2026-10-13 after the initial
+integration write denial; see the [publication record](../../../docs/exp23_publication.md).
+The original submission records and frozen source files are preserved.

@@ -32,8 +32,8 @@ The effect of the decoded-position objective on the predictor success gap is
 **untested**. Do not interpret this stop as evidence for or against that effect,
 or as a comparison between the neural and bilinear predictors.
 
-A useful next proposal is a separate audit of the held-out decoding errors,
-including spatial concentration and the high-error tail. Any modified decoder
+The separate audit of the held-out decoding errors, including spatial
+concentration and the high-error tail, is now complete and linked below. Any modified decoder
 recipe or admissibility threshold would require a new documented protocol before
 planning evaluation. Experiment 22 remains a separate draft; nothing is launched
 automatically.
@@ -43,7 +43,9 @@ hashes and the checks performed after download. Reported decoder errors come
 from the frozen job; they were not recomputed from the full private cache locally.
 `submission_v1/submission.json` retains the historical RUNNING observation and
 the independently fetched source parity at submission time. GitHub publication
-remains pending; see the pre-execution submission note in `preregistrations/`.
+was completed on 2026-10-13 after execution; see the
+[publication record](../../../docs/exp23_publication.md). The pre-execution
+submission note in `preregistrations/` remains unchanged.
 
 The subsequent [frozen-decoder error audit](../exp23_decoder_audit/README.md)
 reproduced these metrics on the same inputs. It found spatially uneven errors,
