@@ -25,8 +25,8 @@ the three predictors as their planning success does: bilinear lowest on Two-room
   action transformation its environment applies at execution (Two-rooms clips to its bounds; PushT does not clip at
   the revision used), before both the predicted cost and the execution; the two environments are therefore not
   treated alike, by design.
-- Predicted cost: the predictor's own rollout of the clipped plan from the true three-frame context, squared
-  latent distance to the goal embedding, as the solver computes it. True cost: the clipped plan executed in 64 cloned
+- Predicted cost: the predictor's own rollout of the environment-transformed plan from the one-frame initial context,
+  squared latent distance to the goal embedding, using the official cost definition. True cost: the same transformed plan executed in 64 cloned
   environment copies at a time from the same state, terminal frame encoded by the frozen encoder, same distance.
 - Discrepancy per plan: |true - predicted|; per start and predictor: maximum (primary, the bound's quantity), 95th
   percentile (secondary, sensitivity to extremes), mean over the 301 plans, and the value at the chosen plan; also
@@ -59,5 +59,5 @@ from with three checkpoints. The review also cited Min et al., "When Low Predict
 title was not located at the time of this revision and is to be confirmed with a link.
 
 ## Known limits
-Thirty starts; the solver reproduced, not the authors' object; discrepancy measured on the last iteration's
+Thirty starts; the authors' pinned solver instrumented without changing its search; discrepancy measured on the last iteration's
 candidates, not on every candidate of every iteration; one encoder per task shared by the predictors.

@@ -1,0 +1,19 @@
+{
+  "pass_": true,
+  "torch": "2.10.0+cpu",
+  "synthetic_calls": 24,
+  "tests": [
+    "official latent cost untouched",
+    "same official rollouts under either objective",
+    "independent affine decoding with bias cancellation",
+    "one/two/three-frame contexts and eight goals",
+    "one-frame rollout equals independent five-action recurrence",
+    "official CEM baseline parity and objective intervention",
+    "official task draw with multiple lengths",
+    "probe episode exclusion and independent ridge solve",
+    "probe rejects invalid values and poor decoding",
+    "native TwoRoom cloned replay, clipping, no autoreset or early stop",
+    "paired analysis rejects task mismatch",
+    "orchestrator stops on failed gates and orders all baselines first"
+  ]
+}

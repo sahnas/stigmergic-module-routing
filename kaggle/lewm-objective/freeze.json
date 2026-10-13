@@ -1,0 +1,15 @@
+{
+  "protocol": "Experiment 23: shared decoded-position objective",
+  "created_utc": "2026-10-13",
+  "parent_commit": "944e7ef3a61952c0ba01b5406921180fc9a3dc3f",
+  "status": "Frozen before private-data fit and first Kaggle submission",
+  "files": {
+    "preregistrations/23_decoded_position_objective.md": "0565401581791644b1cb11565a8c3794fe3e8c7641f55f4cf38b233781cacb3e",
+    "kaggle/lewm-objective/objective.py": "15588a9a6c0558fac13e9e5e32756cdd1ba089e7ec68110a364b4d2be171cbc0",
+    "kaggle/lewm-objective/check_local.py": "942da26d9efce12a02702f8b5f0df83717dbebae9e1f839ece62f599f6530c73",
+    "kaggle/lewm-objective/kernel-metadata.json": "c1d807d7a30623d03b65d94a8a8c8e78c07fb7facf38b847b40166c6cf216821",
+    "kaggle/lewm-objective/README.md": "696c3b37c13cd0d06b64d852afc217714a97d5baf04441fa6a67766dcef60f46",
+    "kaggle/lewm-objective/local_checks.json": "7a87eefcecd5039bb6e830671557b053b562ebcdea5b6295b14035578be52a37",
+    "tools/verify_exp23_freeze.py": "19f9351da28218e479f3153d50d0b8b4a61c7cb7795d69ad96d32fc2589b0b38"
+  }
+}
